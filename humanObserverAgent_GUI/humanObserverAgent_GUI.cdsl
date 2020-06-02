@@ -1,0 +1,12 @@
+
+Component humanObserverAgent_GUI
+{
+    Communications
+    {
+
+    };
+	language Python;
+	gui Qt(QWidget);
+	options agmagent;	
+};
+
