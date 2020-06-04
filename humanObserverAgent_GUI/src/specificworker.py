@@ -18,8 +18,10 @@
 #    You should have received a copy of the GNU General Public License
 #    along with RoboComp.  If not, see <http://www.gnu.org/licenses/>.
 #
-import PySide2
 from genericworker import *
+from datetime import date
+from google_calender import CalenderApi
+import json
 
 try:
     from ui_activity_form import *
@@ -45,18 +47,47 @@ class OpenActivityForm(QDialog):
         self.ui.pushButton_2.clicked.connect(self.button_cancel)
         self.ui.comboBox_4.currentIndexChanged.connect(self.type_check)
         self.ui.comboBox_5.activated.connect(self.location_check)
-        self.ui.textEdit_3.setText("Activity " + str(self.parent.ui.comboBox_3.count()+1))
+        self.ui.textEdit_3.setText("Activity " + str(self.parent.ui.comboBox_3.count() + 1))
         self.ui.comboBox_6.addItems({"Stretcher", "Robot"})
+        self.calendarApiObj = CalenderApi()
 
     # save the data when ok button is pressed
     def button_ok(self):
         print("ok button")
         self.parent.ui.comboBox_3.addItem(self.ui.textEdit_3.toPlainText())
+        start = str(self.parent.ui.dateEdit.date().toPython()) + "T" + str(self.ui.timeEdit.time().toPython()) + "Z"
+        end = str(self.parent.ui.dateEdit.date().toPython()) + "T" + str(self.ui.timeEdit_2.time().toPython()) + "Z"
+        body = {"summary": self.ui.textEdit_3.toPlainText(),
+                "description": {"Type": self.ui.comboBox_4.currentText(),
+                                "IndividualName": self.ui.textEdit.toPlainText(),
+                                "TherapistName": self.ui.textEdit_2.toPlainText(),
+                                "Location": self.ui.comboBox_5.currentText(),
+                                "Element": self.ui.comboBox_6.currentText(),
+                                "Notification": self.ui.checkBox.isChecked(),
+                                },
+                "start": {"dateTime": start},
+                "end": {"dateTime": end},
+                }
+        self.calendarApiObj.createEvent(bodyContent=body)
         self.hide()
 
     # exit the form and discard all the data
     def button_cancel(self):
         self.hide()
+        start = str(self.parent.ui.dateEdit.date().toPython())+ "T" +str(self.ui.timeEdit.time().toPython()) + "Z"
+        end = str(self.parent.ui.dateEdit.date().toPython())+ "T" +str(self.ui.timeEdit_2.time().toPython()) + "Z"
+        body = {"summary": self.ui.textEdit_3.toPlainText(),
+                "description": {"Type": self.ui.comboBox_4.currentText(),
+                                "IndividualName": self.ui.textEdit.toPlainText(),
+                                "TherapistName": self.ui.textEdit_2.toPlainText(),
+                                "Location": self.ui.comboBox_5.currentText(),
+                                "Element": self.ui.comboBox_6.currentText(),
+                                "Notification": self.ui.checkBox.isChecked(),
+                                },
+                "start": {"dateTime": start},
+                "end": {"dateTime": end},
+                }
+        print(body)
 
     # check the type of the activity
     def type_check(self, index):
@@ -84,7 +115,10 @@ class SpecificWorker(GenericWorker):
         self.Period = 2000
         self.timer.start(self.Period)
         self.ui.pushButton_10.clicked.connect(self.newActivity)
+        self.ui.pushButton_14.clicked.connect(self.viewAgenda)
 
+        # setting the date to today
+        # self.ui.dateEdit.setDate()
         # self.ui2 = Ui_activityForm()
         # self.ui2.setupUi(self)
 
@@ -101,7 +135,7 @@ class SpecificWorker(GenericWorker):
 
     @QtCore.Slot()
     def compute(self):
-        print('SpecificWorker.compute...')
+        # print('SpecificWorker.compute...')
         # computeCODE
         # try:
         #   self.differentialrobot_proxy.setSpeedBase(100, 0)
@@ -271,3 +305,8 @@ class SpecificWorker(GenericWorker):
         print("button Clicked2")
         self.activityForm = OpenActivityForm(self)
         self.activityForm.show()
+
+    def viewAgenda(self):
+        print("view Agenda clicked")
+        print(self.ui.dateEdit.date().toPython())
+        print(date.today())

@@ -13,16 +13,6 @@
   <property name="windowTitle">
    <string>humanObserverAgent_GUI</string>
   </property>
-  <widget class="QDateTimeEdit" name="dateTimeEdit">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>30</y>
-     <width>151</width>
-     <height>26</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_9">
    <property name="geometry">
     <rect>
@@ -52,7 +42,7 @@
   <widget class="QPushButton" name="pushButton_14">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>146</x>
      <y>30</y>
      <width>101</width>
      <height>23</height>
@@ -65,8 +55,8 @@
   <widget class="Line" name="line_5">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>0</y>
+     <x>246</x>
+     <y>2</y>
      <width>20</width>
      <height>91</height>
     </rect>
@@ -78,7 +68,7 @@
   <widget class="QLabel" name="label_24">
    <property name="geometry">
     <rect>
-     <x>370</x>
+     <x>306</x>
      <y>0</y>
      <width>151</width>
      <height>21</height>
@@ -91,7 +81,7 @@
   <widget class="QPushButton" name="pushButton_10">
    <property name="geometry">
     <rect>
-     <x>330</x>
+     <x>266</x>
      <y>60</y>
      <width>91</width>
      <height>23</height>
@@ -104,7 +94,7 @@
   <widget class="QPushButton" name="pushButton_11">
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>366</x>
      <y>60</y>
      <width>91</width>
      <height>23</height>
@@ -117,10 +107,44 @@
   <widget class="QComboBox" name="comboBox_3">
    <property name="geometry">
     <rect>
-     <x>330</x>
+     <x>266</x>
      <y>30</y>
      <width>191</width>
      <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>62</y>
+     <width>271</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="inputMethodHints">
+    <set>Qt::ImhNone</set>
+   </property>
+   <property name="text">
+    <string>Loading</string>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="dateEdit">
+   <property name="geometry">
+    <rect>
+     <x>36</x>
+     <y>28</y>
+     <width>93</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>

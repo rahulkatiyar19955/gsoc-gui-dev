@@ -9,7 +9,7 @@ class CalenderApi(object):
 
     def __init__(self):
         self.SCOPES = ['https://www.googleapis.com/auth/calendar']
-        self.credential_file = 'client_secret.json'
+        self.credential_file = "client_secret.json"
         self.service_account_name = 'testacc@robocompgui-1591069682447.iam.gserviceaccount.com'
         self.credentials = service_account.Credentials.from_service_account_file(self.credential_file,
                                                                                  scopes=self.SCOPES)
