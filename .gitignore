@@ -4,3 +4,5 @@ client_secre.json
 *Makefile
 *CMakeCache.txt
 *CMakeFiles
+/calender_api_client/client_secret.json
+/humanObserverAgent_GUI/client_secret.json

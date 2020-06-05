@@ -21,13 +21,19 @@
 from genericworker import *
 from datetime import date
 from google_calender import CalenderApi
+from PySide2.QtCore import QDateTime
+import PySide2
 import json
 
 try:
     from ui_activity_form import *
 except:
-    print("Can't import UI file. Did you run 'make'?")
+    print("Can't import ui_activity_form UI file")
 
+try:
+    from ui_dailyActivity import *
+except:
+    print("Can't import ui_dailyActivity UI file")
 
 # If RoboComp was compiled with Python bindings you can use InnerModel in Python
 # sys.path.append('/opt/robocomp/lib')
@@ -49,7 +55,6 @@ class OpenActivityForm(QDialog):
         self.ui.comboBox_5.activated.connect(self.location_check)
         self.ui.textEdit_3.setText("Activity " + str(self.parent.ui.comboBox_3.count() + 1))
         self.ui.comboBox_6.addItems({"Stretcher", "Robot"})
-        self.calendarApiObj = CalenderApi()
 
     # save the data when ok button is pressed
     def button_ok(self):
@@ -68,7 +73,7 @@ class OpenActivityForm(QDialog):
                 "start": {"dateTime": start},
                 "end": {"dateTime": end},
                 }
-        self.calendarApiObj.createEvent(bodyContent=body)
+        self.parent.calendarApiObj.createEvent(bodyContent=body)
         self.hide()
 
     # exit the form and discard all the data
@@ -108,9 +113,25 @@ class OpenActivityForm(QDialog):
             self.ui.comboBox_6.addItems({"Table", "Robot", "TV"})
 
 
+class DailyActivity(QDialog):
+    def __init__(self, parent=None):
+        QDialog.__init__(self,parent)
+        self.parent = parent
+        self.ui = Ui_DailyActivity()
+        self.ui.setupUi(self)
+        self.setModal(True)
+        self.ui.tableWidget.setHorizontalHeaderItem(0,QTableWidgetItem("Name"))
+        self.ui.tableWidget.setHorizontalHeaderItem(1,QTableWidgetItem("StartTime"))
+        self.ui.tableWidget.setHorizontalHeaderItem(2,QTableWidgetItem("EndTime"))
+        # self.ui.tableWidget.setHorizontalHeader()
+
+
+
 class SpecificWorker(GenericWorker):
     def __init__(self, proxy_map):
         super(SpecificWorker, self).__init__(proxy_map)
+        self.activityForm = OpenActivityForm(self)
+        self.dailyActivity = DailyActivity()
         self.timer.timeout.connect(self.compute)
         self.Period = 2000
         self.timer.start(self.Period)
@@ -118,7 +139,14 @@ class SpecificWorker(GenericWorker):
         self.ui.pushButton_14.clicked.connect(self.viewAgenda)
 
         # setting the date to today
-        # self.ui.dateEdit.setDate()
+        self.ui.dateEdit.setDateTime(QDateTime.currentDateTimeUtc())
+
+        # Hide the status label
+        self.ui.label.hide()
+
+        # calling the calendar api object
+        self.calendarApiObj = CalenderApi()
+
         # self.ui2 = Ui_activityForm()
         # self.ui2.setupUi(self)
 
@@ -303,10 +331,36 @@ class SpecificWorker(GenericWorker):
     # ======functions for ui=============
     def newActivity(self):
         print("button Clicked2")
-        self.activityForm = OpenActivityForm(self)
         self.activityForm.show()
 
     def viewAgenda(self):
         print("view Agenda clicked")
-        print(self.ui.dateEdit.date().toPython())
-        print(date.today())
+        self.ui.label.show()
+        self.ui.label.setText("Loading...")
+        self.fetchEvents()
+        self.dailyActivity.show()
+        self.ui.label.setText("Loaded.")
+        # print(self.ui.dateEdit.date().toPython())
+        # print(date.today())
+
+    def fetchEvents(self):
+        self.ui.comboBox_3.clear()
+        date_req = self.ui.dateEdit.date().toPython()
+        eventList = self.calendarApiObj.getEvents(date_req)
+        for event in eventList:
+            try:
+                # print(event)
+                summary_string = str(event["summary"])
+                start_string = str(event["start"])
+                end_string = str(event["end"])
+                # jsonObj = json.loads(event["description"])
+                # print(jsonObj["Type"], jsonObj["Type"], jsonObj["Type"])
+                self.ui.comboBox_3.addItem(summary_string)
+                rowNumber = self.dailyActivity.ui.tableWidget.rowCount()
+                self.dailyActivity.ui.tableWidget.setItem(rowNumber-1, 0, QTableWidgetItem(summary_string))
+                self.dailyActivity.ui.tableWidget.setItem(rowNumber-1, 1, QTableWidgetItem(start_string))
+                self.dailyActivity.ui.tableWidget.setItem(rowNumber-1, 2, QTableWidgetItem(end_string))
+                self.dailyActivity.ui.tableWidget.setRowCount(rowNumber+1)
+
+            except:
+                pass

@@ -2,39 +2,45 @@
 
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date, time
+
 
 class CalenderApi(object):
     """docstring for CalenderApi."""
 
     def __init__(self):
         self.SCOPES = ['https://www.googleapis.com/auth/calendar']
-        self.credential_file = "client_secret.json"
+        self.credential_file = 'client_secret.json'
         self.service_account_name = 'testacc@robocompgui-1591069682447.iam.gserviceaccount.com'
         self.credentials = service_account.Credentials.from_service_account_file(self.credential_file,
                                                                                  scopes=self.SCOPES)
         self.delegated_credentials = self.credentials.with_subject(self.service_account_name)
         self.service = build('calendar', 'v3', credentials=self.delegated_credentials)
 
-    def getEvent(self,date):
+    # this method is used to fetch event for a particular date
+    def getEvents(self, date_argument):
         eventList = []
         try:
             page_token = None
-            timeMin = date.isoformat()
-            timeMax = (date + timedelta(days=1)).isoformat()
+            startTime = time(hour=0, minute=0, second=0)
+            endTime = time(hour=23, minute=59, second=59)
+            today_beginning = datetime.combine(date_argument, startTime).isoformat() + 'Z'
+            today_ending = datetime.combine(date_argument, endTime).isoformat() + 'Z'
             while True:
                 events = self.service.events().list(calendarId=self.service_account_name,
                                                     pageToken=page_token,
-                                                    timeMin = timeMin,
-                                                    timeMax= timeMax).execute()
+                                                    timeMin=today_beginning,
+                                                    timeMax=today_ending).execute()
                 for event in events['items']:
-                    print(event['summary'])
+                    eventList.append(event)
                 page_token = events.get('nextPageToken')
                 if not page_token:
                     break
         except:
             print('The credentials have been revoked or expired, please re-run'
                   'the application to re-authorize.')
+        finally:
+            return eventList
 
     def getAllEvent(self):
         eventList = []
@@ -54,7 +60,7 @@ class CalenderApi(object):
             print('The credentials have been revoked or expired, please re-run'
                   'the application to re-authorize.')
 
-    def createEvent(self,bodyContent):
+    def createEvent(self, bodyContent):
         """Function to create event in the calender"""
         # sample body example
         # body = {"summary": 'Activity Number',
@@ -79,5 +85,3 @@ class CalenderApi(object):
         except:
             print('The credentials have been revoked or expired, please re-run'
                   'the application to re-authorize.')
-
-
