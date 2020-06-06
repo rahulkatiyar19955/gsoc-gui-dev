@@ -19,11 +19,12 @@
 #    along with RoboComp.  If not, see <http://www.gnu.org/licenses/>.
 #
 from genericworker import *
-from datetime import date
+from datetime import date, datetime
 from google_calender import CalenderApi
 from PySide2.QtCore import QDateTime
 import PySide2
 import json
+import sys
 
 try:
     from ui_activity_form import *
@@ -34,6 +35,7 @@ try:
     from ui_dailyActivity import *
 except:
     print("Can't import ui_dailyActivity UI file")
+
 
 # If RoboComp was compiled with Python bindings you can use InnerModel in Python
 # sys.path.append('/opt/robocomp/lib')
@@ -62,25 +64,27 @@ class OpenActivityForm(QDialog):
         self.parent.ui.comboBox_3.addItem(self.ui.textEdit_3.toPlainText())
         start = str(self.parent.ui.dateEdit.date().toPython()) + "T" + str(self.ui.timeEdit.time().toPython()) + "Z"
         end = str(self.parent.ui.dateEdit.date().toPython()) + "T" + str(self.ui.timeEdit_2.time().toPython()) + "Z"
-        body = {"summary": self.ui.textEdit_3.toPlainText(),
-                "description": {"Type": self.ui.comboBox_4.currentText(),
-                                "IndividualName": self.ui.textEdit.toPlainText(),
-                                "TherapistName": self.ui.textEdit_2.toPlainText(),
-                                "Location": self.ui.comboBox_5.currentText(),
-                                "Element": self.ui.comboBox_6.currentText(),
-                                "Notification": self.ui.checkBox.isChecked(),
-                                },
-                "start": {"dateTime": start},
-                "end": {"dateTime": end},
-                }
-        self.parent.calendarApiObj.createEvent(bodyContent=body)
+        description_data = {"Type": self.ui.comboBox_4.currentText(),
+                            "IndividualName": self.ui.textEdit.toPlainText(),
+                            "TherapistName": self.ui.textEdit_2.toPlainText(),
+                            "Location": self.ui.comboBox_5.currentText(),
+                            "Element": self.ui.comboBox_6.currentText(),
+                            "Notification": self.ui.checkBox.isChecked(),
+                            }
+        body_content = {"summary": self.ui.textEdit_3.toPlainText(),
+                        "description": json.dumps(description_data),
+                        "start": {"dateTime": start},
+                        "end": {"dateTime": end},
+                        }
+        print(body_content)
+        self.parent.calendarApiObj.createEvent(bodyContent=body_content)
         self.hide()
 
     # exit the form and discard all the data
     def button_cancel(self):
         self.hide()
-        start = str(self.parent.ui.dateEdit.date().toPython())+ "T" +str(self.ui.timeEdit.time().toPython()) + "Z"
-        end = str(self.parent.ui.dateEdit.date().toPython())+ "T" +str(self.ui.timeEdit_2.time().toPython()) + "Z"
+        start = str(self.parent.ui.dateEdit.date().toPython()) + "T" + str(self.ui.timeEdit.time().toPython()) + "Z"
+        end = str(self.parent.ui.dateEdit.date().toPython()) + "T" + str(self.ui.timeEdit_2.time().toPython()) + "Z"
         body = {"summary": self.ui.textEdit_3.toPlainText(),
                 "description": {"Type": self.ui.comboBox_4.currentText(),
                                 "IndividualName": self.ui.textEdit.toPlainText(),
@@ -115,23 +119,21 @@ class OpenActivityForm(QDialog):
 
 class DailyActivity(QDialog):
     def __init__(self, parent=None):
-        QDialog.__init__(self,parent)
+        QDialog.__init__(self, parent)
         self.parent = parent
         self.ui = Ui_DailyActivity()
         self.ui.setupUi(self)
         self.setModal(True)
-        self.ui.tableWidget.setHorizontalHeaderItem(0,QTableWidgetItem("Name"))
-        self.ui.tableWidget.setHorizontalHeaderItem(1,QTableWidgetItem("StartTime"))
-        self.ui.tableWidget.setHorizontalHeaderItem(2,QTableWidgetItem("EndTime"))
-        # self.ui.tableWidget.setHorizontalHeader()
-
+        self.ui.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
 
 
 class SpecificWorker(GenericWorker):
     def __init__(self, proxy_map):
         super(SpecificWorker, self).__init__(proxy_map)
-        self.activityForm = OpenActivityForm(self)
-        self.dailyActivity = DailyActivity()
+        # calling the calendar api object
+        self.calendarApiObj = CalenderApi()
+
+
         self.timer.timeout.connect(self.compute)
         self.Period = 2000
         self.timer.start(self.Period)
@@ -143,9 +145,6 @@ class SpecificWorker(GenericWorker):
 
         # Hide the status label
         self.ui.label.hide()
-
-        # calling the calendar api object
-        self.calendarApiObj = CalenderApi()
 
         # self.ui2 = Ui_activityForm()
         # self.ui2.setupUi(self)
@@ -331,17 +330,18 @@ class SpecificWorker(GenericWorker):
     # ======functions for ui=============
     def newActivity(self):
         print("button Clicked2")
+        self.activityForm = OpenActivityForm(self)
         self.activityForm.show()
 
     def viewAgenda(self):
         print("view Agenda clicked")
         self.ui.label.show()
         self.ui.label.setText("Loading...")
+        self.dailyActivity = DailyActivity(self)
+        self.dailyActivity.ui.tableWidget.clearContents()
+        self.dailyActivity.ui.tableWidget.setRowCount(1)
         self.fetchEvents()
         self.dailyActivity.show()
-        self.ui.label.setText("Loaded.")
-        # print(self.ui.dateEdit.date().toPython())
-        # print(date.today())
 
     def fetchEvents(self):
         self.ui.comboBox_3.clear()
@@ -349,18 +349,46 @@ class SpecificWorker(GenericWorker):
         eventList = self.calendarApiObj.getEvents(date_req)
         for event in eventList:
             try:
+                type_string, IndividualName_string, TherapistName_string, Location_string, Element_string, Notification_string = '', '', '', '', '', ''
                 # print(event)
-                summary_string = str(event["summary"])
-                start_string = str(event["start"])
-                end_string = str(event["end"])
-                # jsonObj = json.loads(event["description"])
+                summary_string = str(event.get('summary', 'NoTitle'))
+                # show only time not the date part of the string
+                start_time = event.get('start', {})
+                end_time = event.get('end', {})
+
+                description_data = json.loads(event.get('description', '{}'))
+                try:
+                    type_string = description_data.get('Type', "Not Specified")
+                    IndividualName_string = description_data.get('IndividualName', "Not Specified")
+                    TherapistName_string = description_data.get('TherapistName', "Not Specified")
+                    Location_string = description_data.get('Location', "Not Specified")
+                    Element_string = description_data.get('Element', "Not Specified")
+                    Notification_string = description_data.get('Notification', "Not Specified")
+                    if Notification_string:
+                        Notification_string="True"
+                    elif not Notification_string:
+                        Notification_string="False"
+                except:
+                    print("Unable to parse description")
+
+                # if time is not specified meant the event is for full day
+                start_string = start_time.get("dateTime", "           Full Day")[11:]
+                end_string = end_time.get("dateTime", "           Full Day")[11:]
+
                 # print(jsonObj["Type"], jsonObj["Type"], jsonObj["Type"])
                 self.ui.comboBox_3.addItem(summary_string)
                 rowNumber = self.dailyActivity.ui.tableWidget.rowCount()
-                self.dailyActivity.ui.tableWidget.setItem(rowNumber-1, 0, QTableWidgetItem(summary_string))
-                self.dailyActivity.ui.tableWidget.setItem(rowNumber-1, 1, QTableWidgetItem(start_string))
-                self.dailyActivity.ui.tableWidget.setItem(rowNumber-1, 2, QTableWidgetItem(end_string))
-                self.dailyActivity.ui.tableWidget.setRowCount(rowNumber+1)
+                self.dailyActivity.ui.tableWidget.setItem(rowNumber - 1, 0, QTableWidgetItem(summary_string))
+                self.dailyActivity.ui.tableWidget.setItem(rowNumber - 1, 1, QTableWidgetItem(start_string))
+                self.dailyActivity.ui.tableWidget.setItem(rowNumber - 1, 2, QTableWidgetItem(end_string))
+                self.dailyActivity.ui.tableWidget.setItem(rowNumber - 1, 3, QTableWidgetItem(type_string))
+                self.dailyActivity.ui.tableWidget.setItem(rowNumber - 1, 4, QTableWidgetItem(IndividualName_string))
+                self.dailyActivity.ui.tableWidget.setItem(rowNumber - 1, 5, QTableWidgetItem(TherapistName_string))
+                self.dailyActivity.ui.tableWidget.setItem(rowNumber - 1, 6, QTableWidgetItem(Location_string))
+                self.dailyActivity.ui.tableWidget.setItem(rowNumber - 1, 7, QTableWidgetItem(Element_string))
+                self.dailyActivity.ui.tableWidget.setItem(rowNumber - 1, 8, QTableWidgetItem(Notification_string))
+                self.dailyActivity.ui.tableWidget.setRowCount(rowNumber + 1)
 
             except:
-                pass
+                print("unable to parse the event")
+                print("Unexpected error:", sys.exc_info()[0])

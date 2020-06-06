@@ -51,7 +51,7 @@ class CalenderApi(object):
                                                     pageToken=page_token).execute()
                 for event in events['items']:
                     eventList.append(event)
-                    print(event)
+                    # print(event)
                 page_token = events.get('nextPageToken')
                 if not page_token:
                     break
