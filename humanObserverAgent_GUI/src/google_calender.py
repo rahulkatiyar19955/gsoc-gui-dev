@@ -2,7 +2,7 @@
 
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
-from datetime import datetime, timedelta, date, time
+from datetime import datetime, time
 
 
 class CalenderApi(object):
@@ -42,6 +42,7 @@ class CalenderApi(object):
         finally:
             return eventList
 
+    # get all events on a calendar
     def getAllEvent(self):
         eventList = []
         try:
@@ -51,7 +52,6 @@ class CalenderApi(object):
                                                     pageToken=page_token).execute()
                 for event in events['items']:
                     eventList.append(event)
-                    # print(event)
                 page_token = events.get('nextPageToken')
                 if not page_token:
                     break
@@ -60,6 +60,7 @@ class CalenderApi(object):
             print('The credentials have been revoked or expired, please re-run'
                   'the application to re-authorize.')
 
+    # create a event with the information provided in the bodycontent
     def createEvent(self, bodyContent):
         """Function to create event in the calender"""
         # sample body example
@@ -77,6 +78,7 @@ class CalenderApi(object):
         event = self.service.events().insert(calendarId=self.service_account_name, body=bodyContent).execute()
         return event
 
+    # get a list of calendars
     def getCalenderList(self):
         try:
             calendar = self.service.calendars().get(calendarId='primary').execute()
@@ -85,3 +87,17 @@ class CalenderApi(object):
         except:
             print('The credentials have been revoked or expired, please re-run'
                   'the application to re-authorize.')
+
+    # this method is used to give access to a email address,
+    # so that using this id we can manipulate event using
+    # browser
+    def giveAccess(self,emailAddress):
+        rule = {
+            'scope': {
+                'type': "user",
+                'value': emailAddress,
+            },
+            'role': 'owner'
+        }
+        created_rule = self.service.acl().insert(calendarId='primary', body=rule).execute()
+        return created_rule['id']
