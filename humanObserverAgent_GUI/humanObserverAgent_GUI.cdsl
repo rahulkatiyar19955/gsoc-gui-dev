@@ -1,9 +1,11 @@
-
+import "OmniRobot.idsl";
+import "Laser.idsl";
+import "InnerModelManager.idsl";
 Component humanObserverAgent_GUI
 {
     Communications
     {
-
+	requires OmniRobot, Laser, InnerModelManager;
     };
 	language Python;
 	gui Qt(QWidget);

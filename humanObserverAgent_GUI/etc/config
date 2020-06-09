@@ -8,6 +8,9 @@ AGMExecutiveTopicTopic.Endpoints=tcp -p 0
 
 # Proxies for required interfaces
 AGMExecutiveProxy = agmexecutive:tcp -h localhost -p 0
+InnerModelManagerProxy = innermodelmanager:tcp -h localhost -p 11175
+LaserProxy = laser:tcp -h localhost -p 10003
+OmniRobotProxy = omnirobot:tcp -h localhost -p 12238
 
 
 
