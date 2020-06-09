@@ -133,6 +133,57 @@ if __name__ == '__main__':
         print('Cannot get AGMExecutiveProxy property.')
         status = 1
 
+
+    # Remote object connection for InnerModelManager
+    try:
+        proxyString = ic.getProperties().getProperty('InnerModelManagerProxy')
+        try:
+            basePrx = ic.stringToProxy(proxyString)
+            innermodelmanager_proxy = InnerModelManagerPrx.uncheckedCast(basePrx)
+            mprx["InnerModelManagerProxy"] = innermodelmanager_proxy
+        except Ice.Exception:
+            print('Cannot connect to the remote object (InnerModelManager)', proxyString)
+            #traceback.print_exc()
+            status = 1
+    except Ice.Exception as e:
+        print(e)
+        print('Cannot get InnerModelManagerProxy property.')
+        status = 1
+
+
+    # Remote object connection for Laser
+    try:
+        proxyString = ic.getProperties().getProperty('LaserProxy')
+        try:
+            basePrx = ic.stringToProxy(proxyString)
+            laser_proxy = LaserPrx.uncheckedCast(basePrx)
+            mprx["LaserProxy"] = laser_proxy
+        except Ice.Exception:
+            print('Cannot connect to the remote object (Laser)', proxyString)
+            #traceback.print_exc()
+            status = 1
+    except Ice.Exception as e:
+        print(e)
+        print('Cannot get LaserProxy property.')
+        status = 1
+
+
+    # Remote object connection for OmniRobot
+    try:
+        proxyString = ic.getProperties().getProperty('OmniRobotProxy')
+        try:
+            basePrx = ic.stringToProxy(proxyString)
+            omnirobot_proxy = OmniRobotPrx.uncheckedCast(basePrx)
+            mprx["OmniRobotProxy"] = omnirobot_proxy
+        except Ice.Exception:
+            print('Cannot connect to the remote object (OmniRobot)', proxyString)
+            #traceback.print_exc()
+            status = 1
+    except Ice.Exception as e:
+        print(e)
+        print('Cannot get OmniRobotProxy property.')
+        status = 1
+
     if status == 0:
         worker = SpecificWorker(mprx)
         worker.setParams(parameters)

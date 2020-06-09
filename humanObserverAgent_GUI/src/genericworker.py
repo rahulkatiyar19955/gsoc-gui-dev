@@ -51,6 +51,14 @@ Ice.loadSlice("-I ./src/ --all ./src/AGMExecutiveTopic.ice")
 from RoboCompAGMExecutiveTopic import *
 Ice.loadSlice("-I ./src/ --all ./src/AGMWorldModel.ice")
 from RoboCompAGMWorldModel import *
+Ice.loadSlice("-I ./src/ --all ./src/GenericBase.ice")
+from RoboCompGenericBase import *
+Ice.loadSlice("-I ./src/ --all ./src/InnerModelManager.ice")
+from RoboCompInnerModelManager import *
+Ice.loadSlice("-I ./src/ --all ./src/Laser.ice")
+from RoboCompLaser import *
+Ice.loadSlice("-I ./src/ --all ./src/OmniRobot.ice")
+from RoboCompOmniRobot import *
 Ice.loadSlice("-I ./src/ --all ./src/Planning.ice")
 from RoboCompPlanning import *
 
@@ -74,6 +82,9 @@ class GenericWorker(QtWidgets.QWidget):
         super(GenericWorker, self).__init__()
 
         self.agmexecutive_proxy = mprx["AGMExecutiveProxy"]
+        self.innermodelmanager_proxy = mprx["InnerModelManagerProxy"]
+        self.laser_proxy = mprx["LaserProxy"]
+        self.omnirobot_proxy = mprx["OmniRobotProxy"]
 
         self.ui = Ui_guiDlg()
         self.ui.setupUi(self)

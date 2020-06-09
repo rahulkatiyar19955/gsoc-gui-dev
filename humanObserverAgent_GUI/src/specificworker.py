@@ -133,7 +133,6 @@ class SpecificWorker(GenericWorker):
         # calling the calendar api object
         self.calendarApiObj = CalenderApi()
 
-
         self.timer.timeout.connect(self.compute)
         self.Period = 2000
         self.timer.start(self.Period)
@@ -146,8 +145,20 @@ class SpecificWorker(GenericWorker):
         # Hide the status label
         self.ui.label.hide()
 
-        # self.ui2 = Ui_activityForm()
-        # self.ui2.setupUi(self)
+        # init functions for robot navigation and control part #
+        self.ui.pushButton_8.clicked.connect(self.gotoPoint)
+        self.ui.pushButton_9.clicked.connect(self.keyboardControl)
+        self.ui.pushButton_4.clicked.connect(self.stopRobotB)
+        self.ui.pushButton_5.clicked.connect(self.resetRobotB)
+
+        # limits
+        self.translationSpeedLimit = 2000
+        self.rotationSpeedLimit = 2
+
+        # robot velocities variables
+        self.velX = 0
+        self.velZ = 0
+        self.velRot = 0
 
     def __del__(self):
         print('SpecificWorker destructor')
@@ -162,6 +173,7 @@ class SpecificWorker(GenericWorker):
 
     @QtCore.Slot()
     def compute(self):
+
         # print('SpecificWorker.compute...')
         # computeCODE
         # try:
@@ -365,9 +377,9 @@ class SpecificWorker(GenericWorker):
                     Element_string = description_data.get('Element', "Not Specified")
                     Notification_string = description_data.get('Notification', "Not Specified")
                     if Notification_string:
-                        Notification_string="True"
+                        Notification_string = "True"
                     elif not Notification_string:
-                        Notification_string="False"
+                        Notification_string = "False"
                 except:
                     print("Unable to parse description")
 
@@ -392,3 +404,120 @@ class SpecificWorker(GenericWorker):
             except:
                 print("unable to parse the event")
                 print("Unexpected error:", sys.exc_info()[0])
+
+    def gotoPoint(self):
+        robotPose = Pose3D()
+        robotPose.x = float(self.ui.lineEdit.text())
+        robotPose.y = 0
+        robotPose.z = float(self.ui.lineEdit_2.text())
+        robotPose.rx = 0
+        robotPose.ry = float(self.ui.lineEdit_3.text())
+        robotPose.rz = 0
+        self.innermodelmanager_proxy.setPoseFromParent("robot", robotPose)
+        print("goto")
+        # print(float(self.ui.lineEdit.text())+2)
+
+    def keyboardControl(self):
+        if self.ui.pushButton_9.text() == 'Keyboard Control Off':
+            self.ui.pushButton_9.setStyleSheet(u"background-color: rgb(41, 239, 41);")
+            self.ui.pushButton_9.setText('Keyboard Control On')
+            print("Keyboard Control On")
+        else:
+            self.ui.pushButton_9.setStyleSheet(u"background-color: rgb(239, 41, 41);")
+            self.ui.pushButton_9.setText('Keyboard Control Off')
+            print("Keyboard Control Off")
+
+    # function for robot movement
+    def moveForward(self):
+        if self.velZ > self.translationSpeedLimit:
+            self.velZ = self.velZ
+        else:
+            self.velZ += 20
+
+    def moveBackward(self):
+        if self.velZ < -1 * self.translationSpeedLimit:
+            self.velZ = self.velZ
+        else:
+            self.velZ -= 20
+
+    def moveLeft(self):
+        if self.velX < -1 * self.translationSpeedLimit:
+            self.velX = self.velX
+        else:
+            self.velX -= 20
+
+    def moveRight(self):
+        if self.velX > self.translationSpeedLimit:
+            self.velX = self.velX
+        else:
+            self.velX += 20
+
+    def rotCounterClockwise(self):
+        if self.velRot < -1 * self.rotationSpeedLimit:
+            self.velRot = self.velRot
+        else:
+            self.velRot -= 0.1
+
+    def rotClockwise(self):
+        if self.velRot > self.rotationSpeedLimit:
+            self.velRot = self.velRot
+        else:
+            self.velRot += 0.1
+
+    def stopRobot(self):
+        self.velX = 0
+        self.velZ = 0
+        self.velRot = 0
+
+    # overriding keyPressEvent from QWidget
+    def keyPressEvent(self, event):
+        if self.ui.pushButton_9.text() == 'Keyboard Control On':
+            if event.key() == QtCore.Qt.Key_W:
+                self.moveForward()
+                print("w button")
+            elif event.key() == QtCore.Qt.Key_S:
+                self.moveBackward()
+                print("s button")
+            elif event.key() == QtCore.Qt.Key_A:
+                self.moveLeft()
+                print("a button")
+            elif event.key() == QtCore.Qt.Key_D:
+                self.moveRight()
+                print("d button")
+            elif event.key() == QtCore.Qt.Key_F:
+                self.rotCounterClockwise()
+                print("left button")
+            elif event.key() == QtCore.Qt.Key_G:
+                self.rotClockwise()
+                print("right button")
+            elif event.key() == QtCore.Qt.Key_Backspace:
+                self.stopRobot()
+                print("stop button")
+
+        try:
+            self.omnirobot_proxy.setSpeedBase(self.velX, self.velZ, self.velRot)
+        except:
+            print("no robot found")
+
+    # method to stop the robot
+    def stopRobotB(self):
+        print("stop button")
+        self.velX = 0
+        self.velZ = 0
+        self.velRot = 0
+        try:
+            self.omnirobot_proxy.setSpeedBase(self.velX, self.velZ, self.velRot)
+        except:
+            print("no robot found")
+
+    # method to reset the position of the robot
+    def resetRobotB(self):
+        print("reset button")
+        robotPose = Pose3D()
+        robotPose.x = 0
+        robotPose.y = 0
+        robotPose.z = 0
+        robotPose.rx = 0
+        robotPose.ry = 0
+        robotPose.rz = 0
+        self.innermodelmanager_proxy.setPoseFromParent("robot", robotPose)
