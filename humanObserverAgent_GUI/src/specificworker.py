@@ -151,6 +151,15 @@ class SpecificWorker(GenericWorker):
         self.ui.pushButton_4.clicked.connect(self.stopRobotB)
         self.ui.pushButton_5.clicked.connect(self.resetRobotB)
 
+        # init control buttons
+        self.ui.left_button.clicked.connect(self.moveLeft)
+        self.ui.right_button.clicked.connect(self.moveRight)
+        self.ui.up_button.clicked.connect(self.moveForward)
+        self.ui.down_button.clicked.connect(self.moveBackward)
+        self.ui.stop_button.clicked.connect(self.stopRobotB)
+        self.ui.cc_button.clicked.connect(self.rotCounterClockwise)
+        self.ui.c_button.clicked.connect(self.rotClockwise)
+
         # limits
         self.translationSpeedLimit = 2000
         self.rotationSpeedLimit = 2
@@ -159,6 +168,9 @@ class SpecificWorker(GenericWorker):
         self.velX = 0
         self.velZ = 0
         self.velRot = 0
+
+        # Agm related initialization
+        # self.WorldModel = AGMModel()
 
     def __del__(self):
         print('SpecificWorker destructor')
@@ -173,7 +185,8 @@ class SpecificWorker(GenericWorker):
 
     @QtCore.Slot()
     def compute(self):
-
+        w = World()
+        w = self.agmexecutive_proxy.getModel()
         # print('SpecificWorker.compute...')
         # computeCODE
         # try:
@@ -433,41 +446,69 @@ class SpecificWorker(GenericWorker):
             self.velZ = self.velZ
         else:
             self.velZ += 20
+        try:
+            self.omnirobot_proxy.setSpeedBase(self.velX, self.velZ, self.velRot)
+        except:
+            print("no robot found")
 
     def moveBackward(self):
         if self.velZ < -1 * self.translationSpeedLimit:
             self.velZ = self.velZ
         else:
             self.velZ -= 20
+        try:
+            self.omnirobot_proxy.setSpeedBase(self.velX, self.velZ, self.velRot)
+        except:
+            print("no robot found")
 
     def moveLeft(self):
         if self.velX < -1 * self.translationSpeedLimit:
             self.velX = self.velX
         else:
             self.velX -= 20
+        try:
+            self.omnirobot_proxy.setSpeedBase(self.velX, self.velZ, self.velRot)
+        except:
+            print("no robot found")
 
     def moveRight(self):
         if self.velX > self.translationSpeedLimit:
             self.velX = self.velX
         else:
             self.velX += 20
+        try:
+            self.omnirobot_proxy.setSpeedBase(self.velX, self.velZ, self.velRot)
+        except:
+            print("no robot found")
 
     def rotCounterClockwise(self):
         if self.velRot < -1 * self.rotationSpeedLimit:
             self.velRot = self.velRot
         else:
             self.velRot -= 0.1
+        try:
+            self.omnirobot_proxy.setSpeedBase(self.velX, self.velZ, self.velRot)
+        except:
+            print("no robot found")
 
     def rotClockwise(self):
         if self.velRot > self.rotationSpeedLimit:
             self.velRot = self.velRot
         else:
             self.velRot += 0.1
+        try:
+            self.omnirobot_proxy.setSpeedBase(self.velX, self.velZ, self.velRot)
+        except:
+            print("no robot found")
 
     def stopRobot(self):
         self.velX = 0
         self.velZ = 0
         self.velRot = 0
+        try:
+            self.omnirobot_proxy.setSpeedBase(self.velX, self.velZ, self.velRot)
+        except:
+            print("no robot found")
 
     # overriding keyPressEvent from QWidget
     def keyPressEvent(self, event):
@@ -494,10 +535,7 @@ class SpecificWorker(GenericWorker):
                 self.stopRobot()
                 print("stop button")
 
-        try:
-            self.omnirobot_proxy.setSpeedBase(self.velX, self.velZ, self.velRot)
-        except:
-            print("no robot found")
+
 
     # method to stop the robot
     def stopRobotB(self):

@@ -1,13 +1,13 @@
 # Endpoints for implements interfaces
-AGMCommonBehavior.Endpoints=tcp -p 0
+AGMCommonBehavior.Endpoints=tcp -p 10217
 
 
 # Endpoints for subscriptions interfaces
-AGMExecutiveTopicTopic.Endpoints=tcp -p 0
+AGMExecutiveTopicTopic.Endpoints=tcp -p 3127
 
 
 # Proxies for required interfaces
-AGMExecutiveProxy = agmexecutive:tcp -h localhost -p 0
+AGMExecutiveProxy = agmexecutive:tcp -h localhost -p 10198
 InnerModelManagerProxy = innermodelmanager:tcp -h localhost -p 11175
 LaserProxy = laser:tcp -h localhost -p 10003
 OmniRobotProxy = omnirobot:tcp -h localhost -p 12238
