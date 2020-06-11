@@ -3,4 +3,4 @@ PROJECT(  humanObserverAgent_GUI )
 
 INCLUDE( $ENV{ROBOCOMP}/cmake/robocomp.cmake )
 
-ROBOCOMP_IDSL_TO_ICE( CommonBehavior AGMCommonBehavior AGMExecutive AGMExecutiveTopic AGMWorldModel GenericBase InnerModelManager Laser OmniRobot Planning )
+ROBOCOMP_IDSL_TO_ICE( CommonBehavior AGMCommonBehavior AGMExecutive AGMExecutiveTopic AGMWorldModel GenericBase InnerModelManager JointMotor Laser OmniRobot Planning RGBD )

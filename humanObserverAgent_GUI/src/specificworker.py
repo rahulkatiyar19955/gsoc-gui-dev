@@ -22,9 +22,12 @@ from genericworker import *
 from datetime import date, datetime
 from google_calender import CalenderApi
 from PySide2.QtCore import QDateTime
-import PySide2
+from PySide2.QtCore import *
+from PySide2.QtGui import *
+from PySide2.QtWidgets import *
 import json
 import sys
+import math
 
 try:
     from ui_activity_form import *
@@ -33,9 +36,18 @@ except:
 
 try:
     from ui_dailyActivity import *
-except:
+except ImportError:
     print("Can't import ui_dailyActivity UI file")
 
+try:
+    from ui_viewLaser import *
+except ImportError:
+    print("Can't import ui_viewLaser UI file")
+
+try:
+    from ui_cameraViewer import *
+except ImportError:
+    print("Can't import ui_cameraViewer UI file")
 
 # If RoboComp was compiled with Python bindings you can use InnerModel in Python
 # sys.path.append('/opt/robocomp/lib')
@@ -126,6 +138,108 @@ class DailyActivity(QDialog):
         self.setModal(True)
         self.ui.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
 
+    def closeEvent(self, arg__1):
+        self.parent.ui.label.setText(" ")
+
+
+class ViewLaser(QWidget):
+    def __init__(self, parent=None):
+        QWidget.__init__(self)
+        self.parentObj = parent
+        self.ui = Ui_LaserViewer()
+        self.ui.setupUi(self)
+        self.ui.doubleSpinBox.valueChanged.connect(self.repaint)
+        self.ui.horizontalSlider.valueChanged.connect(self.updatePeriod)
+        self.count = 0
+
+        self.timer = QtCore.QTimer(self)
+        self.timer.timeout.connect(self.updateValues)
+        self.Period = 200
+        self.laser_data, laser_dumy = [],[]
+        self.timer.start(200)
+        self.ui.horizontalSlider.setValue(5)
+
+    def updatePeriod(self):
+        period = int(self.ui.label_3.text())
+        self.timer.setInterval(1000//period)
+
+    def updateValues(self):
+        self.update()
+
+    def paintEvent(self, event=None):
+        try:
+            self.laser_data, laser_angle = self.parentObj.laser_proxy.getLaserAndBStateData()
+        except:
+            print("No laser is connected")
+            print("exiting")
+            self.close()
+
+        xOff = self.width() / 2.
+        yOff = self.height() / 2.
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.Antialiasing, True)
+
+        for point in self.laser_data:
+            newCoor = self.measure2coord(point)
+            painter.drawRect(newCoor[0] - 1, newCoor[1] - 1, 2, 2)
+
+        for wm in range(10):
+            w = 1000. * (1. + wm) * self.ui.doubleSpinBox.value()
+            painter.drawEllipse(QRectF(0.5 * self.width() - w / 2., 0.5 * self.height() - w / 2., w, w))
+        for wm in range(5):
+            w = 200. * (1. + wm) * self.ui.doubleSpinBox.value()
+            painter.drawEllipse(QRectF(0.5 * self.width() - w / 2., 0.5 * self.height() - w / 2., w, w))
+
+        painter.end()
+        painter = None
+
+    def measure2coord(self, measure):
+        const_mul = self.ui.doubleSpinBox.value()
+        x = math.cos(measure.angle - 0.5 * math.pi) * measure.dist * const_mul + (0.5 * self.width())
+        y = math.sin(measure.angle - 0.5 * math.pi) * measure.dist * const_mul + (0.5 * self.height())
+        return x, y
+
+
+class CameraViewer(QWidget):
+    def __init__(self, parent=None):
+        QWidget.__init__(self)
+        self.parent = parent
+        self.ui = Ui_CamViewer()
+        self.ui.setupUi(self)
+
+        # timer init
+        self.timer = QtCore.QTimer(self)
+        self.timer.timeout.connect(self.repaint)
+        self.timer.start(30)
+
+        # variable init
+        self.color, self.depth, self.headState, self.baseState = None,None,None,None
+
+    def paintEvent(self, event=None):
+        try:
+            self.color, self.depth, self.headState, self.baseState = self.parent.rgbd_proxy.getData()
+            if (len(self.color) == 3 * 640 * 480):
+                color_image_width = 640
+                color_image_height = 480
+            elif (len(self.color) == 3 * 320 * 240):
+                color_image_width = 320
+                color_image_height = 240
+            else:
+                print('Undetermined Color image size in getRGB: we shall not paint! %d' % (len(self.color)))
+                return
+
+            painter = QPainter(self)
+            painter.setRenderHint(QPainter.Antialiasing, True)
+
+            if color_image_width != 0 and color_image_height != 0:
+                image = QImage(self.color, color_image_width, color_image_height, QImage.Format_RGB888)
+                painter.drawImage(QPointF(self.ui.frame.x(), self.ui.frame.y()), image)
+            painter.end()
+            painter = None
+        except:
+            print("No Camera is connected")
+            print("exiting")
+            self.close()
 
 class SpecificWorker(GenericWorker):
     def __init__(self, proxy_map):
@@ -141,9 +255,6 @@ class SpecificWorker(GenericWorker):
 
         # setting the date to today
         self.ui.dateEdit.setDateTime(QDateTime.currentDateTimeUtc())
-
-        # Hide the status label
-        self.ui.label.hide()
 
         # init functions for robot navigation and control part #
         self.ui.pushButton_8.clicked.connect(self.gotoPoint)
@@ -172,6 +283,12 @@ class SpecificWorker(GenericWorker):
         # Agm related initialization
         # self.WorldModel = AGMModel()
 
+        # view Laser method
+        self.ui.viewLaser_button.clicked.connect(self.viewLaserB)
+        self.laser_data, laser_dummy = [], []
+        # view Camera method
+        self.ui.view_camera_button.clicked.connect(self.viewCameraB)
+
     def __del__(self):
         print('SpecificWorker destructor')
 
@@ -185,15 +302,15 @@ class SpecificWorker(GenericWorker):
 
     @QtCore.Slot()
     def compute(self):
-        w = World()
-        w = self.agmexecutive_proxy.getModel()
+        # w = World()
+        # w = self.agmexecutive_proxy.getModel()
         # print('SpecificWorker.compute...')
         # computeCODE
         # try:
-        #   self.differentialrobot_proxy.setSpeedBase(100, 0)
+        #     self.laser_data, laser_dummy = self.laser_proxy.getLaserAndBStateData()
+        #     self.viewLaser.update()
         # except Ice.Exception as e:
-        #   traceback.print_exc()
-        #   print(e)
+        #     print(e)
 
         # The API of python-innermodel is not exactly the same as the C++ version
         # self.innermodel.updateTransformValues('head_rot_tilt_pose', 0, 0, 0, 1.3, 0, 0)
@@ -535,8 +652,6 @@ class SpecificWorker(GenericWorker):
                 self.stopRobot()
                 print("stop button")
 
-
-
     # method to stop the robot
     def stopRobotB(self):
         print("stop button")
@@ -559,3 +674,12 @@ class SpecificWorker(GenericWorker):
         robotPose.ry = 0
         robotPose.rz = 0
         self.innermodelmanager_proxy.setPoseFromParent("robot", robotPose)
+
+    def viewCameraB(self):
+        self.viewCamera = CameraViewer(parent=self)
+        self.viewCamera.show()
+
+    def viewLaserB(self):
+        self.viewLaser = ViewLaser(parent=self)
+        self.viewLaser.show()
+        # print(self.laser_data)

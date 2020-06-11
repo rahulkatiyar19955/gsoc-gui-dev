@@ -11,6 +11,7 @@ AGMExecutiveProxy = agmexecutive:tcp -h localhost -p 10198
 InnerModelManagerProxy = innermodelmanager:tcp -h localhost -p 11175
 LaserProxy = laser:tcp -h localhost -p 10003
 OmniRobotProxy = omnirobot:tcp -h localhost -p 12238
+RGBDProxy = rgbd:tcp -h localhost -p 10096
 
 
 

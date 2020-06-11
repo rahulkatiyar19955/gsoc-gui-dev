@@ -101,6 +101,7 @@ if __name__ == '__main__':
             params[1] = '--Ice.Config=' + params[1]
     elif len(params) == 1:
         params.append('--Ice.Config=etc/config')
+    params.append("--Ice.MessageSizeMax=2000000")
     ic = Ice.initialize(params)
     status = 0
     mprx = {}
@@ -182,6 +183,23 @@ if __name__ == '__main__':
     except Ice.Exception as e:
         print(e)
         print('Cannot get OmniRobotProxy property.')
+        status = 1
+
+
+    # Remote object connection for RGBD
+    try:
+        proxyString = ic.getProperties().getProperty('RGBDProxy')
+        try:
+            basePrx = ic.stringToProxy(proxyString)
+            rgbd_proxy = RGBDPrx.uncheckedCast(basePrx)
+            mprx["RGBDProxy"] = rgbd_proxy
+        except Ice.Exception:
+            print('Cannot connect to the remote object (RGBD)', proxyString)
+            #traceback.print_exc()
+            status = 1
+    except Ice.Exception as e:
+        print(e)
+        print('Cannot get RGBDProxy property.')
         status = 1
 
     if status == 0:
