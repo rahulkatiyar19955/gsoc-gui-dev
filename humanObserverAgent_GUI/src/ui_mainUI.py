@@ -21,7 +21,7 @@ class Ui_guiDlg(object):
     def setupUi(self, guiDlg):
         if guiDlg.objectName():
             guiDlg.setObjectName(u"guiDlg")
-        guiDlg.resize(745, 331)
+        guiDlg.resize(745, 561)
         self.line_5 = QFrame(guiDlg)
         self.line_5.setObjectName(u"line_5")
         self.line_5.setGeometry(QRect(246, 2, 20, 91))
@@ -29,7 +29,7 @@ class Ui_guiDlg(object):
         self.line_5.setFrameShadow(QFrame.Sunken)
         self.roboNavControl = QGroupBox(guiDlg)
         self.roboNavControl.setObjectName(u"roboNavControl")
-        self.roboNavControl.setGeometry(QRect(10, 110, 644, 185))
+        self.roboNavControl.setGeometry(QRect(10, 110, 575, 185))
         self.label_11 = QLabel(self.roboNavControl)
         self.label_11.setObjectName(u"label_11")
         self.label_11.setGeometry(QRect(214, 51, 16, 17))
@@ -213,6 +213,119 @@ class Ui_guiDlg(object):
 
         self.setnewactivity.addWidget(self.comboBox_3, 1, 0, 1, 3)
 
+        self.humanObsAgent = QGroupBox(guiDlg)
+        self.humanObsAgent.setObjectName(u"humanObsAgent")
+        self.humanObsAgent.setGeometry(QRect(12, 304, 465, 235))
+        self.pushButton_3 = QPushButton(self.humanObsAgent)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+        self.pushButton_3.setGeometry(QRect(156, 236, 71, 23))
+        self.widget = QWidget(self.humanObsAgent)
+        self.widget.setObjectName(u"widget")
+        self.widget.setGeometry(QRect(236, 30, 219, 193))
+        self.verticalLayout_3 = QVBoxLayout(self.widget)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.label_4 = QLabel(self.widget)
+        self.label_4.setObjectName(u"label_4")
+
+        self.verticalLayout_3.addWidget(self.label_4)
+
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.verticalLayout_2 = QVBoxLayout()
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.label_5 = QLabel(self.widget)
+        self.label_5.setObjectName(u"label_5")
+
+        self.verticalLayout_2.addWidget(self.label_5)
+
+        self.label_6 = QLabel(self.widget)
+        self.label_6.setObjectName(u"label_6")
+
+        self.verticalLayout_2.addWidget(self.label_6)
+
+        self.label_7 = QLabel(self.widget)
+        self.label_7.setObjectName(u"label_7")
+
+        self.verticalLayout_2.addWidget(self.label_7)
+
+        self.label_8 = QLabel(self.widget)
+        self.label_8.setObjectName(u"label_8")
+
+        self.verticalLayout_2.addWidget(self.label_8)
+
+
+        self.horizontalLayout.addLayout(self.verticalLayout_2)
+
+        self.verticalLayout = QVBoxLayout()
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.lineEdit_4 = QLineEdit(self.widget)
+        self.lineEdit_4.setObjectName(u"lineEdit_4")
+
+        self.verticalLayout.addWidget(self.lineEdit_4)
+
+        self.lineEdit_5 = QLineEdit(self.widget)
+        self.lineEdit_5.setObjectName(u"lineEdit_5")
+
+        self.verticalLayout.addWidget(self.lineEdit_5)
+
+        self.lineEdit_6 = QLineEdit(self.widget)
+        self.lineEdit_6.setObjectName(u"lineEdit_6")
+
+        self.verticalLayout.addWidget(self.lineEdit_6)
+
+        self.lineEdit_7 = QLineEdit(self.widget)
+        self.lineEdit_7.setObjectName(u"lineEdit_7")
+
+        self.verticalLayout.addWidget(self.lineEdit_7)
+
+
+        self.horizontalLayout.addLayout(self.verticalLayout)
+
+
+        self.verticalLayout_3.addLayout(self.horizontalLayout)
+
+        self.widget1 = QWidget(self.humanObsAgent)
+        self.widget1.setObjectName(u"widget1")
+        self.widget1.setGeometry(QRect(10, 28, 207, 199))
+        self.verticalLayout_4 = QVBoxLayout(self.widget1)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.graphicsView_2 = QGraphicsView(self.widget1)
+        self.graphicsView_2.setObjectName(u"graphicsView_2")
+
+        self.verticalLayout_4.addWidget(self.graphicsView_2)
+
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.label_14 = QLabel(self.widget1)
+        self.label_14.setObjectName(u"label_14")
+
+        self.horizontalLayout_2.addWidget(self.label_14)
+
+        self.comboBox = QComboBox(self.widget1)
+        self.comboBox.setObjectName(u"comboBox")
+
+        self.horizontalLayout_2.addWidget(self.comboBox)
+
+
+        self.verticalLayout_4.addLayout(self.horizontalLayout_2)
+
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.pushButton_15 = QPushButton(self.widget1)
+        self.pushButton_15.setObjectName(u"pushButton_15")
+
+        self.horizontalLayout_3.addWidget(self.pushButton_15)
+
+        self.pushButton_16 = QPushButton(self.widget1)
+        self.pushButton_16.setObjectName(u"pushButton_16")
+
+        self.horizontalLayout_3.addWidget(self.pushButton_16)
+
+
+        self.verticalLayout_4.addLayout(self.horizontalLayout_3)
+
 
         self.retranslateUi(guiDlg)
 
@@ -254,5 +367,19 @@ class Ui_guiDlg(object):
         self.label_24.setText(QCoreApplication.translate("guiDlg", u"<html><head/><body><p><span style=\" font-weight:600; color:#054e27;\">Activity agenda</span></p></body></html>", None))
         self.pushButton_10.setText(QCoreApplication.translate("guiDlg", u"New activity", None))
         self.pushButton_11.setText(QCoreApplication.translate("guiDlg", u"Set activity", None))
+        self.humanObsAgent.setTitle(QCoreApplication.translate("guiDlg", u"Human observer agent", None))
+        self.pushButton_3.setText(QCoreApplication.translate("guiDlg", u"to DSR", None))
+        self.label_4.setText(QCoreApplication.translate("guiDlg", u"<html><head/><body><p><span style=\" font-weight:600;\">Human information</span></p></body></html>", None))
+        self.label_5.setText(QCoreApplication.translate("guiDlg", u"Name", None))
+        self.label_6.setText(QCoreApplication.translate("guiDlg", u"Age", None))
+        self.label_7.setText(QCoreApplication.translate("guiDlg", u"User", None))
+        self.label_8.setText(QCoreApplication.translate("guiDlg", u"Activity", None))
+        self.lineEdit_4.setText("")
+        self.lineEdit_5.setText("")
+        self.lineEdit_6.setText("")
+        self.lineEdit_7.setText("")
+        self.label_14.setText(QCoreApplication.translate("guiDlg", u"Id", None))
+        self.pushButton_15.setText(QCoreApplication.translate("guiDlg", u"New human", None))
+        self.pushButton_16.setText(QCoreApplication.translate("guiDlg", u"Set human", None))
     # retranslateUi
 
