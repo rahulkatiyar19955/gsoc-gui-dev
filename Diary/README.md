@@ -18,3 +18,5 @@
 [June 10](https://github.com/rahulkatiyar19955/gsoc-gui-dev/blob/master/Diary/june10.md)
 
 [June 11](https://github.com/rahulkatiyar19955/gsoc-gui-dev/blob/master/Diary/june11.md)
+
+[June 12](https://github.com/rahulkatiyar19955/gsoc-gui-dev/blob/master/Diary/june12.md)
