@@ -25,6 +25,11 @@ from PySide2.QtCore import QDateTime
 from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
+
+# AGM related imports
+import AGMModelConversion
+from AGGL import *
+
 import json
 import sys
 import math
@@ -241,12 +246,33 @@ class CameraViewer(QWidget):
             print("exiting")
             self.close()
 
+class Human():
+    def __init__(self):
+        self.id = ""
+        self.name = ""
+        self.age = ""
+        self.userType = ""
+        self.PhysicalDep = 0
+        self.CognitiveDep = 0
+        self.emotionalState = ""
+        self.activity = ""
+        self.pose = Pose3D()
+        self.photo = ""
+
+
 class SpecificWorker(GenericWorker):
     def __init__(self, proxy_map):
         super(SpecificWorker, self).__init__(proxy_map)
         # calling the calendar api object
-        self.calendarApiObj = CalenderApi()
+        try:
+            self.calendarApiObj = CalenderApi()
+        except:
+            print("No internet connection detected")
+            print("Restart the application to to enable Activity Calendar")
+            self.ui.CalendarEvents.setEnabled(False)
 
+        # Person's list
+        self.persons = []
         self.timer.timeout.connect(self.compute)
         self.Period = 2000
         self.timer.start(self.Period)
@@ -281,7 +307,8 @@ class SpecificWorker(GenericWorker):
         self.velRot = 0
 
         # Agm related initialization
-        # self.WorldModel = AGMModel()
+        self.AGMinit()
+
 
         # view Laser method
         self.ui.viewLaser_button.clicked.connect(self.viewLaserB)
@@ -289,8 +316,113 @@ class SpecificWorker(GenericWorker):
         # view Camera method
         self.ui.view_camera_button.clicked.connect(self.viewCameraB)
 
+        # ui initialize for human interaction
+        self.ui.newHuman_button.clicked.connect(self.newHumanB)
+
+    def AGMinit(self):
+        self.worldModel = AGMGraph()
+        try:
+            w = self.agmexecutive_proxy.getModel()
+            self.AGMExecutiveTopic_structuralChange(w)
+        except:
+            print("The executive is probably not running, waiting for first AGM model publication...")
+
     def __del__(self):
         print('SpecificWorker destructor')
+
+    def includeInAGM(self, Id,pose,mesh):
+        print("includeInAGM begins\n")
+        # name = "person"
+        imName = "person" + str(Id)
+        # personSymbolId = -1
+        # idx = 0
+        attribute2 = dict()
+        attribute2["imName"] = imName
+        attribute2["imType"] = "transform"
+
+        self.worldModel.addNode(0, 0, Id, "person", attribute2)
+        self.worldModel.addEdge(Id, 3, "in")
+
+        edgeRTAtrs2 = dict()
+        edgeRTAtrs2["tx"] = "0"
+        edgeRTAtrs2["ty"] = "0"
+        edgeRTAtrs2["tz"] = "0"
+        edgeRTAtrs2["rx"] = "0"
+        edgeRTAtrs2["ry"] = "0"
+        edgeRTAtrs2["rz"] = "0"
+        self.worldModel.addEdge(100, Id, "RT", edgeRTAtrs2)
+
+        attribute = dict()
+        attribute["collidable"] = "false"
+        attribute["imName"] = imName + "_Mesh"
+        attribute["imType"] = "mesh"
+        meshPath = "/home/robocomp/robocomp/components/robocomp-viriato/files/osgModels/" + mesh
+        attribute["path"] = str(meshPath)
+        attribute["render"] = "NormalRendering"
+        attribute["scalex"] = str(12)
+        attribute["scaley"] = str(12)
+        attribute["scalez"] = str(12)
+        self.worldModel.addNode(0, 0, Id + 1, "mesh_person", attribute)
+        # self.worldModel.addNode(0, 0, temp_id + 1, "personMesh")
+
+        edgeRTAtrs = dict()
+        edgeRTAtrs["tx"] = "0"
+        edgeRTAtrs["ty"] = "0"
+        edgeRTAtrs["tz"] = "0"
+        edgeRTAtrs["rx"] = "1.570796326794"
+        edgeRTAtrs["ry"] = "0"
+        edgeRTAtrs["rz"] = "3.1415926535"
+        self.worldModel.addEdge(Id, Id + 1, "RT", edgeRTAtrs)
+
+
+        self.newModel = AGMModelConversion.fromInternalToIce(self.worldModel)
+        self.agmexecutive_proxy.structuralChangeProposal(self.newModel, "gui1", "log2")
+        print("includeInAGM ends\n")
+        return Id
+
+    def includeInRCIS(self,id_val,pose,meshName):
+        print("includeInRCIS begins")
+        name = "person" + str(id_val)
+        mesh = meshType()
+        mesh.pose.x = 0
+        mesh.pose.y = 0
+        mesh.pose.z = 0
+        mesh.pose.rx = 1.57079632679
+        mesh.pose.ry = 0
+        mesh.pose.rz = 3.1415926535
+        mesh.scaleX = mesh.scaleY = mesh.scaleZ = 12
+        mesh.render = 0
+        mesh.meshPath = "/home/robocomp/robocomp/components/robocomp-viriato/files/osgModels/" + meshName
+        try:
+            self.innermodelmanager_proxy.addTransform(name, "static", "root", pose)
+        except:
+            print("Can't create fake person name ")
+            return False
+        try:
+            self.innermodelmanager_proxy.addMesh(name+"_mesh", name, mesh)
+        except:
+            print("Can't create fake person mesh")
+            return False
+
+        print("includeInRCIS ends")
+        return True
+
+    def updatePersons(self,id,pose,mesh):
+        self.ui.id_list.addItem(str(id))
+        temp_human = Human()
+        temp_human.name = self.ui.H_name
+        temp_human.age = self.ui.H_age.currentText()
+        temp_human.userType = self.ui.H_userType.currentText()
+        temp_human.PhysicalDep = self.ui.H_phyDep.value()
+        temp_human.CognitiveDep = self.ui.H_cogDep.value()
+        temp_human.emotionalState = self.ui.H_emoSate.currentText()
+        temp_human.activity = self.ui.H_activity.currentText()
+        temp_human.pose.x = self.ui.x_sb.value()
+        temp_human.pose.z = self.ui.z_sb.value()
+        temp_human.pose.rx = self.ui.rot_sb.value()
+
+        self.persons.append(temp_human)
+
 
     def setParams(self, params):
         # try:
@@ -361,10 +493,16 @@ class SpecificWorker(GenericWorker):
     # SUBSCRIPTION to structuralChange method from AGMExecutiveTopic interface
     #
     def AGMExecutiveTopic_structuralChange(self, w):
-        #
-        # subscribesToCODE
-        #
-        pass
+        self.mutex.lock()
+        # print("before")
+        # print(type(self.worldModel), type(w))
+        self.worldModel = AGMModelConversion.fromIceToInternal_model(w)
+        # print("after")
+        # print(type(self.worldModel), type(w))
+        # print(self.worldModel)
+        # fromIceToInternal(w, worldModel)
+        self.mutex.unlock()
+
 
     #
     # SUBSCRIPTION to symbolUpdated method from AGMExecutiveTopic interface
@@ -683,3 +821,22 @@ class SpecificWorker(GenericWorker):
         self.viewLaser = ViewLaser(parent=self)
         self.viewLaser.show()
         # print(self.laser_data)
+
+    def newHumanB(self):
+        print("newHuman")
+        pose = Pose3D()
+        pose.x = 0
+        pose.y = 0
+        pose.z = 0
+        pose.rx = 0
+        pose.ry = 0
+        pose.rz = 0
+        id = 5280
+        meshname = "human01.3ds"
+        scale = "12"
+        rotationz = "3.1415926535"
+        if self.includeInRCIS(id, pose, meshname):
+            self.includeInAGM(id, pose, meshname)
+            self.updatePersons()
+        else:
+            print("error creating in RCIS")
