@@ -247,15 +247,15 @@ class CameraViewer(QWidget):
             self.close()
 
 class Human():
-    def __init__(self):
-        self.id = ""
+    def __init__(self,id = None,name = ""):
+        self.id = id
         self.name = ""
-        self.age = ""
-        self.userType = ""
+        self.age = "Age<30"
+        self.userType = "Clinician"
         self.PhysicalDep = 0
         self.CognitiveDep = 0
-        self.emotionalState = ""
-        self.activity = ""
+        self.emotionalState = "Neutral"
+        self.activity = "Rest"
         self.pose = Pose3D()
         self.photo = ""
 
@@ -318,110 +318,47 @@ class SpecificWorker(GenericWorker):
 
         # ui initialize for human interaction
         self.ui.newHuman_button.clicked.connect(self.newHumanB)
+        self.ui.setHuman_button.clicked.connect(self.setHumanB)
+        self.ui.addPhotoB.clicked.connect(self.addPhoto)
+        # self.ui.photo_viewer.connect(self.photo_change)
+        self.ui.label_18.hide()
+        self.ui.label_19.hide()
+        self.ui.H_phyDep.hide()
+        self.ui.H_cogDep.hide()
+        self.ui.H_userType.currentIndexChanged.connect(self.userTypeChange)
+        # def mousePressEvent(self, event:PySide2.QtGui.QMouseEvent):
+        self.ui.sendtoDSR_button.clicked.connect(self.toDSR)
+        self.ui.id_list.currentIndexChanged.connect(self.updateHumanInfo)
+        self.ui.setPose_pb.clicked.connect(self.setPose)
+        self.currentImagePath = ""
+
+
+    def userTypeChange(self,val):
+        print(val," type")
+        if self.ui.H_userType.currentText()=="Caregiving User":
+            self.ui.label_18.show()
+            self.ui.label_19.show()
+            self.ui.H_phyDep.show()
+            self.ui.H_cogDep.show()
+        else:
+            self.ui.label_18.hide()
+            self.ui.label_19.hide()
+            self.ui.H_phyDep.hide()
+            self.ui.H_cogDep.hide()
 
     def AGMinit(self):
         self.worldModel = AGMGraph()
         try:
             w = self.agmexecutive_proxy.getModel()
             self.AGMExecutiveTopic_structuralChange(w)
+            # get all the list of persons
+            self.getPersonList_AGM()
+
         except:
             print("The executive is probably not running, waiting for first AGM model publication...")
 
     def __del__(self):
         print('SpecificWorker destructor')
-
-    def includeInAGM(self, Id,pose,mesh):
-        print("includeInAGM begins\n")
-        # name = "person"
-        imName = "person" + str(Id)
-        # personSymbolId = -1
-        # idx = 0
-        attribute2 = dict()
-        attribute2["imName"] = imName
-        attribute2["imType"] = "transform"
-
-        self.worldModel.addNode(0, 0, Id, "person", attribute2)
-        self.worldModel.addEdge(Id, 3, "in")
-
-        edgeRTAtrs2 = dict()
-        edgeRTAtrs2["tx"] = "0"
-        edgeRTAtrs2["ty"] = "0"
-        edgeRTAtrs2["tz"] = "0"
-        edgeRTAtrs2["rx"] = "0"
-        edgeRTAtrs2["ry"] = "0"
-        edgeRTAtrs2["rz"] = "0"
-        self.worldModel.addEdge(100, Id, "RT", edgeRTAtrs2)
-
-        attribute = dict()
-        attribute["collidable"] = "false"
-        attribute["imName"] = imName + "_Mesh"
-        attribute["imType"] = "mesh"
-        meshPath = "/home/robocomp/robocomp/components/robocomp-viriato/files/osgModels/" + mesh
-        attribute["path"] = str(meshPath)
-        attribute["render"] = "NormalRendering"
-        attribute["scalex"] = str(12)
-        attribute["scaley"] = str(12)
-        attribute["scalez"] = str(12)
-        self.worldModel.addNode(0, 0, Id + 1, "mesh_person", attribute)
-        # self.worldModel.addNode(0, 0, temp_id + 1, "personMesh")
-
-        edgeRTAtrs = dict()
-        edgeRTAtrs["tx"] = "0"
-        edgeRTAtrs["ty"] = "0"
-        edgeRTAtrs["tz"] = "0"
-        edgeRTAtrs["rx"] = "1.570796326794"
-        edgeRTAtrs["ry"] = "0"
-        edgeRTAtrs["rz"] = "3.1415926535"
-        self.worldModel.addEdge(Id, Id + 1, "RT", edgeRTAtrs)
-
-
-        self.newModel = AGMModelConversion.fromInternalToIce(self.worldModel)
-        self.agmexecutive_proxy.structuralChangeProposal(self.newModel, "gui1", "log2")
-        print("includeInAGM ends\n")
-        return Id
-
-    def includeInRCIS(self,id_val,pose,meshName):
-        print("includeInRCIS begins")
-        name = "person" + str(id_val)
-        mesh = meshType()
-        mesh.pose.x = 0
-        mesh.pose.y = 0
-        mesh.pose.z = 0
-        mesh.pose.rx = 1.57079632679
-        mesh.pose.ry = 0
-        mesh.pose.rz = 3.1415926535
-        mesh.scaleX = mesh.scaleY = mesh.scaleZ = 12
-        mesh.render = 0
-        mesh.meshPath = "/home/robocomp/robocomp/components/robocomp-viriato/files/osgModels/" + meshName
-        try:
-            self.innermodelmanager_proxy.addTransform(name, "static", "root", pose)
-        except:
-            print("Can't create fake person name ")
-            return False
-        try:
-            self.innermodelmanager_proxy.addMesh(name+"_mesh", name, mesh)
-        except:
-            print("Can't create fake person mesh")
-            return False
-
-        print("includeInRCIS ends")
-        return True
-
-    def updatePersons(self,id,pose,mesh):
-        self.ui.id_list.addItem(str(id))
-        temp_human = Human()
-        temp_human.name = self.ui.H_name
-        temp_human.age = self.ui.H_age.currentText()
-        temp_human.userType = self.ui.H_userType.currentText()
-        temp_human.PhysicalDep = self.ui.H_phyDep.value()
-        temp_human.CognitiveDep = self.ui.H_cogDep.value()
-        temp_human.emotionalState = self.ui.H_emoSate.currentText()
-        temp_human.activity = self.ui.H_activity.currentText()
-        temp_human.pose.x = self.ui.x_sb.value()
-        temp_human.pose.z = self.ui.z_sb.value()
-        temp_human.pose.rx = self.ui.rot_sb.value()
-
-        self.persons.append(temp_human)
 
 
     def setParams(self, params):
@@ -822,6 +759,137 @@ class SpecificWorker(GenericWorker):
         self.viewLaser.show()
         # print(self.laser_data)
 
+    # function to add a person in AGM
+    def includeInAGM(self, Id, pose, mesh):
+        print("includeInAGM begins\n")
+        # name = "person"
+        imName = "person" + str(Id)
+        # personSymbolId = -1
+        # idx = 0
+        attribute2 = dict()
+        attribute2["imName"] = imName
+        attribute2["imType"] = "transform"
+
+        self.worldModel.addNode(0, 0, Id, "person", attribute2)
+        self.worldModel.addEdge(Id, 3, "in")
+
+        edgeRTAtrs2 = dict()
+        edgeRTAtrs2["tx"] = "0"
+        edgeRTAtrs2["ty"] = "0"
+        edgeRTAtrs2["tz"] = "0"
+        edgeRTAtrs2["rx"] = "0"
+        edgeRTAtrs2["ry"] = "0"
+        edgeRTAtrs2["rz"] = "0"
+        self.worldModel.addEdge(100, Id, "RT", edgeRTAtrs2)
+
+        attribute = dict()
+        attribute["collidable"] = "false"
+        attribute["imName"] = imName + "_Mesh"
+        attribute["imType"] = "mesh"
+        meshPath = "/home/robocomp/robocomp/components/robocomp-viriato/files/osgModels/" + mesh
+        attribute["path"] = str(meshPath)
+        attribute["render"] = "NormalRendering"
+        attribute["scalex"] = str(12)
+        attribute["scaley"] = str(12)
+        attribute["scalez"] = str(12)
+        self.worldModel.addNode(0, 0, Id + 1, "mesh_person", attribute)
+        # self.worldModel.addNode(0, 0, temp_id + 1, "personMesh")
+
+        edgeRTAtrs = dict()
+        edgeRTAtrs["tx"] = "0"
+        edgeRTAtrs["ty"] = "0"
+        edgeRTAtrs["tz"] = "0"
+        edgeRTAtrs["rx"] = "1.570796326794"
+        edgeRTAtrs["ry"] = "0"
+        edgeRTAtrs["rz"] = "3.1415926535"
+        self.worldModel.addEdge(Id, Id + 1, "RT", edgeRTAtrs)
+
+        self.newModel = AGMModelConversion.fromInternalToIce(self.worldModel)
+        self.agmexecutive_proxy.structuralChangeProposal(self.newModel, "gui1", "log2")
+        print("includeInAGM ends\n")
+        return Id
+
+    # function to add a person in RCIS
+    def includeInRCIS(self, id_val, pose, meshName):
+        print("includeInRCIS begins")
+        name = "person" + str(id_val)
+        mesh = meshType()
+        mesh.pose.x = 0
+        mesh.pose.y = 0
+        mesh.pose.z = 0
+        mesh.pose.rx = 1.57079632679
+        mesh.pose.ry = 0
+        mesh.pose.rz = 3.1415926535
+        mesh.scaleX = mesh.scaleY = mesh.scaleZ = 12
+        mesh.render = 0
+        mesh.meshPath = "/home/robocomp/robocomp/components/robocomp-viriato/files/osgModels/" + meshName
+        try:
+            self.innermodelmanager_proxy.addTransform(name, "static", "root", pose)
+        except:
+            print("Can't create fake person name ")
+            return False
+        try:
+            self.innermodelmanager_proxy.addMesh(name + "_mesh", name, mesh)
+        except:
+            print("Can't create fake person mesh")
+            return False
+
+        print("includeInRCIS ends")
+        return True
+
+    # function to add the person information in in-memory database
+    def updatePersons(self):
+        temp_human = Human()
+        temp_id = int(self.ui.id_list.currentText())
+        for p in self.persons:
+            if p.id==temp_id:
+                p.name = self.ui.H_name.text()
+                p.age = self.ui.H_age.currentText()
+                p.userType = self.ui.H_userType.currentText()
+                p.PhysicalDep = self.ui.H_phyDep.value()
+                p.CognitiveDep = self.ui.H_cogDep.value()
+                p.emotionalState = self.ui.H_emoSate.currentText()
+                p.activity = self.ui.H_activity.currentText()
+                p.pose.x = self.ui.x_sb.value()
+                p.pose.z = self.ui.z_sb.value()
+                p.pose.rx = self.ui.rot_sb.value()
+                p.photo = self.currentImagePath
+                return
+        temp_human.id = temp_id
+        temp_human.name = self.ui.H_name.text()
+        temp_human.age = self.ui.H_age.currentText()
+        temp_human.userType = self.ui.H_userType.currentText()
+        temp_human.PhysicalDep = self.ui.H_phyDep.value()
+        temp_human.CognitiveDep = self.ui.H_cogDep.value()
+        temp_human.emotionalState = self.ui.H_emoSate.currentText()
+        temp_human.activity = self.ui.H_activity.currentText()
+        temp_human.pose.x = self.ui.x_sb.value()
+        temp_human.pose.z = self.ui.z_sb.value()
+        temp_human.pose.rx = self.ui.rot_sb.value()
+        temp_human.photo = self.currentImagePath
+        self.persons.append(temp_human)
+
+    def updateHumanInfo(self):
+        print(int(self.ui.id_list.currentText()))
+        currID = int(self.ui.id_list.currentText())
+        self.load_image("")
+        for human in list(self.persons):
+            if human.id == currID:
+                self.ui.H_name.setText(human.name)
+                self.ui.H_age.setCurrentText(human.age)
+                self.ui.H_userType.setCurrentText(human.userType)
+                self.ui.H_phyDep.setValue(human.PhysicalDep)
+                self.ui.H_cogDep.setValue(human.CognitiveDep)
+                self.ui.H_emoSate.setCurrentText(human.emotionalState)
+                self.ui.H_activity.setCurrentText( human.activity)
+                self.ui.x_sb.setValue(human.pose.x)
+                self.ui.z_sb.setValue(human.pose.z)
+                self.ui.rot_sb.setValue(human.pose.rx)
+                self.currentImagePath = human.photo
+                self.load_image(human.photo)
+                break
+        # self.load_image("")
+
     def newHumanB(self):
         print("newHuman")
         pose = Pose3D()
@@ -831,12 +899,109 @@ class SpecificWorker(GenericWorker):
         pose.rx = 0
         pose.ry = 0
         pose.rz = 0
-        id = 5280
+        userid = self.getLatestId()
+        # t = self.getLatestId()
+        # print(type(t),t)
         meshname = "human01.3ds"
         scale = "12"
         rotationz = "3.1415926535"
-        if self.includeInRCIS(id, pose, meshname):
-            self.includeInAGM(id, pose, meshname)
-            self.updatePersons()
+        if self.includeInRCIS(userid, pose, meshname):
+            self.includeInAGM(userid, pose, meshname)
+            self.ui.id_list.addItem(str(userid))
+            self.ui.id_list.setCurrentIndex(self.ui.id_list.count() - 1)
+            self.currentImagePath = ""
+            # self.updatePersons()
+            temp_human = Human(id=userid)
+            self.persons.append(temp_human)
+            self.updateHumanInfo()
+
         else:
             print("error creating in RCIS")
+
+    def setHumanB(self):
+        print("set human")
+        self.updatePersons()
+
+
+    def addPhoto(self):
+        path_to_file, _ = QFileDialog.getOpenFileName(self, "Load Image", "~/Desktop/", "Images (*.jpg)")
+        self.currentImagePath = path_to_file
+        self.load_image(path_to_file)
+
+    def load_image(self, image_path):
+        self.scene_obj = QGraphicsScene()
+        self.ui.photo_viewer.setScene(self.scene_obj)
+        pixmap_obj = QPixmap(image_path)
+        self.scene_obj.addPixmap(pixmap_obj)
+        self.ui.photo_viewer.fitInView(QRectF(0, 0, pixmap_obj.width(), pixmap_obj.height()),Qt.KeepAspectRatio)
+        self.scene_obj.update()
+
+    def getPersonList_AGM(self):
+        src = self.worldModel
+        for nodeSrc in list(src.nodes.values()):
+            if nodeSrc.sType == 'person':
+                self.ui.id_list.addItem(nodeSrc.name)
+                # temp_person = Human(name=str(nodeSrc.name))
+                # self.persons.append(temp_person)
+
+    def getLatestId(self):
+        src = self.worldModel
+        last_id = 0
+        for nodeSrc in list(src.nodes.values()):
+            last_id = max(last_id,int(nodeSrc.name))
+            # print(nodeSrc.name)
+        for link in list(src.links):
+            last_id = max(last_id, int(link.a))
+            last_id = max(last_id, int(link.b))
+        # the latest available id that can be assigned to any node or link
+        return last_id + 1
+
+    def toDSR(self):
+        print("todsr")
+        print(self.persons)
+        # print(self.worldModel)
+
+    def setPose(self):
+        if self.ui.id_list.currentText() == "":
+            print("No selected person to move")
+        else:
+            temp_id = int(self.ui.id_list.currentText())
+            name = "person" + str(temp_id)
+            pose = Pose3D()
+            pose.x = self.ui.x_sb.value()
+            pose.y = 0
+            pose.z = self.ui.z_sb.value()
+            pose.rx = 0
+            pose.ry = self.ui.rot_sb.value()
+            pose.rz = 0
+            # move the person in RCIS
+            try:
+                self.innermodelmanager_proxy.setPoseFromParent(name,pose)
+            except:
+                print("Exception moving person in RCIS: ")
+                return
+
+            # move the person in AGM
+            edgeRTAtrs = dict()
+            edgeRTAtrs["tx"] = str(self.ui.x_sb.value())
+            edgeRTAtrs["ty"] = "0"
+            edgeRTAtrs["tz"] = str(self.ui.z_sb.value())
+            edgeRTAtrs["rx"] = "0"
+            edgeRTAtrs["ry"] = str(self.ui.rot_sb.value())
+            edgeRTAtrs["rz"] = "0"
+            self.newModel = AGMModelConversion.fromInternalToIce(self.worldModel)
+            self.edgeUpdate(100, temp_id, "RT",edgeRTAtrs)
+            try:
+                self.agmexecutive_proxy.structuralChangeProposal(self.newModel, "gui1", "logger")
+            except:
+                print("Exception moving in AGM")
+
+    def edgeUpdate(self,a, b, linkLabel='',attr=None):
+        src = self.newModel
+        for srcEdge in src.edges:
+            if srcEdge.a==a and srcEdge.b==b:
+                if srcEdge.edgeType == linkLabel:
+                    srcEdge.attributes = attr
+                    break
+
+

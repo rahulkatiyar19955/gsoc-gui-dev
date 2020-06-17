@@ -7,3 +7,6 @@ client_secre.json
 /calender_api_client/client_secret.json
 /humanObserverAgent_GUI/client_secret.json
 /humanObserverAgent_GUI/src/client_secret.json
+/humanObserverAgent_GUI/src/icons/
+/humanObserverAgent_GUI/src/photo/
+/humanObserverAgent_GUI/src/mainUIDate.qrc

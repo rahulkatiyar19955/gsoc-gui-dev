@@ -152,10 +152,16 @@ class Ui_guiDlg(object):
         self.verticalLayout_4 = QVBoxLayout(self.layoutWidget1)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
-        self.graphicsView_2 = QGraphicsView(self.layoutWidget1)
-        self.graphicsView_2.setObjectName(u"graphicsView_2")
+        self.photo_viewer = QGraphicsView(self.layoutWidget1)
+        self.photo_viewer.setObjectName(u"photo_viewer")
+        self.photo_viewer.setStyleSheet(u"")
 
-        self.verticalLayout_4.addWidget(self.graphicsView_2)
+        self.verticalLayout_4.addWidget(self.photo_viewer)
+
+        self.addPhotoB = QPushButton(self.layoutWidget1)
+        self.addPhotoB.setObjectName(u"addPhotoB")
+
+        self.verticalLayout_4.addWidget(self.addPhotoB)
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
@@ -187,17 +193,12 @@ class Ui_guiDlg(object):
 
         self.verticalLayout_4.addLayout(self.horizontalLayout_3)
 
-        self.pushButton_3 = QPushButton(self.layoutWidget1)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-
-        self.verticalLayout_4.addWidget(self.pushButton_3)
-
         self.label_4 = QLabel(self.humanObsAgent)
         self.label_4.setObjectName(u"label_4")
         self.label_4.setGeometry(QRect(264, 28, 139, 17))
         self.layoutWidget_2 = QWidget(self.humanObsAgent)
         self.layoutWidget_2.setObjectName(u"layoutWidget_2")
-        self.layoutWidget_2.setGeometry(QRect(590, 52, 195, 153))
+        self.layoutWidget_2.setGeometry(QRect(590, 52, 195, 133))
         self.formLayout = QFormLayout(self.layoutWidget_2)
         self.formLayout.setObjectName(u"formLayout")
         self.formLayout.setContentsMargins(0, 0, 0, 0)
@@ -244,11 +245,6 @@ class Ui_guiDlg(object):
         self.setPose_pb.setObjectName(u"setPose_pb")
 
         self.formLayout.setWidget(3, QFormLayout.FieldRole, self.setPose_pb)
-
-        self.random = QPushButton(self.layoutWidget_2)
-        self.random.setObjectName(u"random")
-
-        self.formLayout.setWidget(3, QFormLayout.LabelRole, self.random)
 
         self.label_21 = QLabel(self.humanObsAgent)
         self.label_21.setObjectName(u"label_21")
@@ -306,6 +302,7 @@ class Ui_guiDlg(object):
 
         self.H_phyDep = QSpinBox(self.layoutWidget2)
         self.H_phyDep.setObjectName(u"H_phyDep")
+        self.H_phyDep.setMaximum(100)
 
         self.formLayout_2.setWidget(3, QFormLayout.FieldRole, self.H_phyDep)
 
@@ -316,6 +313,7 @@ class Ui_guiDlg(object):
 
         self.H_cogDep = QSpinBox(self.layoutWidget2)
         self.H_cogDep.setObjectName(u"H_cogDep")
+        self.H_cogDep.setMaximum(100)
 
         self.formLayout_2.setWidget(4, QFormLayout.FieldRole, self.H_cogDep)
 
@@ -348,6 +346,9 @@ class Ui_guiDlg(object):
 
         self.formLayout_2.setWidget(6, QFormLayout.FieldRole, self.H_activity)
 
+        self.sendtoDSR_button = QPushButton(self.humanObsAgent)
+        self.sendtoDSR_button.setObjectName(u"sendtoDSR_button")
+        self.sendtoDSR_button.setGeometry(QRect(588, 192, 195, 73))
         self.CalendarEvents = QGroupBox(guiDlg)
         self.CalendarEvents.setObjectName(u"CalendarEvents")
         self.CalendarEvents.setGeometry(QRect(2, 4, 581, 131))
@@ -462,10 +463,10 @@ class Ui_guiDlg(object):
         self.c_button.setText("")
         self.cc_button.setText("")
         self.humanObsAgent.setTitle(QCoreApplication.translate("guiDlg", u"Human observer agent", None))
+        self.addPhotoB.setText(QCoreApplication.translate("guiDlg", u"Add Photo", None))
         self.label_14.setText(QCoreApplication.translate("guiDlg", u"Id", None))
         self.newHuman_button.setText(QCoreApplication.translate("guiDlg", u"New human", None))
         self.setHuman_button.setText(QCoreApplication.translate("guiDlg", u"Set human", None))
-        self.pushButton_3.setText(QCoreApplication.translate("guiDlg", u"Send to DSR", None))
         self.label_4.setText(QCoreApplication.translate("guiDlg", u"<html><head/><body><p><span style=\" font-weight:600;\">Human information</span></p></body></html>", None))
         self.label_2.setText(QCoreApplication.translate("guiDlg", u"Position X", None))
 #if QT_CONFIG(tooltip)
@@ -477,7 +478,6 @@ class Ui_guiDlg(object):
 #endif // QT_CONFIG(tooltip)
         self.label_20.setText(QCoreApplication.translate("guiDlg", u"Rotation", None))
         self.setPose_pb.setText(QCoreApplication.translate("guiDlg", u"Set pose", None))
-        self.random.setText(QCoreApplication.translate("guiDlg", u"Random", None))
         self.label_21.setText(QCoreApplication.translate("guiDlg", u"<html><head/><body><p><span style=\" font-weight:600;\">Pose</span></p></body></html>", None))
         self.label_5.setText(QCoreApplication.translate("guiDlg", u"Name", None))
         self.H_name.setText("")
@@ -508,6 +508,7 @@ class Ui_guiDlg(object):
         self.H_activity.setItemText(2, QCoreApplication.translate("guiDlg", u"Physical Activity", None))
         self.H_activity.setItemText(3, QCoreApplication.translate("guiDlg", u"Cognitive Activity", None))
 
+        self.sendtoDSR_button.setText(QCoreApplication.translate("guiDlg", u"Send to DSR", None))
         self.CalendarEvents.setTitle(QCoreApplication.translate("guiDlg", u"Activity Calendar", None))
         self.label_24.setText(QCoreApplication.translate("guiDlg", u"<html><head/><body><p><span style=\" font-weight:600; color:#054e27;\">Activity agenda</span></p></body></html>", None))
         self.pushButton_10.setText(QCoreApplication.translate("guiDlg", u"New activity", None))

@@ -375,7 +375,18 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_4">
      <item>
-      <widget class="QGraphicsView" name="graphicsView_2"/>
+      <widget class="QGraphicsView" name="photo_viewer">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="addPhotoB">
+       <property name="text">
+        <string>Add Photo</string>
+       </property>
+      </widget>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -409,13 +420,6 @@
        </item>
       </layout>
      </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_3">
-       <property name="text">
-        <string>Send to DSR</string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </widget>
    <widget class="QLabel" name="label_4">
@@ -437,7 +441,7 @@
       <x>590</x>
       <y>52</y>
       <width>195</width>
-      <height>153</height>
+      <height>133</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
@@ -511,13 +515,6 @@
       <widget class="QPushButton" name="setPose_pb">
        <property name="text">
         <string>Set pose</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QPushButton" name="random">
-       <property name="text">
-        <string>Random</string>
        </property>
       </widget>
      </item>
@@ -636,7 +633,11 @@
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QSpinBox" name="H_phyDep"/>
+      <widget class="QSpinBox" name="H_phyDep">
+       <property name="maximum">
+        <number>100</number>
+       </property>
+      </widget>
      </item>
      <item row="4" column="0">
       <widget class="QLabel" name="label_19">
@@ -646,7 +647,11 @@
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QSpinBox" name="H_cogDep"/>
+      <widget class="QSpinBox" name="H_cogDep">
+       <property name="maximum">
+        <number>100</number>
+       </property>
+      </widget>
      </item>
      <item row="5" column="0">
       <widget class="QLabel" name="label_8">
@@ -716,6 +721,19 @@
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QPushButton" name="sendtoDSR_button">
+    <property name="geometry">
+     <rect>
+      <x>588</x>
+      <y>192</y>
+      <width>195</width>
+      <height>73</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Send to DSR</string>
+    </property>
    </widget>
   </widget>
   <widget class="QGroupBox" name="CalendarEvents">
