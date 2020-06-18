@@ -265,8 +265,7 @@ class SpecificWorker(GenericWorker):
         super(SpecificWorker, self).__init__(proxy_map)
         # calling the calendar api object
         try:
-            pass
-            # self.calendarApiObj = CalenderApi()
+            self.calendarApiObj = CalenderApi()
         except:
             print("No internet connection detected")
             print("Restart the application to to enable Activity Calendar")
@@ -279,6 +278,9 @@ class SpecificWorker(GenericWorker):
         self.timer.start(self.Period)
         self.ui.pushButton_10.clicked.connect(self.newActivity)
         self.ui.pushButton_14.clicked.connect(self.viewAgenda)
+
+        # for debugging
+        # self.ui.check.clicked.connect(self.debug_click)
 
         # setting the date to today
         self.ui.dateEdit.setDateTime(QDateTime.currentDateTimeUtc())
@@ -335,7 +337,7 @@ class SpecificWorker(GenericWorker):
         # interaction related
         self.ui.interaction_cb.currentTextChanged.connect(self.interactionChanged)
         self.ui.int2_cb.setEnabled(False)
-        self.ui.rinteraction_pb.setEnabled(False)
+        # self.ui.rinteraction_pb.setEnabled(False)
         self.ui.ainteraction_pb.clicked.connect(self.addInteraction)
         self.ui.rinteraction_pb.clicked.connect(self.removeEdgeAGM)
 
@@ -1066,20 +1068,43 @@ class SpecificWorker(GenericWorker):
             msgBox.setText('Interaction is already used')
             msgBox.exec_()
         else:
-            # adding the link information to the list widget
-
-            self.worldModel.addEdge(int(id1), int(id2), curr_text)
+            self.worldModel.addEdge(id1, id2, curr_text)
             try:
+                edge = AGMLink(id1, id2, curr_text, enabled=True)
                 self.newModel = AGMModelConversion.fromInternalToIce(self.worldModel)
+                item = QListWidgetItem(listEntry)
+                # adding the edge information to the item
+                item.setData(Qt.UserRole,edge)
                 self.agmexecutive_proxy.structuralChangeProposal(self.newModel, "gui1", "log2")
-                self.ui.interaction_lw.addItem(listEntry)
+                self.ui.interaction_lw.addItem(item)
                 self.ui.rinteraction_pb.setEnabled(True)
             except:
                 print("error retrieving edge from newModel")
 
     def removeEdgeAGM(self):
-        pass
-        # item = self.ui.interaction_lw.currentItem()
-        # if not item is None:
-
-
+        print("remove")
+        itemR = self.ui.interaction_lw.currentRow()
+        item1 = self.ui.interaction_lw.currentItem()
+        if not item1 is None:
+            edge = item1.data(Qt.UserRole)
+            print(edge)
+            # print(self.worldModel)
+            src = self.worldModel
+            print(src.links[-1],type(src.links[0].a))
+            print(edge,type(edge.a))
+            try:
+                if self.worldModel.removeEdge(edge.a,edge.b,edge.linkType):
+                    print("success")
+                    self.newModel = AGMModelConversion.fromInternalToIce(self.worldModel)
+                    self.agmexecutive_proxy.structuralChangeProposal(self.newModel, "gui1", "log2")
+                    self.ui.interaction_lw.takeItem(itemR)
+                    del item1
+                    del itemR
+                else:
+                    print("fail")
+            except:
+                print("error deleting edge from worldModel")
+        else:
+            msgBox = QMessageBox()
+            msgBox.setText('No interaction is selected')
+            msgBox.exec_()

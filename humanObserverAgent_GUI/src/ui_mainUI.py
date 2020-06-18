@@ -199,7 +199,7 @@ class Ui_guiDlg(object):
 
         self.layoutWidget_2 = QWidget(self.humanObsAgent)
         self.layoutWidget_2.setObjectName(u"layoutWidget_2")
-        self.layoutWidget_2.setGeometry(QRect(590, 52, 143, 133))
+        self.layoutWidget_2.setGeometry(QRect(590, 52, 158, 133))
         self.formLayout = QFormLayout(self.layoutWidget_2)
         self.formLayout.setObjectName(u"formLayout")
         self.formLayout.setContentsMargins(0, 0, 0, 0)
@@ -325,7 +325,7 @@ class Ui_guiDlg(object):
         self.groupBox.setGeometry(QRect(262, 26, 315, 253))
         self.layoutWidget2 = QWidget(self.groupBox)
         self.layoutWidget2.setObjectName(u"layoutWidget2")
-        self.layoutWidget2.setGeometry(QRect(2, 22, 295, 223))
+        self.layoutWidget2.setGeometry(QRect(2, 22, 311, 223))
         self.formLayout_2 = QFormLayout(self.layoutWidget2)
         self.formLayout_2.setObjectName(u"formLayout_2")
         self.formLayout_2.setHorizontalSpacing(6)
