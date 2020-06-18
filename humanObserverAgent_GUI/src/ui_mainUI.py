@@ -21,10 +21,14 @@ class Ui_guiDlg(object):
     def setupUi(self, guiDlg):
         if guiDlg.objectName():
             guiDlg.setObjectName(u"guiDlg")
-        guiDlg.resize(888, 654)
+        guiDlg.resize(1133, 654)
         self.roboNavControl = QGroupBox(guiDlg)
         self.roboNavControl.setObjectName(u"roboNavControl")
         self.roboNavControl.setGeometry(QRect(12, 160, 575, 185))
+        font = QFont()
+        font.setBold(False)
+        font.setWeight(50)
+        self.roboNavControl.setFont(font)
         self.label_11 = QLabel(self.roboNavControl)
         self.label_11.setObjectName(u"label_11")
         self.label_11.setGeometry(QRect(214, 51, 16, 17))
@@ -139,13 +143,13 @@ class Ui_guiDlg(object):
 
         self.line_7 = QFrame(guiDlg)
         self.line_7.setObjectName(u"line_7")
-        self.line_7.setGeometry(QRect(0, 138, 921, 21))
+        self.line_7.setGeometry(QRect(0, 138, 1007, 21))
         self.line_7.setFrameShape(QFrame.HLine)
         self.line_7.setFrameShadow(QFrame.Sunken)
         self.humanObsAgent = QGroupBox(guiDlg)
         self.humanObsAgent.setObjectName(u"humanObsAgent")
         self.humanObsAgent.setEnabled(True)
-        self.humanObsAgent.setGeometry(QRect(14, 354, 819, 281))
+        self.humanObsAgent.setGeometry(QRect(14, 354, 1105, 281))
         self.layoutWidget1 = QWidget(self.humanObsAgent)
         self.layoutWidget1.setObjectName(u"layoutWidget1")
         self.layoutWidget1.setGeometry(QRect(10, 28, 231, 243))
@@ -193,12 +197,9 @@ class Ui_guiDlg(object):
 
         self.verticalLayout_4.addLayout(self.horizontalLayout_3)
 
-        self.label_4 = QLabel(self.humanObsAgent)
-        self.label_4.setObjectName(u"label_4")
-        self.label_4.setGeometry(QRect(264, 28, 139, 17))
         self.layoutWidget_2 = QWidget(self.humanObsAgent)
         self.layoutWidget_2.setObjectName(u"layoutWidget_2")
-        self.layoutWidget_2.setGeometry(QRect(590, 52, 195, 133))
+        self.layoutWidget_2.setGeometry(QRect(590, 52, 143, 133))
         self.formLayout = QFormLayout(self.layoutWidget_2)
         self.formLayout.setObjectName(u"formLayout")
         self.formLayout.setContentsMargins(0, 0, 0, 0)
@@ -249,9 +250,82 @@ class Ui_guiDlg(object):
         self.label_21 = QLabel(self.humanObsAgent)
         self.label_21.setObjectName(u"label_21")
         self.label_21.setGeometry(QRect(590, 30, 45, 17))
-        self.layoutWidget2 = QWidget(self.humanObsAgent)
+        self.interacion_gb = QGroupBox(self.humanObsAgent)
+        self.interacion_gb.setObjectName(u"interacion_gb")
+        self.interacion_gb.setGeometry(QRect(744, 24, 350, 253))
+        palette = QPalette()
+        brush = QBrush(QColor(5, 78, 39, 255))
+        brush.setStyle(Qt.SolidPattern)
+        palette.setBrush(QPalette.Active, QPalette.WindowText, brush)
+        palette.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
+        brush1 = QBrush(QColor(190, 190, 190, 255))
+        brush1.setStyle(Qt.SolidPattern)
+        palette.setBrush(QPalette.Disabled, QPalette.WindowText, brush1)
+        self.interacion_gb.setPalette(palette)
+        self.interacion_gb.setFont(font)
+        self.verticalLayout_6 = QVBoxLayout(self.interacion_gb)
+        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.gridLayout_2 = QGridLayout()
+        self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.int1_cb = QComboBox(self.interacion_gb)
+        self.int1_cb.setObjectName(u"int1_cb")
+
+        self.gridLayout_2.addWidget(self.int1_cb, 0, 0, 1, 1)
+
+        self.interaction_cb = QComboBox(self.interacion_gb)
+        self.interaction_cb.addItem("")
+        self.interaction_cb.addItem("")
+        self.interaction_cb.addItem("")
+        self.interaction_cb.addItem("")
+        self.interaction_cb.setObjectName(u"interaction_cb")
+
+        self.gridLayout_2.addWidget(self.interaction_cb, 0, 1, 1, 1)
+
+        self.ainteraction_pb = QPushButton(self.interacion_gb)
+        self.ainteraction_pb.setObjectName(u"ainteraction_pb")
+
+        self.gridLayout_2.addWidget(self.ainteraction_pb, 1, 1, 1, 1)
+
+        self.int2_cb = QComboBox(self.interacion_gb)
+        self.int2_cb.setObjectName(u"int2_cb")
+
+        self.gridLayout_2.addWidget(self.int2_cb, 0, 2, 1, 1)
+
+
+        self.verticalLayout_6.addLayout(self.gridLayout_2)
+
+        self.verticalLayout_5 = QVBoxLayout()
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.interaction_lw = QListWidget(self.interacion_gb)
+        self.interaction_lw.setObjectName(u"interaction_lw")
+
+        self.verticalLayout_5.addWidget(self.interaction_lw)
+
+        self.horizontalLayout_6 = QHBoxLayout()
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.horizontalSpacer_2 = QSpacerItem(10, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_6.addItem(self.horizontalSpacer_2)
+
+        self.rinteraction_pb = QPushButton(self.interacion_gb)
+        self.rinteraction_pb.setObjectName(u"rinteraction_pb")
+
+        self.horizontalLayout_6.addWidget(self.rinteraction_pb)
+
+
+        self.verticalLayout_5.addLayout(self.horizontalLayout_6)
+
+
+        self.verticalLayout_6.addLayout(self.verticalLayout_5)
+
+        self.verticalLayout_6.setStretch(0, 1)
+        self.verticalLayout_6.setStretch(1, 9)
+        self.groupBox = QGroupBox(self.humanObsAgent)
+        self.groupBox.setObjectName(u"groupBox")
+        self.groupBox.setGeometry(QRect(262, 26, 315, 253))
+        self.layoutWidget2 = QWidget(self.groupBox)
         self.layoutWidget2.setObjectName(u"layoutWidget2")
-        self.layoutWidget2.setGeometry(QRect(262, 50, 311, 221))
+        self.layoutWidget2.setGeometry(QRect(2, 22, 295, 223))
         self.formLayout_2 = QFormLayout(self.layoutWidget2)
         self.formLayout_2.setObjectName(u"formLayout_2")
         self.formLayout_2.setHorizontalSpacing(6)
@@ -346,9 +420,6 @@ class Ui_guiDlg(object):
 
         self.formLayout_2.setWidget(6, QFormLayout.FieldRole, self.H_activity)
 
-        self.sendtoDSR_button = QPushButton(self.humanObsAgent)
-        self.sendtoDSR_button.setObjectName(u"sendtoDSR_button")
-        self.sendtoDSR_button.setGeometry(QRect(588, 192, 195, 73))
         self.CalendarEvents = QGroupBox(guiDlg)
         self.CalendarEvents.setObjectName(u"CalendarEvents")
         self.CalendarEvents.setGeometry(QRect(2, 4, 581, 131))
@@ -411,9 +482,9 @@ class Ui_guiDlg(object):
         self.label = QLabel(self.layoutWidget4)
         self.label.setObjectName(u"label")
         self.label.setEnabled(True)
-        font = QFont()
-        font.setKerning(True)
-        self.label.setFont(font)
+        font1 = QFont()
+        font1.setKerning(True)
+        self.label.setFont(font1)
         self.label.setInputMethodHints(Qt.ImhNone)
 
         self.viewagenda.addWidget(self.label, 2, 1, 1, 2)
@@ -425,7 +496,7 @@ class Ui_guiDlg(object):
         self.line_5.setFrameShadow(QFrame.Sunken)
         self.line_8 = QFrame(guiDlg)
         self.line_8.setObjectName(u"line_8")
-        self.line_8.setGeometry(QRect(0, 338, 921, 21))
+        self.line_8.setGeometry(QRect(0, 338, 1011, 21))
         self.line_8.setFrameShape(QFrame.HLine)
         self.line_8.setFrameShadow(QFrame.Sunken)
 
@@ -467,7 +538,6 @@ class Ui_guiDlg(object):
         self.label_14.setText(QCoreApplication.translate("guiDlg", u"Id", None))
         self.newHuman_button.setText(QCoreApplication.translate("guiDlg", u"New human", None))
         self.setHuman_button.setText(QCoreApplication.translate("guiDlg", u"Set human", None))
-        self.label_4.setText(QCoreApplication.translate("guiDlg", u"<html><head/><body><p><span style=\" font-weight:600;\">Human information</span></p></body></html>", None))
         self.label_2.setText(QCoreApplication.translate("guiDlg", u"Position X", None))
 #if QT_CONFIG(tooltip)
         self.x_sb.setToolTip(QCoreApplication.translate("guiDlg", u"mm", None))
@@ -479,6 +549,15 @@ class Ui_guiDlg(object):
         self.label_20.setText(QCoreApplication.translate("guiDlg", u"Rotation", None))
         self.setPose_pb.setText(QCoreApplication.translate("guiDlg", u"Set pose", None))
         self.label_21.setText(QCoreApplication.translate("guiDlg", u"<html><head/><body><p><span style=\" font-weight:600;\">Pose</span></p></body></html>", None))
+        self.interacion_gb.setTitle(QCoreApplication.translate("guiDlg", u"Interaction", None))
+        self.interaction_cb.setItemText(0, QCoreApplication.translate("guiDlg", u"isBusy", None))
+        self.interaction_cb.setItemText(1, QCoreApplication.translate("guiDlg", u"interacting", None))
+        self.interaction_cb.setItemText(2, QCoreApplication.translate("guiDlg", u"block", None))
+        self.interaction_cb.setItemText(3, QCoreApplication.translate("guiDlg", u"softBlock", None))
+
+        self.ainteraction_pb.setText(QCoreApplication.translate("guiDlg", u"Add", None))
+        self.rinteraction_pb.setText(QCoreApplication.translate("guiDlg", u"Remove", None))
+        self.groupBox.setTitle(QCoreApplication.translate("guiDlg", u"Human Information", None))
         self.label_5.setText(QCoreApplication.translate("guiDlg", u"Name", None))
         self.H_name.setText("")
         self.label_6.setText(QCoreApplication.translate("guiDlg", u"Age", None))
@@ -508,7 +587,6 @@ class Ui_guiDlg(object):
         self.H_activity.setItemText(2, QCoreApplication.translate("guiDlg", u"Physical Activity", None))
         self.H_activity.setItemText(3, QCoreApplication.translate("guiDlg", u"Cognitive Activity", None))
 
-        self.sendtoDSR_button.setText(QCoreApplication.translate("guiDlg", u"Send to DSR", None))
         self.CalendarEvents.setTitle(QCoreApplication.translate("guiDlg", u"Activity Calendar", None))
         self.label_24.setText(QCoreApplication.translate("guiDlg", u"<html><head/><body><p><span style=\" font-weight:600; color:#054e27;\">Activity agenda</span></p></body></html>", None))
         self.pushButton_10.setText(QCoreApplication.translate("guiDlg", u"New activity", None))

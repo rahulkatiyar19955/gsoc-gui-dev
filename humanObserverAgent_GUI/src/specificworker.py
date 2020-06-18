@@ -265,7 +265,8 @@ class SpecificWorker(GenericWorker):
         super(SpecificWorker, self).__init__(proxy_map)
         # calling the calendar api object
         try:
-            self.calendarApiObj = CalenderApi()
+            pass
+            # self.calendarApiObj = CalenderApi()
         except:
             print("No internet connection detected")
             print("Restart the application to to enable Activity Calendar")
@@ -327,11 +328,16 @@ class SpecificWorker(GenericWorker):
         self.ui.H_cogDep.hide()
         self.ui.H_userType.currentIndexChanged.connect(self.userTypeChange)
         # def mousePressEvent(self, event:PySide2.QtGui.QMouseEvent):
-        self.ui.sendtoDSR_button.clicked.connect(self.toDSR)
         self.ui.id_list.currentIndexChanged.connect(self.updateHumanInfo)
         self.ui.setPose_pb.clicked.connect(self.setPose)
         self.currentImagePath = ""
 
+        # interaction related
+        self.ui.interaction_cb.currentTextChanged.connect(self.interactionChanged)
+        self.ui.int2_cb.setEnabled(False)
+        self.ui.rinteraction_pb.setEnabled(False)
+        self.ui.ainteraction_pb.clicked.connect(self.addInteraction)
+        self.ui.rinteraction_pb.clicked.connect(self.removeEdgeAGM)
 
     def userTypeChange(self,val):
         print(val," type")
@@ -802,6 +808,7 @@ class SpecificWorker(GenericWorker):
         edgeRTAtrs["rx"] = "1.570796326794"
         edgeRTAtrs["ry"] = "0"
         edgeRTAtrs["rz"] = "3.1415926535"
+        # id used in addEdge should be int type
         self.worldModel.addEdge(Id, Id + 1, "RT", edgeRTAtrs)
 
         self.newModel = AGMModelConversion.fromInternalToIce(self.worldModel)
@@ -908,6 +915,8 @@ class SpecificWorker(GenericWorker):
         if self.includeInRCIS(userid, pose, meshname):
             self.includeInAGM(userid, pose, meshname)
             self.ui.id_list.addItem(str(userid))
+            self.ui.int1_cb.addItem(str(userid))
+            self.ui.int2_cb.addItem(str(userid))
             self.ui.id_list.setCurrentIndex(self.ui.id_list.count() - 1)
             self.currentImagePath = ""
             # self.updatePersons()
@@ -941,6 +950,9 @@ class SpecificWorker(GenericWorker):
         for nodeSrc in list(src.nodes.values()):
             if nodeSrc.sType == 'person':
                 self.ui.id_list.addItem(nodeSrc.name)
+                self.ui.int1_cb.addItem(nodeSrc.name)
+                self.ui.int2_cb.addItem(nodeSrc.name)
+
                 # temp_person = Human(name=str(nodeSrc.name))
                 # self.persons.append(temp_person)
 
@@ -1003,5 +1015,71 @@ class SpecificWorker(GenericWorker):
                 if srcEdge.edgeType == linkLabel:
                     srcEdge.attributes = attr
                     break
+
+
+    def interactionChanged(self,index):
+        # print("inter",index)
+        if index=="isBusy":
+            self.ui.int2_cb.setEnabled(False)
+        elif index=="block":
+            self.ui.int2_cb.setEnabled(False)
+        elif index=="softBlock":
+            self.ui.int2_cb.setEnabled(False)
+        elif index=="interacting":
+            self.ui.int2_cb.setEnabled(True)
+        else:
+            print("Unknown interaction selected")
+
+    def addInteraction(self):
+        curr_text = self.ui.interaction_cb.currentText()
+        id1 = self.ui.int1_cb.currentText()
+        id2 = self.ui.int2_cb.currentText()
+        robotID = "1"
+        if curr_text == "isBusy":
+            self.ui.int2_cb.setEnabled(False)
+            id2 = id1
+            listEntry = id1 + " => " + curr_text
+        elif curr_text == "block":
+            self.ui.int2_cb.setEnabled(False)
+            id2 = robotID
+            listEntry = id1 + " => " + curr_text + " " + id2
+        elif curr_text == "softBlock":
+            self.ui.int2_cb.setEnabled(False)
+            id2 = robotID
+            listEntry = id1 + " => " + curr_text + " " + id2
+        elif curr_text == "interacting":
+            self.ui.int2_cb.setEnabled(True)
+            if id1 == id2:
+                msgBox = QMessageBox()
+                msgBox.setText('Person could not interact with himself')
+                msgBox.exec_()
+                return
+            listEntry = id1 + " => " + curr_text + " " + id2
+        else:
+            print("Unknown interaction selected")
+            return
+
+        # check if the link is already added or not
+        listNum = self.ui.interaction_lw.findItems(listEntry,Qt.MatchExactly)
+        if len(listNum)>0:
+            msgBox = QMessageBox()
+            msgBox.setText('Interaction is already used')
+            msgBox.exec_()
+        else:
+            # adding the link information to the list widget
+
+            self.worldModel.addEdge(int(id1), int(id2), curr_text)
+            try:
+                self.newModel = AGMModelConversion.fromInternalToIce(self.worldModel)
+                self.agmexecutive_proxy.structuralChangeProposal(self.newModel, "gui1", "log2")
+                self.ui.interaction_lw.addItem(listEntry)
+                self.ui.rinteraction_pb.setEnabled(True)
+            except:
+                print("error retrieving edge from newModel")
+
+    def removeEdgeAGM(self):
+        pass
+        # item = self.ui.interaction_lw.currentItem()
+        # if not item is None:
 
 
