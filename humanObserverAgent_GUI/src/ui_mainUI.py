@@ -252,7 +252,7 @@ class Ui_guiDlg(object):
         self.label_21.setGeometry(QRect(590, 30, 45, 17))
         self.interacion_gb = QGroupBox(self.humanObsAgent)
         self.interacion_gb.setObjectName(u"interacion_gb")
-        self.interacion_gb.setGeometry(QRect(744, 24, 350, 253))
+        self.interacion_gb.setGeometry(QRect(756, 24, 350, 253))
         palette = QPalette()
         brush = QBrush(QColor(5, 78, 39, 255))
         brush.setStyle(Qt.SolidPattern)
@@ -284,12 +284,21 @@ class Ui_guiDlg(object):
         self.ainteraction_pb = QPushButton(self.interacion_gb)
         self.ainteraction_pb.setObjectName(u"ainteraction_pb")
 
-        self.gridLayout_2.addWidget(self.ainteraction_pb, 1, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.ainteraction_pb, 2, 1, 1, 1)
 
         self.int2_cb = QComboBox(self.interacion_gb)
         self.int2_cb.setObjectName(u"int2_cb")
 
         self.gridLayout_2.addWidget(self.int2_cb, 0, 2, 1, 1)
+
+        self.interaction_cb_2 = QComboBox(self.interacion_gb)
+        self.interaction_cb_2.addItem("")
+        self.interaction_cb_2.addItem("")
+        self.interaction_cb_2.addItem("")
+        self.interaction_cb_2.addItem("")
+        self.interaction_cb_2.setObjectName(u"interaction_cb_2")
+
+        self.gridLayout_2.addWidget(self.interaction_cb_2, 1, 1, 1, 1)
 
 
         self.verticalLayout_6.addLayout(self.gridLayout_2)
@@ -556,6 +565,11 @@ class Ui_guiDlg(object):
         self.interaction_cb.setItemText(3, QCoreApplication.translate("guiDlg", u"softBlock", None))
 
         self.ainteraction_pb.setText(QCoreApplication.translate("guiDlg", u"Add", None))
+        self.interaction_cb_2.setItemText(0, QCoreApplication.translate("guiDlg", u"Talking", None))
+        self.interaction_cb_2.setItemText(1, QCoreApplication.translate("guiDlg", u"Playing", None))
+        self.interaction_cb_2.setItemText(2, QCoreApplication.translate("guiDlg", u"using", None))
+        self.interaction_cb_2.setItemText(3, QCoreApplication.translate("guiDlg", u"watching", None))
+
         self.rinteraction_pb.setText(QCoreApplication.translate("guiDlg", u"Remove", None))
         self.groupBox.setTitle(QCoreApplication.translate("guiDlg", u"Human Information", None))
         self.label_5.setText(QCoreApplication.translate("guiDlg", u"Name", None))

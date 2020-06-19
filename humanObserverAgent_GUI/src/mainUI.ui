@@ -529,7 +529,7 @@
    <widget class="QGroupBox" name="interacion_gb">
     <property name="geometry">
      <rect>
-      <x>744</x>
+      <x>756</x>
       <y>24</y>
       <width>350</width>
       <height>253</height>
@@ -611,7 +611,7 @@
          </item>
         </widget>
        </item>
-       <item row="1" column="1">
+       <item row="2" column="1">
         <widget class="QPushButton" name="ainteraction_pb">
          <property name="text">
           <string>Add</string>
@@ -620,6 +620,30 @@
        </item>
        <item row="0" column="2">
         <widget class="QComboBox" name="int2_cb"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="interaction_cb_2">
+         <item>
+          <property name="text">
+           <string>Talking</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Playing</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>using</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>watching</string>
+          </property>
+         </item>
+        </widget>
        </item>
       </layout>
      </item>

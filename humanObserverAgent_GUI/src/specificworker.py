@@ -340,6 +340,10 @@ class SpecificWorker(GenericWorker):
         # self.ui.rinteraction_pb.setEnabled(False)
         self.ui.ainteraction_pb.clicked.connect(self.addInteraction)
         self.ui.rinteraction_pb.clicked.connect(self.removeEdgeAGM)
+        # self.ui.interaction_cb_2.currentTextChanged.connect(self.interactionChanged2)
+        self.ui.interaction_cb_2.hide()
+
+
 
     def userTypeChange(self,val):
         print(val," type")
@@ -954,6 +958,9 @@ class SpecificWorker(GenericWorker):
                 self.ui.id_list.addItem(nodeSrc.name)
                 self.ui.int1_cb.addItem(nodeSrc.name)
                 self.ui.int2_cb.addItem(nodeSrc.name)
+            if nodeSrc.sType == 'object':
+                self.ui.int1_cb.addItem(nodeSrc.name)
+                self.ui.int2_cb.addItem(nodeSrc.name)
 
                 # temp_person = Human(name=str(nodeSrc.name))
                 # self.persons.append(temp_person)
@@ -1023,14 +1030,19 @@ class SpecificWorker(GenericWorker):
         # print("inter",index)
         if index=="isBusy":
             self.ui.int2_cb.setEnabled(False)
+            self.ui.interaction_cb_2.hide()
         elif index=="block":
             self.ui.int2_cb.setEnabled(False)
+            self.ui.interaction_cb_2.hide()
         elif index=="softBlock":
             self.ui.int2_cb.setEnabled(False)
+            self.ui.interaction_cb_2.hide()
         elif index=="interacting":
             self.ui.int2_cb.setEnabled(True)
+            self.ui.interaction_cb_2.show()
         else:
             print("Unknown interaction selected")
+
 
     def addInteraction(self):
         curr_text = self.ui.interaction_cb.currentText()
@@ -1068,9 +1080,16 @@ class SpecificWorker(GenericWorker):
             msgBox.setText('Interaction is already used')
             msgBox.exec_()
         else:
-            self.worldModel.addEdge(id1, id2, curr_text)
+            if self.ui.interaction_cb.currentText()== "interacting":
+                attrs = {
+                    'type': str(self.ui.interaction_cb_2.currentText()),
+                    'timeStarted': str(datetime.now()),
+                         }
+            else:
+                attrs = None
+            self.worldModel.addEdge(id1, id2, curr_text,attrs)
             try:
-                edge = AGMLink(id1, id2, curr_text, enabled=True)
+                edge = AGMLink(id1, id2, curr_text,attrs, enabled=True)
                 self.newModel = AGMModelConversion.fromInternalToIce(self.worldModel)
                 item = QListWidgetItem(listEntry)
                 # adding the edge information to the item
@@ -1108,3 +1127,4 @@ class SpecificWorker(GenericWorker):
             msgBox = QMessageBox()
             msgBox.setText('No interaction is selected')
             msgBox.exec_()
+
