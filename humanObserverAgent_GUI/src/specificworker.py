@@ -358,6 +358,7 @@ class SpecificWorker(GenericWorker):
             self.ui.H_phyDep.hide()
             self.ui.H_cogDep.hide()
 
+    # initialization of AGM Proxy and DSR
     def AGMinit(self):
         self.worldModel = AGMGraph()
         try:
@@ -903,6 +904,7 @@ class SpecificWorker(GenericWorker):
                 break
         # self.load_image("")
 
+    # to create a new Person Node in DSR
     def newHumanB(self):
         print("newHuman")
         pose = Pose3D()
@@ -933,6 +935,8 @@ class SpecificWorker(GenericWorker):
         else:
             print("error creating in RCIS")
 
+    # Set or update the human information with the corresponding id
+    # selected in the id combo box
     def setHumanB(self):
         print("set human")
         self.updatePersons()
@@ -951,6 +955,7 @@ class SpecificWorker(GenericWorker):
         self.ui.photo_viewer.fitInView(QRectF(0, 0, pixmap_obj.width(), pixmap_obj.height()),Qt.KeepAspectRatio)
         self.scene_obj.update()
 
+    # get list of all person currently in the DSR
     def getPersonList_AGM(self):
         src = self.worldModel
         for nodeSrc in list(src.nodes.values()):
