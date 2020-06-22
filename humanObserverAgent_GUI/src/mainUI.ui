@@ -1114,9 +1114,9 @@
    <property name="geometry">
     <rect>
      <x>586</x>
-     <y>148</y>
+     <y>4</y>
      <width>20</width>
-     <height>199</height>
+     <height>343</height>
     </rect>
    </property>
    <property name="orientation">
@@ -1135,6 +1135,110 @@
    <property name="text">
     <string/>
    </property>
+  </widget>
+  <widget class="QLabel" name="label_25">
+   <property name="geometry">
+    <rect>
+     <x>772</x>
+     <y>44</y>
+     <width>151</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Facial expression&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QGraphicsView" name="graphicsView_4">
+   <property name="geometry">
+    <rect>
+     <x>604</x>
+     <y>36</y>
+     <width>161</width>
+     <height>101</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_27">
+   <property name="geometry">
+    <rect>
+     <x>602</x>
+     <y>4</y>
+     <width>151</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot;font-weight:600; color:#054E27&quot; &gt;Human-Robot Interaction&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_28">
+   <property name="geometry">
+    <rect>
+     <x>772</x>
+     <y>64</y>
+     <width>131</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Emotion</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="FacialExpr">
+   <property name="geometry">
+    <rect>
+     <x>772</x>
+     <y>84</y>
+     <width>101</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>anger</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>crying</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>happy</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>lazy</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>neutral</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>sad</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>sadly Surprised</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>smile</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>surprised</string>
+    </property>
+   </item>
   </widget>
  </widget>
  <resources>
