@@ -343,6 +343,8 @@ class SpecificWorker(GenericWorker):
         # self.ui.interaction_cb_2.currentTextChanged.connect(self.interactionChanged2)
         self.ui.interaction_cb_2.hide()
 
+        # initialisation related to TTS/ASR
+        self.ui.speak_button.clicked.connect(self.speak_button_press)
 
 
     def userTypeChange(self,val):
@@ -1133,3 +1135,15 @@ class SpecificWorker(GenericWorker):
             msgBox.setText('No interaction is selected')
             msgBox.exec_()
 
+    def _say_with_festival(self, text):
+        shellcommand = "echo \"%s\" | iconv -f utf-8 -t iso-8859-1 | padsp festival --tts --language spanish" % text
+        print('Order: ' + text)
+        print('Shell: "' + shellcommand + '"')
+        if os.system(shellcommand):
+            print("install festivale using the below command")
+            print("sudo apt-get install festival festvox-kallpc16k")
+
+    def speak_button_press(self):
+        print("speak")
+        speak_text = self.ui.tts_edit.toPlainText()
+        self._say_with_festival(speak_text)
