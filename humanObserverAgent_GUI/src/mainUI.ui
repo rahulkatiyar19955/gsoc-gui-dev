@@ -96,19 +96,6 @@
      <string>Stop robot</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_17">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>28</y>
-      <width>76</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Monitoring</string>
-    </property>
-   </widget>
    <widget class="QProgressBar" name="progressBar">
     <property name="geometry">
      <rect>
@@ -340,6 +327,19 @@
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QLabel" name="label_17">
+    <property name="geometry">
+     <rect>
+      <x>368</x>
+      <y>30</y>
+      <width>76</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Monitoring</string>
+    </property>
    </widget>
   </widget>
   <widget class="Line" name="line_7">
@@ -1004,7 +1004,7 @@
       <x>260</x>
       <y>20</y>
       <width>20</width>
-      <height>109</height>
+      <height>111</height>
      </rect>
     </property>
     <property name="orientation">
@@ -1023,6 +1023,104 @@
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>604</x>
+     <y>286</y>
+     <width>155</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>From human to robot</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="asr_edit">
+   <property name="geometry">
+    <rect>
+     <x>692</x>
+     <y>306</y>
+     <width>221</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="tts_edit">
+   <property name="geometry">
+    <rect>
+     <x>602</x>
+     <y>236</y>
+     <width>231</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="speak_button">
+   <property name="geometry">
+    <rect>
+     <x>846</x>
+     <y>238</y>
+     <width>71</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Speak</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="listen_button">
+   <property name="geometry">
+    <rect>
+     <x>604</x>
+     <y>308</y>
+     <width>71</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Listen</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_23">
+   <property name="geometry">
+    <rect>
+     <x>604</x>
+     <y>216</y>
+     <width>155</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>From robot to human</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_29">
+   <property name="geometry">
+    <rect>
+     <x>776</x>
+     <y>188</y>
+     <width>141</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;TTS/ASR&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line_6">
+   <property name="geometry">
+    <rect>
+     <x>586</x>
+     <y>148</y>
+     <width>20</width>
+     <height>199</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
    </property>
   </widget>
  </widget>
