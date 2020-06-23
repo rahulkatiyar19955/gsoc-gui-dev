@@ -534,6 +534,9 @@ class Ui_guiDlg(object):
         self.line_6.setGeometry(QRect(586, 148, 20, 199))
         self.line_6.setFrameShape(QFrame.VLine)
         self.line_6.setFrameShadow(QFrame.Sunken)
+        self.listen_status = QLabel(guiDlg)
+        self.listen_status.setObjectName(u"listen_status")
+        self.listen_status.setGeometry(QRect(922, 310, 155, 21))
 
         self.retranslateUi(guiDlg)
 
@@ -640,5 +643,6 @@ class Ui_guiDlg(object):
         self.listen_button.setText(QCoreApplication.translate("guiDlg", u"Listen", None))
         self.label_23.setText(QCoreApplication.translate("guiDlg", u"From robot to human", None))
         self.label_29.setText(QCoreApplication.translate("guiDlg", u"<html><head/><body><p><span style=\" font-weight:600;\">TTS/ASR</span></p></body></html>", None))
+        self.listen_status.setText("")
     # retranslateUi
 

@@ -1123,6 +1123,19 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
+  <widget class="QLabel" name="listen_status">
+   <property name="geometry">
+    <rect>
+     <x>922</x>
+     <y>310</y>
+     <width>155</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
  </widget>
  <resources>
   <include location="mainUIDate.qrc"/>

@@ -54,6 +54,12 @@ try:
 except ImportError:
     print("Can't import ui_cameraViewer UI file")
 
+try:
+    import speech_recognition as sr
+    import pyaudio
+    import wave
+except:
+    print("Can't import speech_recognition or pyaudio or wave")
 # If RoboComp was compiled with Python bindings you can use InnerModel in Python
 # sys.path.append('/opt/robocomp/lib')
 # import librobocomp_qmat
@@ -345,6 +351,13 @@ class SpecificWorker(GenericWorker):
 
         # initialisation related to TTS/ASR
         self.ui.speak_button.clicked.connect(self.speak_button_press)
+        self.ui.listen_button.clicked.connect(self.listen_button_press)
+        self.CHUNK = 1024
+        self.FORMAT = pyaudio.paInt16
+        self.CHANNELS = 1
+        self.RATE = 44100
+        self.RECORD_SECONDS = 5
+        self.WAVE_OUTPUT_FILENAME = "output.wav"
 
 
     def userTypeChange(self,val):
@@ -1147,3 +1160,60 @@ class SpecificWorker(GenericWorker):
         print("speak")
         speak_text = self.ui.tts_edit.toPlainText()
         self._say_with_festival(speak_text)
+
+    def listen_button_press(self):
+        try:
+            p = pyaudio.PyAudio()
+            stream = p.open(format=self.FORMAT,
+                            channels=self.CHANNELS,
+                            rate=self.RATE,
+                            input=True,
+                            frames_per_buffer=self.CHUNK)
+            self.ui.listen_status.setText("recording..")
+            self.ui.listen_status.repaint()
+            print("* recording")
+
+            frames = []
+
+            for i in range(0, int(self.RATE / self.CHUNK * self.RECORD_SECONDS)):
+                data = stream.read(self.CHUNK)
+                frames.append(data)
+
+            self.ui.listen_status.setText("Done recording")
+            self.ui.listen_status.repaint()
+            print("* done recording")
+
+            stream.stop_stream()
+            stream.close()
+            p.terminate()
+
+            wf = wave.open(self.WAVE_OUTPUT_FILENAME, 'wb')
+            wf.setnchannels(self.CHANNELS)
+            wf.setsampwidth(p.get_sample_size(self.FORMAT))
+            wf.setframerate(self.RATE)
+            wf.writeframes(b''.join(frames))
+            wf.close()
+
+            r = sr.Recognizer()
+            with sr.Microphone() as source:  # use the default microphone as the audio source
+                audio = r.adjust_for_ambient_noise(
+                    source)  # listen for 1 second to calibrate the energy threshold for ambient noise levels
+
+            with sr.WavFile("output.wav") as source:
+                audio = r.record(source)
+            try:
+                self.ui.listen_status.setText("Analysing")
+                self.ui.listen_status.repaint()
+                command = r.recognize_google(audio,
+                                             language="es-ES")  # recognize speech using Google Speech Recognition
+                print(command)
+                self.ui.asr_edit.setText(command)
+                self.ui.listen_status.setText("")
+                self.ui.listen_status.repaint()
+            except LookupError:  # speech is unintelligible
+                self.ui.listen_status.setText("Say Again..")
+                self.ui.listen_status.repaint()
+                print("Could not understand audio")
+                self.ui.asr_edit.setText("Error, not understand audio")
+        except:
+            print("error ")
