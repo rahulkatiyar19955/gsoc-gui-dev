@@ -359,6 +359,9 @@ class SpecificWorker(GenericWorker):
         self.RECORD_SECONDS = 5
         self.WAVE_OUTPUT_FILENAME = "output.wav"
 
+        # initialisation of the face emmotion
+        self.ui.FacialExpr.currentIndexChanged.connect(self.facialChange)
+        self.facialChange()
 
     def userTypeChange(self,val):
         print(val," type")
@@ -1217,3 +1220,14 @@ class SpecificWorker(GenericWorker):
                 self.ui.asr_edit.setText("Error, not understand audio")
         except:
             print("error ")
+
+    def facialChange(self):
+        print("index changed")
+        face = self.ui.FacialExpr.currentText()
+        image_path = ":/faces/faces/" + face + ".png"
+        self.scene_obj = QGraphicsScene()
+        self.ui.graphicsView_4.setScene(self.scene_obj)
+        pixmap_obj = QPixmap(image_path)
+        self.scene_obj.addPixmap(pixmap_obj)
+        self.ui.graphicsView_4.fitInView(QRectF(0, 0, pixmap_obj.width(), pixmap_obj.height()), Qt.KeepAspectRatio)
+        self.scene_obj.update()
