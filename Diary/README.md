@@ -33,3 +33,6 @@
 
 [June 22](https://github.com/rahulkatiyar19955/gsoc-gui-dev/blob/master/Diary/june22.md)
 
+[June 23](https://github.com/rahulkatiyar19955/gsoc-gui-dev/blob/master/Diary/june23.md)
+
+[June 24](https://github.com/rahulkatiyar19955/gsoc-gui-dev/blob/master/Diary/june24.md)
