@@ -68,8 +68,19 @@ void SpecificWorker::initialize(int period)
 		emit this->t_initialize_to_compute();
 	}
 
+	isFileOpened = false;
+
 	connect(browseButton, SIGNAL(clicked()), this, SLOT(browseButtonClick()));
 	connect(writeButton, SIGNAL(clicked()), this, SLOT(writeButtonClick()));
+	tableWidget1->setColumnCount(8);
+	tableWidget1->setHorizontalHeaderItem(0, new QTableWidgetItem("Time"));
+	tableWidget1->setHorizontalHeaderItem(1, new QTableWidgetItem("X Pose"));
+	tableWidget1->setHorizontalHeaderItem(2, new QTableWidgetItem("Z pose"));
+	tableWidget1->setHorizontalHeaderItem(3, new QTableWidgetItem("RY Rot"));
+	tableWidget1->setHorizontalHeaderItem(4, new QTableWidgetItem("Dist. Travelled"));
+	tableWidget1->setHorizontalHeaderItem(5, new QTableWidgetItem("Target Info"));
+	tableWidget1->setHorizontalHeaderItem(6, new QTableWidgetItem("Obst.(angle)"));
+	tableWidget1->setHorizontalHeaderItem(7, new QTableWidgetItem("Obst.(dist.)"));
 }
 void SpecificWorker::writeButtonClick()
 {
@@ -96,7 +107,7 @@ void SpecificWorker::writeButtonClick()
 		// out << "rahul";
 
 		FILE *infile;
-		struct NavData input;
+		NavData input;
 
 		// Open person.dat for reading
 		infile = fopen(fileName.toStdString().c_str(), "r");
@@ -109,7 +120,7 @@ void SpecificWorker::writeButtonClick()
 		try
 		{
 
-			while (fread(&input, sizeof(struct NavData), 1, infile))
+			while (fread(&input, sizeof(class NavData), 1, infile))
 			{
 				out << input.time_str << "," << input.robotposeX << "," << input.robotposeZ << "," << input.robotposeRY << ","
 					<< input.dist_travelled << "," << input.target_achived << ","
@@ -126,35 +137,6 @@ void SpecificWorker::writeButtonClick()
 	}
 }
 
-// demo write function
-// void SpecificWorker::writeButtonClick()
-// {
-// FILE *outfile;
-
-// // open file for writing
-// outfile = fopen("demo.dat", "w");
-// if (outfile == NULL)
-// {
-// 	fprintf(stderr, "\nError opend file\n");
-// 	exit(1);
-// }
-
-// struct NavData input1 = {"time", 0.1f, 0.0f, 2.3f, 52.3, "Achieved", QPointF(8, 9)};
-// struct NavData input2 = {"time", 0.2f, 10.0f, 12.3f, 152.3, "inProgress", QPointF(18, 19)};
-
-// // write struct to file
-// fwrite(&input1, sizeof(struct NavData), 1, outfile);
-// fwrite(&input2, sizeof(struct NavData), 1, outfile);
-
-// if (fwrite != 0)
-// 	printf("contents to file written successfully !\n");
-// else
-// 	printf("error writing file !\n");
-
-// // close file
-// fclose(outfile);
-// }
-
 void SpecificWorker::browseButtonClick()
 {
 	qDebug() << __FUNCTION__;
@@ -163,17 +145,27 @@ void SpecificWorker::browseButtonClick()
 											"/home/jana",
 											tr("Dat Files (*.dat)"));
 
-	readNavData();
-	writeButton->setEnabled(true);
-	//= true;
+	if (readNavData())
+	{
+		writeButton->setEnabled(true);
+		isFileOpened = true;
+	}
+	else
+	{
+		writeButton->setEnabled(false);
+		isFileOpened = false;
+	}
+
+	calculate_pathLength();
+	calculate_pathSmoothness();
 }
 
-void SpecificWorker::readNavData()
+bool SpecificWorker::readNavData()
 {
-	tableWidget1->setColumnCount(8);
+	// tableWidget1->setColumnCount(8);
 	qDebug() << __FUNCTION__;
 	FILE *infile;
-	struct NavData input;
+	NavData input;
 
 	// Open person.dat for reading
 	infile = fopen(fileName.toStdString().c_str(), "r");
@@ -181,14 +173,14 @@ void SpecificWorker::readNavData()
 	{
 		fprintf(stderr, "\nError opening file\n");
 		fName->setText("Error opening file");
-		return;
+		return false;
 	}
 	fName->setText(fileName);
 	// read file contents till end of file
 	try
 	{
 		int row_count = 0;
-		while (fread(&input, sizeof(struct NavData), 1, infile))
+		while (fread(&input, sizeof(class NavData), 1, infile))
 		{
 
 			tableWidget1->insertRow(tableWidget1->rowCount());
@@ -222,11 +214,57 @@ void SpecificWorker::readNavData()
 	catch (const std::exception &e)
 	{
 		std::cerr << e.what() << '\n';
+		return false;
 	}
 
 	// close file
 	fclose(infile);
 	qDebug() << "exit";
+	return true;
+}
+void SpecificWorker::calculate_pathLength()
+{
+	if (isFileOpened)
+	{
+		//tableWidget1->item (row,column)
+		double startPointDistance = std::stod((tableWidget1->item(1, 4)->text()).toStdString());
+		double endPointDistance = std::stod((tableWidget1->item(tableWidget1->rowCount() - 1, 4)->text()).toStdString());
+
+		std::cout << "startPointDistance:" << startPointDistance << std::endl;
+		std::cout << "endPointDistance:" << endPointDistance << std::endl;
+
+		std::string distStr = std::to_string(endPointDistance - startPointDistance);
+		std::cout << distStr << std::endl;
+
+		QString distanceStr = QString::fromStdString(distStr);
+		//plLabel->setText(distanceStr);
+		plLabel->setText(tableWidget1->item(tableWidget1->rowCount() - 1, 4)->text());
+	}
+}
+void SpecificWorker::calculate_pathSmoothness()
+{
+	// 3 index column contains yaw values
+	// range of robotposeRY is 4.7 -> -1.57
+	double cumm_angle = 0;
+	int row_count = tableWidget1->rowCount();
+	if (row_count < 2)
+		return;
+
+	for (int i = 0; i < row_count - 1; i++)
+	{
+		// converting the range into -pi <-> +pi  that is -3.14 <-> +3.14
+		double temp_angle1 = std::stod((tableWidget1->item(i, 3)->text()).toStdString()) - 1.57;
+		double temp_angle2 = std::stod((tableWidget1->item(i + 1, 3)->text()).toStdString()) - 1.57;
+		double diff_angle = std::abs(temp_angle1 - temp_angle2);
+
+		// taking the shortest angle measure
+		if (diff_angle > 3.14)
+			diff_angle = 6.28 - diff_angle;
+
+		cumm_angle += diff_angle;
+	}
+	cumm_angle /= row_count;
+	psLabel->setText(QString::fromStdString(std::to_string(cumm_angle)));
 }
 void SpecificWorker::compute()
 {

@@ -28,15 +28,28 @@
 #include <genericworker.h>
 #include <innermodel/innermodel.h>
 
-struct NavData
+// struct NavData
+// {
+// 	char time_str[20];
+// 	float robotposeX;
+// 	float robotposeZ;
+// 	float robotposeRY;
+// 	double dist_travelled;
+// 	char target_achived[20];
+// 	QPointF min_dist_obj; // for angle and distance
+// };
+
+class NavData
 {
+public:
 	char time_str[20];
 	float robotposeX;
 	float robotposeZ;
 	float robotposeRY;
 	double dist_travelled;
 	char target_achived[20];
-	QPointF min_dist_obj; // for angle and distance
+	QPointF min_dist_obj;
+
 };
 
 class SpecificWorker : public GenericWorker
@@ -46,7 +59,9 @@ public:
 	SpecificWorker(MapPrx &mprx, bool startup_check);
 	~SpecificWorker();
 	bool setParams(RoboCompCommonBehavior::ParameterList params);
-	void readNavData();
+	bool readNavData();
+	void calculate_pathLength();
+	void calculate_pathSmoothness();
 
 public slots:
 	void
@@ -66,6 +81,7 @@ private:
 		innerModel;
 	bool startup_check_flag;
 	QString fileName;
+	bool isFileOpened;
 };
 
 #endif
