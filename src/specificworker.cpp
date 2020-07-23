@@ -72,15 +72,21 @@ void SpecificWorker::initialize(int period)
 
 	connect(browseButton, SIGNAL(clicked()), this, SLOT(browseButtonClick()));
 	connect(writeButton, SIGNAL(clicked()), this, SLOT(writeButtonClick()));
-	tableWidget1->setColumnCount(8);
-	tableWidget1->setHorizontalHeaderItem(0, new QTableWidgetItem("Time"));
-	tableWidget1->setHorizontalHeaderItem(1, new QTableWidgetItem("X Pose"));
-	tableWidget1->setHorizontalHeaderItem(2, new QTableWidgetItem("Z pose"));
-	tableWidget1->setHorizontalHeaderItem(3, new QTableWidgetItem("RY Rot"));
-	tableWidget1->setHorizontalHeaderItem(4, new QTableWidgetItem("Dist. Travelled"));
-	tableWidget1->setHorizontalHeaderItem(5, new QTableWidgetItem("Target Info"));
-	tableWidget1->setHorizontalHeaderItem(6, new QTableWidgetItem("Obst.(angle)"));
-	tableWidget1->setHorizontalHeaderItem(7, new QTableWidgetItem("Obst.(dist.)"));
+    init_table();
+}
+
+void SpecificWorker::init_table()
+{
+    tableWidget1->setRowCount(0);
+    tableWidget1->setColumnCount(8);
+    tableWidget1->setHorizontalHeaderItem(0, new QTableWidgetItem("Time"));
+    tableWidget1->setHorizontalHeaderItem(1, new QTableWidgetItem("X Pose"));
+    tableWidget1->setHorizontalHeaderItem(2, new QTableWidgetItem("Z pose"));
+    tableWidget1->setHorizontalHeaderItem(3, new QTableWidgetItem("RY Rot"));
+    tableWidget1->setHorizontalHeaderItem(4, new QTableWidgetItem("Dist. Travelled"));
+    tableWidget1->setHorizontalHeaderItem(5, new QTableWidgetItem("Target Info"));
+    tableWidget1->setHorizontalHeaderItem(6, new QTableWidgetItem("Obst.(angle)"));
+    tableWidget1->setHorizontalHeaderItem(7, new QTableWidgetItem("Obst.(dist.)"));
 }
 void SpecificWorker::writeButtonClick()
 {
@@ -145,10 +151,15 @@ void SpecificWorker::browseButtonClick()
 											"/home/jana",
 											tr("Dat Files (*.dat)"));
 
+    init_table();
+
 	if (readNavData())
 	{
 		writeButton->setEnabled(true);
 		isFileOpened = true;
+        calculate_pathLength();
+        calculate_pathSmoothness();
+        drawChart();
 	}
 	else
 	{
@@ -156,9 +167,7 @@ void SpecificWorker::browseButtonClick()
 		isFileOpened = false;
 	}
 
-	calculate_pathLength();
-	calculate_pathSmoothness();
-	drawChart();
+
 }
 
 bool SpecificWorker::readNavData()
@@ -220,52 +229,52 @@ bool SpecificWorker::readNavData()
 
 	// close file
 	fclose(infile);
-	qDebug() << "exit";
+	qDebug() << "File close successfully";
 	return true;
 }
 void SpecificWorker::calculate_pathLength()
 {
-	if (isFileOpened)
+    qDebug() <<__FUNCTION__;
+	try
 	{
 		//tableWidget1->item (row,column)
-		double startPointDistance = std::stod((tableWidget1->item(1, 4)->text()).toStdString());
-		double endPointDistance = std::stod((tableWidget1->item(tableWidget1->rowCount() - 1, 4)->text()).toStdString());
-
-		std::cout << "startPointDistance:" << startPointDistance << std::endl;
-		std::cout << "endPointDistance:" << endPointDistance << std::endl;
-
-		std::string distStr = std::to_string(endPointDistance - startPointDistance);
-		std::cout << distStr << std::endl;
-
-		QString distanceStr = QString::fromStdString(distStr);
-		//plLabel->setText(distanceStr);
-		plLabel->setText(tableWidget1->item(tableWidget1->rowCount() - 1, 4)->text());
+		if(tableWidget1->rowCount())
+		    plLabel->setText(tableWidget1->item(tableWidget1->rowCount() - 1, 4)->text());
 	}
+    catch (const std::exception &e) {
+        std::cerr << e.what() << '\n';
+    }
 }
 void SpecificWorker::calculate_pathSmoothness()
 {
-	// 3 index column contains yaw values
-	// range of robotposeRY is 4.7 -> -1.57
-	double cumm_angle = 0;
-	int row_count = tableWidget1->rowCount();
-	if (row_count < 2)
-		return;
+    qDebug() <<__FUNCTION__;
+    try
+    {
+        // 3 index column contains yaw values
+        // range of robotposeRY is 4.7 -> -1.57
+        double cumm_angle = 0;
+        int row_count = tableWidget1->rowCount();
+        if (row_count < 2)
+            return;
 
-	for (int i = 0; i < row_count - 1; i++)
-	{
-		// converting the range into -pi <-> +pi  that is -3.14 <-> +3.14
-		double temp_angle1 = std::stod((tableWidget1->item(i, 3)->text()).toStdString()) - 1.57;
-		double temp_angle2 = std::stod((tableWidget1->item(i + 1, 3)->text()).toStdString()) - 1.57;
-		double diff_angle = std::abs(temp_angle1 - temp_angle2);
+        for (int i = 0; i < row_count - 1; i++) {
+            // converting the range into -pi <-> +pi  that is -3.14 <-> +3.14
+            double temp_angle1 = std::stod((tableWidget1->item(i, 3)->text()).toStdString()) - 1.57;
+            double temp_angle2 = std::stod((tableWidget1->item(i + 1, 3)->text()).toStdString()) - 1.57;
+            double diff_angle = std::abs(temp_angle1 - temp_angle2);
 
-		// taking the shortest angle measure
-		if (diff_angle > 3.14)
-			diff_angle = 6.28 - diff_angle;
+            // taking the shortest angle measure
+            if (diff_angle > 3.14)
+                diff_angle = 6.28 - diff_angle;
 
-		cumm_angle += diff_angle;
-	}
-	cumm_angle /= row_count;
-	psLabel->setText(QString::fromStdString(std::to_string(cumm_angle)));
+            cumm_angle += diff_angle;
+        }
+        cumm_angle /= row_count;
+        psLabel->setText(QString::fromStdString(std::to_string(cumm_angle)));
+    }
+    catch (const std::exception &e) {
+        std::cerr << e.what() << '\n';
+    }
 }
 
 void SpecificWorker::drawChart()

@@ -39,22 +39,44 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/kati/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /home/robocomp/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /home/kati/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake -E remove -f
+RM = /home/robocomp/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/kati/robocomp/components/robocomp-viriato/components/navDataReader
+CMAKE_SOURCE_DIR = /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/kati/robocomp/components/robocomp-viriato/components/navDataReader
+CMAKE_BINARY_DIR = /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/home/kati/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/home/kati/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -80,28 +102,6 @@ install/local/fast: preinstall/fast
 	/home/kati/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/home/kati/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/home/kati/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
@@ -126,14 +126,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(CMAKE_COMMAND) -E cmake_progress_start /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/CMakeFiles /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/CMakeFiles/progress.marks
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f CMakeFiles/Makefile2 src/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/CMakeFiles 0
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(CMAKE_COMMAND) -E cmake_progress_start /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/CMakeFiles /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/CMakeFiles/progress.marks
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f CMakeFiles/Makefile2 src/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f CMakeFiles/Makefile2 src/clean
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f CMakeFiles/Makefile2 src/clean
 .PHONY : clean
 
 # The main clean target
@@ -143,37 +143,37 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
-src/CMakeFiles/ICES__home_kati_robocomp_components_robocomp-viriato_components_navDataReader_src.dir/rule:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/ICES__home_kati_robocomp_components_robocomp-viriato_components_navDataReader_src.dir/rule
-.PHONY : src/CMakeFiles/ICES__home_kati_robocomp_components_robocomp-viriato_components_navDataReader_src.dir/rule
+src/CMakeFiles/ICES__home_robocomp_robocomp_components_robocomp-viriato_components_navDataReader_src.dir/rule:
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/ICES__home_robocomp_robocomp_components_robocomp-viriato_components_navDataReader_src.dir/rule
+.PHONY : src/CMakeFiles/ICES__home_robocomp_robocomp_components_robocomp-viriato_components_navDataReader_src.dir/rule
 
 # Convenience name for target.
-ICES__home_kati_robocomp_components_robocomp-viriato_components_navDataReader_src: src/CMakeFiles/ICES__home_kati_robocomp_components_robocomp-viriato_components_navDataReader_src.dir/rule
+ICES__home_robocomp_robocomp_components_robocomp-viriato_components_navDataReader_src: src/CMakeFiles/ICES__home_robocomp_robocomp_components_robocomp-viriato_components_navDataReader_src.dir/rule
 
-.PHONY : ICES__home_kati_robocomp_components_robocomp-viriato_components_navDataReader_src
+.PHONY : ICES__home_robocomp_robocomp_components_robocomp-viriato_components_navDataReader_src
 
 # fast build rule for target.
-ICES__home_kati_robocomp_components_robocomp-viriato_components_navDataReader_src/fast:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/ICES__home_kati_robocomp_components_robocomp-viriato_components_navDataReader_src.dir/build.make src/CMakeFiles/ICES__home_kati_robocomp_components_robocomp-viriato_components_navDataReader_src.dir/build
-.PHONY : ICES__home_kati_robocomp_components_robocomp-viriato_components_navDataReader_src/fast
+ICES__home_robocomp_robocomp_components_robocomp-viriato_components_navDataReader_src/fast:
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/ICES__home_robocomp_robocomp_components_robocomp-viriato_components_navDataReader_src.dir/build.make src/CMakeFiles/ICES__home_robocomp_robocomp_components_robocomp-viriato_components_navDataReader_src.dir/build
+.PHONY : ICES__home_robocomp_robocomp_components_robocomp-viriato_components_navDataReader_src/fast
 
 # Convenience name for target.
 src/CMakeFiles/navDataReader.dir/rule:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/navDataReader.dir/rule
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/navDataReader.dir/rule
 .PHONY : src/CMakeFiles/navDataReader.dir/rule
 
 # Convenience name for target.
@@ -183,12 +183,12 @@ navDataReader: src/CMakeFiles/navDataReader.dir/rule
 
 # fast build rule for target.
 navDataReader/fast:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/build
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/build
 .PHONY : navDataReader/fast
 
 # Convenience name for target.
 src/CMakeFiles/navDataReader_autogen.dir/rule:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/navDataReader_autogen.dir/rule
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/navDataReader_autogen.dir/rule
 .PHONY : src/CMakeFiles/navDataReader_autogen.dir/rule
 
 # Convenience name for target.
@@ -198,7 +198,7 @@ navDataReader_autogen: src/CMakeFiles/navDataReader_autogen.dir/rule
 
 # fast build rule for target.
 navDataReader_autogen/fast:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader_autogen.dir/build.make src/CMakeFiles/navDataReader_autogen.dir/build
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader_autogen.dir/build.make src/CMakeFiles/navDataReader_autogen.dir/build
 .PHONY : navDataReader_autogen/fast
 
 CommonBehavior.o: CommonBehavior.cpp.o
@@ -207,7 +207,7 @@ CommonBehavior.o: CommonBehavior.cpp.o
 
 # target to build an object file
 CommonBehavior.cpp.o:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/CommonBehavior.cpp.o
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/CommonBehavior.cpp.o
 .PHONY : CommonBehavior.cpp.o
 
 CommonBehavior.i: CommonBehavior.cpp.i
@@ -216,7 +216,7 @@ CommonBehavior.i: CommonBehavior.cpp.i
 
 # target to preprocess a source file
 CommonBehavior.cpp.i:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/CommonBehavior.cpp.i
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/CommonBehavior.cpp.i
 .PHONY : CommonBehavior.cpp.i
 
 CommonBehavior.s: CommonBehavior.cpp.s
@@ -225,7 +225,7 @@ CommonBehavior.s: CommonBehavior.cpp.s
 
 # target to generate assembly for a file
 CommonBehavior.cpp.s:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/CommonBehavior.cpp.s
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/CommonBehavior.cpp.s
 .PHONY : CommonBehavior.cpp.s
 
 commonbehaviorI.o: commonbehaviorI.cpp.o
@@ -234,7 +234,7 @@ commonbehaviorI.o: commonbehaviorI.cpp.o
 
 # target to build an object file
 commonbehaviorI.cpp.o:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/commonbehaviorI.cpp.o
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/commonbehaviorI.cpp.o
 .PHONY : commonbehaviorI.cpp.o
 
 commonbehaviorI.i: commonbehaviorI.cpp.i
@@ -243,7 +243,7 @@ commonbehaviorI.i: commonbehaviorI.cpp.i
 
 # target to preprocess a source file
 commonbehaviorI.cpp.i:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/commonbehaviorI.cpp.i
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/commonbehaviorI.cpp.i
 .PHONY : commonbehaviorI.cpp.i
 
 commonbehaviorI.s: commonbehaviorI.cpp.s
@@ -252,7 +252,7 @@ commonbehaviorI.s: commonbehaviorI.cpp.s
 
 # target to generate assembly for a file
 commonbehaviorI.cpp.s:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/commonbehaviorI.cpp.s
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/commonbehaviorI.cpp.s
 .PHONY : commonbehaviorI.cpp.s
 
 genericmonitor.o: genericmonitor.cpp.o
@@ -261,7 +261,7 @@ genericmonitor.o: genericmonitor.cpp.o
 
 # target to build an object file
 genericmonitor.cpp.o:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/genericmonitor.cpp.o
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/genericmonitor.cpp.o
 .PHONY : genericmonitor.cpp.o
 
 genericmonitor.i: genericmonitor.cpp.i
@@ -270,7 +270,7 @@ genericmonitor.i: genericmonitor.cpp.i
 
 # target to preprocess a source file
 genericmonitor.cpp.i:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/genericmonitor.cpp.i
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/genericmonitor.cpp.i
 .PHONY : genericmonitor.cpp.i
 
 genericmonitor.s: genericmonitor.cpp.s
@@ -279,7 +279,7 @@ genericmonitor.s: genericmonitor.cpp.s
 
 # target to generate assembly for a file
 genericmonitor.cpp.s:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/genericmonitor.cpp.s
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/genericmonitor.cpp.s
 .PHONY : genericmonitor.cpp.s
 
 genericworker.o: genericworker.cpp.o
@@ -288,7 +288,7 @@ genericworker.o: genericworker.cpp.o
 
 # target to build an object file
 genericworker.cpp.o:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/genericworker.cpp.o
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/genericworker.cpp.o
 .PHONY : genericworker.cpp.o
 
 genericworker.i: genericworker.cpp.i
@@ -297,7 +297,7 @@ genericworker.i: genericworker.cpp.i
 
 # target to preprocess a source file
 genericworker.cpp.i:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/genericworker.cpp.i
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/genericworker.cpp.i
 .PHONY : genericworker.cpp.i
 
 genericworker.s: genericworker.cpp.s
@@ -306,89 +306,89 @@ genericworker.s: genericworker.cpp.s
 
 # target to generate assembly for a file
 genericworker.cpp.s:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/genericworker.cpp.s
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/genericworker.cpp.s
 .PHONY : genericworker.cpp.s
 
-home/kati/robocomp/classes/qlog/qlog.o: home/kati/robocomp/classes/qlog/qlog.cpp.o
+home/robocomp/robocomp/classes/qlog/qlog.o: home/robocomp/robocomp/classes/qlog/qlog.cpp.o
 
-.PHONY : home/kati/robocomp/classes/qlog/qlog.o
-
-# target to build an object file
-home/kati/robocomp/classes/qlog/qlog.cpp.o:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/qlog/qlog.cpp.o
-.PHONY : home/kati/robocomp/classes/qlog/qlog.cpp.o
-
-home/kati/robocomp/classes/qlog/qlog.i: home/kati/robocomp/classes/qlog/qlog.cpp.i
-
-.PHONY : home/kati/robocomp/classes/qlog/qlog.i
-
-# target to preprocess a source file
-home/kati/robocomp/classes/qlog/qlog.cpp.i:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/qlog/qlog.cpp.i
-.PHONY : home/kati/robocomp/classes/qlog/qlog.cpp.i
-
-home/kati/robocomp/classes/qlog/qlog.s: home/kati/robocomp/classes/qlog/qlog.cpp.s
-
-.PHONY : home/kati/robocomp/classes/qlog/qlog.s
-
-# target to generate assembly for a file
-home/kati/robocomp/classes/qlog/qlog.cpp.s:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/qlog/qlog.cpp.s
-.PHONY : home/kati/robocomp/classes/qlog/qlog.cpp.s
-
-home/kati/robocomp/classes/rapplication/rapplication.o: home/kati/robocomp/classes/rapplication/rapplication.cpp.o
-
-.PHONY : home/kati/robocomp/classes/rapplication/rapplication.o
+.PHONY : home/robocomp/robocomp/classes/qlog/qlog.o
 
 # target to build an object file
-home/kati/robocomp/classes/rapplication/rapplication.cpp.o:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/rapplication/rapplication.cpp.o
-.PHONY : home/kati/robocomp/classes/rapplication/rapplication.cpp.o
+home/robocomp/robocomp/classes/qlog/qlog.cpp.o:
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/robocomp/robocomp/classes/qlog/qlog.cpp.o
+.PHONY : home/robocomp/robocomp/classes/qlog/qlog.cpp.o
 
-home/kati/robocomp/classes/rapplication/rapplication.i: home/kati/robocomp/classes/rapplication/rapplication.cpp.i
+home/robocomp/robocomp/classes/qlog/qlog.i: home/robocomp/robocomp/classes/qlog/qlog.cpp.i
 
-.PHONY : home/kati/robocomp/classes/rapplication/rapplication.i
+.PHONY : home/robocomp/robocomp/classes/qlog/qlog.i
 
 # target to preprocess a source file
-home/kati/robocomp/classes/rapplication/rapplication.cpp.i:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/rapplication/rapplication.cpp.i
-.PHONY : home/kati/robocomp/classes/rapplication/rapplication.cpp.i
+home/robocomp/robocomp/classes/qlog/qlog.cpp.i:
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/robocomp/robocomp/classes/qlog/qlog.cpp.i
+.PHONY : home/robocomp/robocomp/classes/qlog/qlog.cpp.i
 
-home/kati/robocomp/classes/rapplication/rapplication.s: home/kati/robocomp/classes/rapplication/rapplication.cpp.s
+home/robocomp/robocomp/classes/qlog/qlog.s: home/robocomp/robocomp/classes/qlog/qlog.cpp.s
 
-.PHONY : home/kati/robocomp/classes/rapplication/rapplication.s
+.PHONY : home/robocomp/robocomp/classes/qlog/qlog.s
 
 # target to generate assembly for a file
-home/kati/robocomp/classes/rapplication/rapplication.cpp.s:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/rapplication/rapplication.cpp.s
-.PHONY : home/kati/robocomp/classes/rapplication/rapplication.cpp.s
+home/robocomp/robocomp/classes/qlog/qlog.cpp.s:
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/robocomp/robocomp/classes/qlog/qlog.cpp.s
+.PHONY : home/robocomp/robocomp/classes/qlog/qlog.cpp.s
 
-home/kati/robocomp/classes/sigwatch/sigwatch.o: home/kati/robocomp/classes/sigwatch/sigwatch.cpp.o
+home/robocomp/robocomp/classes/rapplication/rapplication.o: home/robocomp/robocomp/classes/rapplication/rapplication.cpp.o
 
-.PHONY : home/kati/robocomp/classes/sigwatch/sigwatch.o
+.PHONY : home/robocomp/robocomp/classes/rapplication/rapplication.o
 
 # target to build an object file
-home/kati/robocomp/classes/sigwatch/sigwatch.cpp.o:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/sigwatch/sigwatch.cpp.o
-.PHONY : home/kati/robocomp/classes/sigwatch/sigwatch.cpp.o
+home/robocomp/robocomp/classes/rapplication/rapplication.cpp.o:
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/robocomp/robocomp/classes/rapplication/rapplication.cpp.o
+.PHONY : home/robocomp/robocomp/classes/rapplication/rapplication.cpp.o
 
-home/kati/robocomp/classes/sigwatch/sigwatch.i: home/kati/robocomp/classes/sigwatch/sigwatch.cpp.i
+home/robocomp/robocomp/classes/rapplication/rapplication.i: home/robocomp/robocomp/classes/rapplication/rapplication.cpp.i
 
-.PHONY : home/kati/robocomp/classes/sigwatch/sigwatch.i
+.PHONY : home/robocomp/robocomp/classes/rapplication/rapplication.i
 
 # target to preprocess a source file
-home/kati/robocomp/classes/sigwatch/sigwatch.cpp.i:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/sigwatch/sigwatch.cpp.i
-.PHONY : home/kati/robocomp/classes/sigwatch/sigwatch.cpp.i
+home/robocomp/robocomp/classes/rapplication/rapplication.cpp.i:
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/robocomp/robocomp/classes/rapplication/rapplication.cpp.i
+.PHONY : home/robocomp/robocomp/classes/rapplication/rapplication.cpp.i
 
-home/kati/robocomp/classes/sigwatch/sigwatch.s: home/kati/robocomp/classes/sigwatch/sigwatch.cpp.s
+home/robocomp/robocomp/classes/rapplication/rapplication.s: home/robocomp/robocomp/classes/rapplication/rapplication.cpp.s
 
-.PHONY : home/kati/robocomp/classes/sigwatch/sigwatch.s
+.PHONY : home/robocomp/robocomp/classes/rapplication/rapplication.s
 
 # target to generate assembly for a file
-home/kati/robocomp/classes/sigwatch/sigwatch.cpp.s:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/sigwatch/sigwatch.cpp.s
-.PHONY : home/kati/robocomp/classes/sigwatch/sigwatch.cpp.s
+home/robocomp/robocomp/classes/rapplication/rapplication.cpp.s:
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/robocomp/robocomp/classes/rapplication/rapplication.cpp.s
+.PHONY : home/robocomp/robocomp/classes/rapplication/rapplication.cpp.s
+
+home/robocomp/robocomp/classes/sigwatch/sigwatch.o: home/robocomp/robocomp/classes/sigwatch/sigwatch.cpp.o
+
+.PHONY : home/robocomp/robocomp/classes/sigwatch/sigwatch.o
+
+# target to build an object file
+home/robocomp/robocomp/classes/sigwatch/sigwatch.cpp.o:
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/robocomp/robocomp/classes/sigwatch/sigwatch.cpp.o
+.PHONY : home/robocomp/robocomp/classes/sigwatch/sigwatch.cpp.o
+
+home/robocomp/robocomp/classes/sigwatch/sigwatch.i: home/robocomp/robocomp/classes/sigwatch/sigwatch.cpp.i
+
+.PHONY : home/robocomp/robocomp/classes/sigwatch/sigwatch.i
+
+# target to preprocess a source file
+home/robocomp/robocomp/classes/sigwatch/sigwatch.cpp.i:
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/robocomp/robocomp/classes/sigwatch/sigwatch.cpp.i
+.PHONY : home/robocomp/robocomp/classes/sigwatch/sigwatch.cpp.i
+
+home/robocomp/robocomp/classes/sigwatch/sigwatch.s: home/robocomp/robocomp/classes/sigwatch/sigwatch.cpp.s
+
+.PHONY : home/robocomp/robocomp/classes/sigwatch/sigwatch.s
+
+# target to generate assembly for a file
+home/robocomp/robocomp/classes/sigwatch/sigwatch.cpp.s:
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/robocomp/robocomp/classes/sigwatch/sigwatch.cpp.s
+.PHONY : home/robocomp/robocomp/classes/sigwatch/sigwatch.cpp.s
 
 main.o: main.cpp.o
 
@@ -396,7 +396,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/main.cpp.o
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -405,7 +405,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/main.cpp.i
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -414,7 +414,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/main.cpp.s
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 navDataReader_autogen/mocs_compilation.o: navDataReader_autogen/mocs_compilation.cpp.o
@@ -423,7 +423,7 @@ navDataReader_autogen/mocs_compilation.o: navDataReader_autogen/mocs_compilation
 
 # target to build an object file
 navDataReader_autogen/mocs_compilation.cpp.o:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/navDataReader_autogen/mocs_compilation.cpp.o
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/navDataReader_autogen/mocs_compilation.cpp.o
 .PHONY : navDataReader_autogen/mocs_compilation.cpp.o
 
 navDataReader_autogen/mocs_compilation.i: navDataReader_autogen/mocs_compilation.cpp.i
@@ -432,7 +432,7 @@ navDataReader_autogen/mocs_compilation.i: navDataReader_autogen/mocs_compilation
 
 # target to preprocess a source file
 navDataReader_autogen/mocs_compilation.cpp.i:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/navDataReader_autogen/mocs_compilation.cpp.i
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/navDataReader_autogen/mocs_compilation.cpp.i
 .PHONY : navDataReader_autogen/mocs_compilation.cpp.i
 
 navDataReader_autogen/mocs_compilation.s: navDataReader_autogen/mocs_compilation.cpp.s
@@ -441,7 +441,7 @@ navDataReader_autogen/mocs_compilation.s: navDataReader_autogen/mocs_compilation
 
 # target to generate assembly for a file
 navDataReader_autogen/mocs_compilation.cpp.s:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/navDataReader_autogen/mocs_compilation.cpp.s
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/navDataReader_autogen/mocs_compilation.cpp.s
 .PHONY : navDataReader_autogen/mocs_compilation.cpp.s
 
 specificmonitor.o: specificmonitor.cpp.o
@@ -450,7 +450,7 @@ specificmonitor.o: specificmonitor.cpp.o
 
 # target to build an object file
 specificmonitor.cpp.o:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/specificmonitor.cpp.o
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/specificmonitor.cpp.o
 .PHONY : specificmonitor.cpp.o
 
 specificmonitor.i: specificmonitor.cpp.i
@@ -459,7 +459,7 @@ specificmonitor.i: specificmonitor.cpp.i
 
 # target to preprocess a source file
 specificmonitor.cpp.i:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/specificmonitor.cpp.i
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/specificmonitor.cpp.i
 .PHONY : specificmonitor.cpp.i
 
 specificmonitor.s: specificmonitor.cpp.s
@@ -468,7 +468,7 @@ specificmonitor.s: specificmonitor.cpp.s
 
 # target to generate assembly for a file
 specificmonitor.cpp.s:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/specificmonitor.cpp.s
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/specificmonitor.cpp.s
 .PHONY : specificmonitor.cpp.s
 
 specificworker.o: specificworker.cpp.o
@@ -477,7 +477,7 @@ specificworker.o: specificworker.cpp.o
 
 # target to build an object file
 specificworker.cpp.o:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/specificworker.cpp.o
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/specificworker.cpp.o
 .PHONY : specificworker.cpp.o
 
 specificworker.i: specificworker.cpp.i
@@ -486,7 +486,7 @@ specificworker.i: specificworker.cpp.i
 
 # target to preprocess a source file
 specificworker.cpp.i:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/specificworker.cpp.i
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/specificworker.cpp.i
 .PHONY : specificworker.cpp.i
 
 specificworker.s: specificworker.cpp.s
@@ -495,7 +495,7 @@ specificworker.s: specificworker.cpp.s
 
 # target to generate assembly for a file
 specificworker.cpp.s:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/specificworker.cpp.s
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/specificworker.cpp.s
 .PHONY : specificworker.cpp.s
 
 # Help Target
@@ -504,13 +504,13 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/strip"
-	@echo "... install/local"
 	@echo "... install"
 	@echo "... list_install_components"
-	@echo "... edit_cache"
-	@echo "... ICES__home_kati_robocomp_components_robocomp-viriato_components_navDataReader_src"
+	@echo "... install/strip"
+	@echo "... install/local"
+	@echo "... ICES__home_robocomp_robocomp_components_robocomp-viriato_components_navDataReader_src"
 	@echo "... navDataReader"
+	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... navDataReader_autogen"
 	@echo "... CommonBehavior.o"
@@ -525,15 +525,15 @@ help:
 	@echo "... genericworker.o"
 	@echo "... genericworker.i"
 	@echo "... genericworker.s"
-	@echo "... home/kati/robocomp/classes/qlog/qlog.o"
-	@echo "... home/kati/robocomp/classes/qlog/qlog.i"
-	@echo "... home/kati/robocomp/classes/qlog/qlog.s"
-	@echo "... home/kati/robocomp/classes/rapplication/rapplication.o"
-	@echo "... home/kati/robocomp/classes/rapplication/rapplication.i"
-	@echo "... home/kati/robocomp/classes/rapplication/rapplication.s"
-	@echo "... home/kati/robocomp/classes/sigwatch/sigwatch.o"
-	@echo "... home/kati/robocomp/classes/sigwatch/sigwatch.i"
-	@echo "... home/kati/robocomp/classes/sigwatch/sigwatch.s"
+	@echo "... home/robocomp/robocomp/classes/qlog/qlog.o"
+	@echo "... home/robocomp/robocomp/classes/qlog/qlog.i"
+	@echo "... home/robocomp/robocomp/classes/qlog/qlog.s"
+	@echo "... home/robocomp/robocomp/classes/rapplication/rapplication.o"
+	@echo "... home/robocomp/robocomp/classes/rapplication/rapplication.i"
+	@echo "... home/robocomp/robocomp/classes/rapplication/rapplication.s"
+	@echo "... home/robocomp/robocomp/classes/sigwatch/sigwatch.o"
+	@echo "... home/robocomp/robocomp/classes/sigwatch/sigwatch.i"
+	@echo "... home/robocomp/robocomp/classes/sigwatch/sigwatch.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
@@ -557,6 +557,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

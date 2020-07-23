@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/kati/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /home/robocomp/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /home/kati/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake -E remove -f
+RM = /home/robocomp/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/kati/robocomp/components/robocomp-viriato/components/navDataReader
+CMAKE_SOURCE_DIR = /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/kati/robocomp/components/robocomp-viriato/components/navDataReader
+CMAKE_BINARY_DIR = /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader
 
 # Utility rule file for navDataReader_autogen.
 
@@ -54,8 +54,8 @@ CMAKE_BINARY_DIR = /home/kati/robocomp/components/robocomp-viriato/components/na
 include src/CMakeFiles/navDataReader_autogen.dir/progress.make
 
 src/CMakeFiles/navDataReader_autogen:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target navDataReader"
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /home/kati/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake -E cmake_autogen /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/CMakeFiles/navDataReader_autogen.dir/AutogenInfo.json ""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target navDataReader"
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src && /home/kati/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake -E cmake_autogen /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/CMakeFiles/navDataReader_autogen.dir/AutogenInfo.json ""
 
 navDataReader_autogen: src/CMakeFiles/navDataReader_autogen
 navDataReader_autogen: src/CMakeFiles/navDataReader_autogen.dir/build.make
@@ -68,10 +68,10 @@ src/CMakeFiles/navDataReader_autogen.dir/build: navDataReader_autogen
 .PHONY : src/CMakeFiles/navDataReader_autogen.dir/build
 
 src/CMakeFiles/navDataReader_autogen.dir/clean:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && $(CMAKE_COMMAND) -P CMakeFiles/navDataReader_autogen.dir/cmake_clean.cmake
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src && $(CMAKE_COMMAND) -P CMakeFiles/navDataReader_autogen.dir/cmake_clean.cmake
 .PHONY : src/CMakeFiles/navDataReader_autogen.dir/clean
 
 src/CMakeFiles/navDataReader_autogen.dir/depend:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/kati/robocomp/components/robocomp-viriato/components/navDataReader /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src /home/kati/robocomp/components/robocomp-viriato/components/navDataReader /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/CMakeFiles/navDataReader_autogen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/CMakeFiles/navDataReader_autogen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/CMakeFiles/navDataReader_autogen.dir/depend
 

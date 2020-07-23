@@ -62,6 +62,7 @@ public:
 	void calculate_pathLength();
 	void calculate_pathSmoothness();
 	void drawChart();
+	void init_table();
 
 public slots:
 	void

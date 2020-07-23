@@ -1,56 +1,56 @@
 {
-	"BUILD_DIR" : "/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen",
-	"CMAKE_BINARY_DIR" : "/home/kati/robocomp/components/robocomp-viriato/components/navDataReader",
-	"CMAKE_CURRENT_BINARY_DIR" : "/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src",
-	"CMAKE_CURRENT_SOURCE_DIR" : "/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src",
+	"BUILD_DIR" : "/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen",
+	"CMAKE_BINARY_DIR" : "/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src",
 	"CMAKE_EXECUTABLE" : "/home/kati/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake",
-	"CMAKE_SOURCE_DIR" : "/home/kati/robocomp/components/robocomp-viriato/components/navDataReader",
+	"CMAKE_SOURCE_DIR" : "/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader",
 	"HEADERS" : 
 	[
 		[
-			"/home/kati/robocomp/classes/qlog/qlog.h",
+			"/home/robocomp/robocomp/classes/qlog/qlog.h",
 			"MU",
-			"OJJCPQ6O3Y/moc_qlog.cpp"
+			"FJB4KJFLHT/moc_qlog.cpp"
 		],
 		[
-			"/home/kati/robocomp/classes/rapplication/rapplication.h",
+			"/home/robocomp/robocomp/classes/rapplication/rapplication.h",
 			"MU",
-			"2L4NVZPHLO/moc_rapplication.cpp"
+			"PP5NDK5ZYM/moc_rapplication.cpp"
 		],
 		[
-			"/home/kati/robocomp/classes/sigwatch/sigwatch.h",
+			"/home/robocomp/robocomp/classes/sigwatch/sigwatch.h",
 			"MU",
-			"KD7YDYY5P5/moc_sigwatch.cpp"
+			"X77O2QB7HX/moc_sigwatch.cpp"
 		],
 		[
-			"/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/commonbehaviorI.h",
+			"/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/commonbehaviorI.h",
 			"MU",
 			"EWIEGA46WW/moc_commonbehaviorI.cpp"
 		],
 		[
-			"/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/genericmonitor.h",
+			"/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/genericmonitor.h",
 			"MU",
 			"EWIEGA46WW/moc_genericmonitor.cpp"
 		],
 		[
-			"/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/genericworker.h",
+			"/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/genericworker.h",
 			"MU",
 			"EWIEGA46WW/moc_genericworker.cpp"
 		],
 		[
-			"/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/specificmonitor.h",
+			"/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/specificmonitor.h",
 			"MU",
 			"EWIEGA46WW/moc_specificmonitor.cpp"
 		],
 		[
-			"/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/specificworker.h",
+			"/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/specificworker.h",
 			"MU",
 			"EWIEGA46WW/moc_specificworker.cpp"
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
-	"INCLUDE_DIR" : "/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen/include",
-	"MOC_COMPILATION_FILE" : "/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen/mocs_compilation.cpp",
+	"INCLUDE_DIR" : "/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen/include",
+	"MOC_COMPILATION_FILE" : "/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen/mocs_compilation.cpp",
 	"MOC_DEFINITIONS" : 
 	[
 		"QT_CORE_LIB",
@@ -72,14 +72,14 @@
 	],
 	"MOC_INCLUDES" : 
 	[
-		"/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src",
-		"/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src",
+		"/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src",
+		"/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src",
 		"/opt/robocomp/include",
 		"/classes",
-		"/home/kati/robocomp/components/robocomp-viriato/components/navDataReader",
-		"/home/kati/robocomp/classes",
-		"/home/kati/robocomp/libs",
-		"/home/kati/robocomp/interfaces",
+		"/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader",
+		"/home/robocomp/robocomp/classes",
+		"/home/robocomp/robocomp/libs",
+		"/home/robocomp/robocomp/interfaces",
 		"/include",
 		"/usr/include/x86_64-linux-gnu/qt5",
 		"/usr/include/x86_64-linux-gnu/qt5/QtGui",
@@ -111,43 +111,43 @@
 		"-c",
 		"/home/kati/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/share/cmake-3.16/Modules/CMakeCXXCompilerABI.cpp"
 	],
-	"MOC_PREDEFS_FILE" : "/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen/moc_predefs.h",
+	"MOC_PREDEFS_FILE" : "/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
 	"MOC_SKIP" : [],
 	"MULTI_CONFIG" : false,
 	"PARALLEL" : 2,
-	"PARSE_CACHE_FILE" : "/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/CMakeFiles/navDataReader_autogen.dir/ParseCache.txt",
+	"PARSE_CACHE_FILE" : "/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/CMakeFiles/navDataReader_autogen.dir/ParseCache.txt",
 	"QT_MOC_EXECUTABLE" : "/usr/lib/qt5/bin/moc",
 	"QT_UIC_EXECUTABLE" : "/usr/lib/qt5/bin/uic",
 	"QT_VERSION_MAJOR" : 5,
-	"SETTINGS_FILE" : "/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/CMakeFiles/navDataReader_autogen.dir/AutogenUsed.txt",
+	"SETTINGS_FILE" : "/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/CMakeFiles/navDataReader_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
-		[ "/home/kati/robocomp/classes/qlog/qlog.cpp", "MU" ],
-		[ "/home/kati/robocomp/classes/rapplication/rapplication.cpp", "MU" ],
-		[ "/home/kati/robocomp/classes/sigwatch/sigwatch.cpp", "MU" ],
+		[ "/home/robocomp/robocomp/classes/qlog/qlog.cpp", "MU" ],
+		[ "/home/robocomp/robocomp/classes/rapplication/rapplication.cpp", "MU" ],
+		[ "/home/robocomp/robocomp/classes/sigwatch/sigwatch.cpp", "MU" ],
 		[
-			"/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/commonbehaviorI.cpp",
+			"/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/commonbehaviorI.cpp",
 			"MU"
 		],
 		[
-			"/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/genericmonitor.cpp",
+			"/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/genericmonitor.cpp",
 			"MU"
 		],
 		[
-			"/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/genericworker.cpp",
+			"/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/genericworker.cpp",
 			"MU"
 		],
 		[
-			"/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/main.cpp",
+			"/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/main.cpp",
 			"MU"
 		],
 		[
-			"/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/specificmonitor.cpp",
+			"/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/specificmonitor.cpp",
 			"MU"
 		],
 		[
-			"/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/specificworker.cpp",
+			"/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/specificworker.cpp",
 			"MU"
 		]
 	],

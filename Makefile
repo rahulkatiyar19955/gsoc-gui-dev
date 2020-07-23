@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/kati/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /home/robocomp/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /home/kati/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake -E remove -f
+RM = /home/robocomp/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/kati/robocomp/components/robocomp-viriato/components/navDataReader
+CMAKE_SOURCE_DIR = /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/kati/robocomp/components/robocomp-viriato/components/navDataReader
+CMAKE_BINARY_DIR = /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -126,9 +126,9 @@ install/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/CMakeFiles /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/CMakeFiles /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -157,17 +157,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named ICES__home_kati_robocomp_components_robocomp-viriato_components_navDataReader_src
+# Target rules for targets named ICES__home_robocomp_robocomp_components_robocomp-viriato_components_navDataReader_src
 
 # Build rule for target.
-ICES__home_kati_robocomp_components_robocomp-viriato_components_navDataReader_src: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ICES__home_kati_robocomp_components_robocomp-viriato_components_navDataReader_src
-.PHONY : ICES__home_kati_robocomp_components_robocomp-viriato_components_navDataReader_src
+ICES__home_robocomp_robocomp_components_robocomp-viriato_components_navDataReader_src: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ICES__home_robocomp_robocomp_components_robocomp-viriato_components_navDataReader_src
+.PHONY : ICES__home_robocomp_robocomp_components_robocomp-viriato_components_navDataReader_src
 
 # fast build rule for target.
-ICES__home_kati_robocomp_components_robocomp-viriato_components_navDataReader_src/fast:
-	$(MAKE) -f src/CMakeFiles/ICES__home_kati_robocomp_components_robocomp-viriato_components_navDataReader_src.dir/build.make src/CMakeFiles/ICES__home_kati_robocomp_components_robocomp-viriato_components_navDataReader_src.dir/build
-.PHONY : ICES__home_kati_robocomp_components_robocomp-viriato_components_navDataReader_src/fast
+ICES__home_robocomp_robocomp_components_robocomp-viriato_components_navDataReader_src/fast:
+	$(MAKE) -f src/CMakeFiles/ICES__home_robocomp_robocomp_components_robocomp-viriato_components_navDataReader_src.dir/build.make src/CMakeFiles/ICES__home_robocomp_robocomp_components_robocomp-viriato_components_navDataReader_src.dir/build
+.PHONY : ICES__home_robocomp_robocomp_components_robocomp-viriato_components_navDataReader_src/fast
 
 #=============================================================================
 # Target rules for targets named navDataReader
@@ -207,7 +207,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... list_install_components"
 	@echo "... install"
-	@echo "... ICES__home_kati_robocomp_components_robocomp-viriato_components_navDataReader_src"
+	@echo "... ICES__home_robocomp_robocomp_components_robocomp-viriato_components_navDataReader_src"
 	@echo "... navDataReader"
 	@echo "... navDataReader_autogen"
 .PHONY : help

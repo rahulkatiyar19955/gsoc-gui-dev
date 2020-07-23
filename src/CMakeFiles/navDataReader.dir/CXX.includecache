@@ -6,9 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/kati/robocomp/classes/qlog/qlog.h
+/home/robocomp/robocomp/classes/qlog/qlog.cpp
+qlog.h
+/home/robocomp/robocomp/classes/qlog/qlog.h
+
+/home/robocomp/robocomp/classes/qlog/qlog.h
 config.h
-/home/kati/robocomp/classes/qlog/config.h
+/home/robocomp/robocomp/classes/qlog/config.h
 QtCore
 -
 iostream
@@ -20,7 +24,11 @@ boost/format.hpp
 boost/format.hpp
 -
 
-/home/kati/robocomp/classes/rapplication/rapplication.h
+/home/robocomp/robocomp/classes/rapplication/rapplication.cpp
+rapplication.h
+/home/robocomp/robocomp/classes/rapplication/rapplication.h
+
+/home/robocomp/robocomp/classes/rapplication/rapplication.h
 Ice/Ice.h
 -
 Ice/Application.h
@@ -30,7 +38,7 @@ IceUtil/IceUtil.h
 QtCore
 -
 
-/home/kati/robocomp/classes/sigwatch/sigwatch.cpp
+/home/robocomp/robocomp/classes/sigwatch/sigwatch.cpp
 sys/socket.h
 -
 unistd.h
@@ -44,21 +52,39 @@ QSocketNotifier
 QDebug
 -
 sigwatch.h
-/home/kati/robocomp/classes/sigwatch/sigwatch.h
+/home/robocomp/robocomp/classes/sigwatch/sigwatch.h
 moc_sigwatch.cpp
-/home/kati/robocomp/classes/sigwatch/moc_sigwatch.cpp
+/home/robocomp/robocomp/classes/sigwatch/moc_sigwatch.cpp
 
-/home/kati/robocomp/classes/sigwatch/sigwatch.h
+/home/robocomp/robocomp/classes/sigwatch/sigwatch.h
 QObject
 -
 signal.h
 -
 
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/commonbehaviorI.cpp
-commonbehaviorI.h
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/commonbehaviorI.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/CommonBehavior.cpp
+CommonBehavior.h
+-
+IceUtil/PushDisableWarnings.h
+-
+Ice/LocalException.h
+-
+Ice/ValueFactory.h
+-
+Ice/OutgoingAsync.h
+-
+Ice/InputStream.h
+-
+Ice/OutputStream.h
+-
+IceUtil/PopDisableWarnings.h
+-
 
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/commonbehaviorI.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/commonbehaviorI.cpp
+commonbehaviorI.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/commonbehaviorI.h
+
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/commonbehaviorI.h
 Ice/Ice.h
 -
 CommonBehavior.h
@@ -66,37 +92,37 @@ CommonBehavior.h
 config.h
 -
 genericworker.h
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/genericworker.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/genericworker.h
 genericmonitor.h
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/genericmonitor.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/genericmonitor.h
 
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/config.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/config.h
 
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/genericmonitor.cpp
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/genericmonitor.cpp
 genericmonitor.h
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/genericmonitor.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/genericmonitor.h
 
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/genericmonitor.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/genericmonitor.h
 Ice/Ice.h
 -
 QtCore
 -
 genericworker.h
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/genericworker.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/genericworker.h
 config.h
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/config.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/config.h
 qlog/qlog.h
 -
 CommonBehavior.h
 -
 
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/genericworker.cpp
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/genericworker.cpp
 genericworker.h
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/genericworker.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/genericworker.h
 
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/genericworker.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/genericworker.h
 config.h
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/config.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/config.h
 stdint.h
 -
 qlog/qlog.h
@@ -114,7 +140,7 @@ QState
 CommonBehavior.h
 -
 
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/main.cpp
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/main.cpp
 signal.h
 -
 QtCore
@@ -134,35 +160,77 @@ sigwatch/sigwatch.h
 qlog/qlog.h
 -
 config.h
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/config.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/config.h
 genericmonitor.h
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/genericmonitor.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/genericmonitor.h
 genericworker.h
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/genericworker.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/genericworker.h
 specificworker.h
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/specificworker.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/specificworker.h
 specificmonitor.h
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/specificmonitor.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/specificmonitor.h
 commonbehaviorI.h
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/commonbehaviorI.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/commonbehaviorI.h
 
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/specificmonitor.cpp
-specificmonitor.h
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/specificmonitor.h
-
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/specificmonitor.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen/EWIEGA46WW/moc_genericmonitor.cpp
 genericmonitor.h
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/genericmonitor.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen/EWIEGA46WW/genericmonitor.h
+QtCore/qbytearray.h
+-
+QtCore/qmetatype.h
+-
 
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/specificworker.cpp
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen/EWIEGA46WW/moc_genericworker.cpp
+genericworker.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen/EWIEGA46WW/genericworker.h
+QtCore/qbytearray.h
+-
+QtCore/qmetatype.h
+-
+
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen/EWIEGA46WW/moc_specificmonitor.cpp
+specificmonitor.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen/EWIEGA46WW/specificmonitor.h
+QtCore/qbytearray.h
+-
+QtCore/qmetatype.h
+-
+
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen/EWIEGA46WW/moc_specificworker.cpp
 specificworker.h
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/specificworker.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen/EWIEGA46WW/specificworker.h
+QtCore/qbytearray.h
+-
+QtCore/qmetatype.h
+-
+
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen/mocs_compilation.cpp
+EWIEGA46WW/moc_genericmonitor.cpp
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen/EWIEGA46WW/moc_genericmonitor.cpp
+EWIEGA46WW/moc_genericworker.cpp
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen/EWIEGA46WW/moc_genericworker.cpp
+EWIEGA46WW/moc_specificmonitor.cpp
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen/EWIEGA46WW/moc_specificmonitor.cpp
+EWIEGA46WW/moc_specificworker.cpp
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/navDataReader_autogen/EWIEGA46WW/moc_specificworker.cpp
+
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/specificmonitor.cpp
+specificmonitor.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/specificmonitor.h
+
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/specificmonitor.h
+genericmonitor.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/genericmonitor.h
+
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/specificworker.cpp
+specificworker.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/specificworker.h
 QFileDialog
 -
 QMessageBox
 -
 
-/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/specificworker.h
+/home/robocomp/robocomp/components/robocomp-viriato/components/navDataReader/src/specificworker.h
 genericworker.h
 -
 innermodel/innermodel.h
@@ -5286,6 +5354,20 @@ IceUtil/PopDisableWarnings.h
 
 src/config.h
 
+src/genericmonitor.h
+Ice/Ice.h
+-
+QtCore
+-
+genericworker.h
+src/genericworker.h
+config.h
+src/config.h
+qlog/qlog.h
+-
+CommonBehavior.h
+-
+
 src/genericworker.h
 config.h
 src/config.h
@@ -5344,5 +5426,15 @@ QtWidgets/QTableWidget
 QtWidgets/QVBoxLayout
 -
 QtWidgets/QWidget
+-
+
+src/specificmonitor.h
+genericmonitor.h
+src/genericmonitor.h
+
+src/specificworker.h
+genericworker.h
+-
+innermodel/innermodel.h
 -
 
