@@ -103,44 +103,44 @@ src/CMakeFiles/navDataReader.dir/specificmonitor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/navDataReader.dir/specificmonitor.cpp.s"
 	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/specificmonitor.cpp -o CMakeFiles/navDataReader.dir/specificmonitor.cpp.s
 
-src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/rapplication/rapplication.cpp.o: src/CMakeFiles/navDataReader.dir/flags.make
-src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/rapplication/rapplication.cpp.o: /opt/robocomp/classes/rapplication/rapplication.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/rapplication/rapplication.cpp.o"
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/navDataReader.dir/opt/robocomp/classes/rapplication/rapplication.cpp.o -c /opt/robocomp/classes/rapplication/rapplication.cpp
+src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/rapplication/rapplication.cpp.o: src/CMakeFiles/navDataReader.dir/flags.make
+src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/rapplication/rapplication.cpp.o: /home/kati/robocomp/classes/rapplication/rapplication.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/rapplication/rapplication.cpp.o"
+	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/rapplication/rapplication.cpp.o -c /home/kati/robocomp/classes/rapplication/rapplication.cpp
 
-src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/rapplication/rapplication.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/navDataReader.dir/opt/robocomp/classes/rapplication/rapplication.cpp.i"
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /opt/robocomp/classes/rapplication/rapplication.cpp > CMakeFiles/navDataReader.dir/opt/robocomp/classes/rapplication/rapplication.cpp.i
+src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/rapplication/rapplication.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/rapplication/rapplication.cpp.i"
+	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kati/robocomp/classes/rapplication/rapplication.cpp > CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/rapplication/rapplication.cpp.i
 
-src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/rapplication/rapplication.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/navDataReader.dir/opt/robocomp/classes/rapplication/rapplication.cpp.s"
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /opt/robocomp/classes/rapplication/rapplication.cpp -o CMakeFiles/navDataReader.dir/opt/robocomp/classes/rapplication/rapplication.cpp.s
+src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/rapplication/rapplication.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/rapplication/rapplication.cpp.s"
+	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kati/robocomp/classes/rapplication/rapplication.cpp -o CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/rapplication/rapplication.cpp.s
 
-src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/sigwatch/sigwatch.cpp.o: src/CMakeFiles/navDataReader.dir/flags.make
-src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/sigwatch/sigwatch.cpp.o: /opt/robocomp/classes/sigwatch/sigwatch.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/sigwatch/sigwatch.cpp.o"
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/navDataReader.dir/opt/robocomp/classes/sigwatch/sigwatch.cpp.o -c /opt/robocomp/classes/sigwatch/sigwatch.cpp
+src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/sigwatch/sigwatch.cpp.o: src/CMakeFiles/navDataReader.dir/flags.make
+src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/sigwatch/sigwatch.cpp.o: /home/kati/robocomp/classes/sigwatch/sigwatch.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/sigwatch/sigwatch.cpp.o"
+	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/sigwatch/sigwatch.cpp.o -c /home/kati/robocomp/classes/sigwatch/sigwatch.cpp
 
-src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/sigwatch/sigwatch.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/navDataReader.dir/opt/robocomp/classes/sigwatch/sigwatch.cpp.i"
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /opt/robocomp/classes/sigwatch/sigwatch.cpp > CMakeFiles/navDataReader.dir/opt/robocomp/classes/sigwatch/sigwatch.cpp.i
+src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/sigwatch/sigwatch.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/sigwatch/sigwatch.cpp.i"
+	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kati/robocomp/classes/sigwatch/sigwatch.cpp > CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/sigwatch/sigwatch.cpp.i
 
-src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/sigwatch/sigwatch.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/navDataReader.dir/opt/robocomp/classes/sigwatch/sigwatch.cpp.s"
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /opt/robocomp/classes/sigwatch/sigwatch.cpp -o CMakeFiles/navDataReader.dir/opt/robocomp/classes/sigwatch/sigwatch.cpp.s
+src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/sigwatch/sigwatch.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/sigwatch/sigwatch.cpp.s"
+	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kati/robocomp/classes/sigwatch/sigwatch.cpp -o CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/sigwatch/sigwatch.cpp.s
 
-src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/qlog/qlog.cpp.o: src/CMakeFiles/navDataReader.dir/flags.make
-src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/qlog/qlog.cpp.o: /opt/robocomp/classes/qlog/qlog.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/qlog/qlog.cpp.o"
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/navDataReader.dir/opt/robocomp/classes/qlog/qlog.cpp.o -c /opt/robocomp/classes/qlog/qlog.cpp
+src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/qlog/qlog.cpp.o: src/CMakeFiles/navDataReader.dir/flags.make
+src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/qlog/qlog.cpp.o: /home/kati/robocomp/classes/qlog/qlog.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/qlog/qlog.cpp.o"
+	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/qlog/qlog.cpp.o -c /home/kati/robocomp/classes/qlog/qlog.cpp
 
-src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/qlog/qlog.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/navDataReader.dir/opt/robocomp/classes/qlog/qlog.cpp.i"
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /opt/robocomp/classes/qlog/qlog.cpp > CMakeFiles/navDataReader.dir/opt/robocomp/classes/qlog/qlog.cpp.i
+src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/qlog/qlog.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/qlog/qlog.cpp.i"
+	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kati/robocomp/classes/qlog/qlog.cpp > CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/qlog/qlog.cpp.i
 
-src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/qlog/qlog.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/navDataReader.dir/opt/robocomp/classes/qlog/qlog.cpp.s"
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /opt/robocomp/classes/qlog/qlog.cpp -o CMakeFiles/navDataReader.dir/opt/robocomp/classes/qlog/qlog.cpp.s
+src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/qlog/qlog.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/qlog/qlog.cpp.s"
+	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kati/robocomp/classes/qlog/qlog.cpp -o CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/qlog/qlog.cpp.s
 
 src/CMakeFiles/navDataReader.dir/main.cpp.o: src/CMakeFiles/navDataReader.dir/flags.make
 src/CMakeFiles/navDataReader.dir/main.cpp.o: src/main.cpp
@@ -212,9 +212,9 @@ navDataReader_OBJECTS = \
 "CMakeFiles/navDataReader.dir/navDataReader_autogen/mocs_compilation.cpp.o" \
 "CMakeFiles/navDataReader.dir/specificworker.cpp.o" \
 "CMakeFiles/navDataReader.dir/specificmonitor.cpp.o" \
-"CMakeFiles/navDataReader.dir/opt/robocomp/classes/rapplication/rapplication.cpp.o" \
-"CMakeFiles/navDataReader.dir/opt/robocomp/classes/sigwatch/sigwatch.cpp.o" \
-"CMakeFiles/navDataReader.dir/opt/robocomp/classes/qlog/qlog.cpp.o" \
+"CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/rapplication/rapplication.cpp.o" \
+"CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/sigwatch/sigwatch.cpp.o" \
+"CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/qlog/qlog.cpp.o" \
 "CMakeFiles/navDataReader.dir/main.cpp.o" \
 "CMakeFiles/navDataReader.dir/genericmonitor.cpp.o" \
 "CMakeFiles/navDataReader.dir/commonbehaviorI.cpp.o" \
@@ -227,9 +227,9 @@ navDataReader_EXTERNAL_OBJECTS =
 bin/navDataReader: src/CMakeFiles/navDataReader.dir/navDataReader_autogen/mocs_compilation.cpp.o
 bin/navDataReader: src/CMakeFiles/navDataReader.dir/specificworker.cpp.o
 bin/navDataReader: src/CMakeFiles/navDataReader.dir/specificmonitor.cpp.o
-bin/navDataReader: src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/rapplication/rapplication.cpp.o
-bin/navDataReader: src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/sigwatch/sigwatch.cpp.o
-bin/navDataReader: src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/qlog/qlog.cpp.o
+bin/navDataReader: src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/rapplication/rapplication.cpp.o
+bin/navDataReader: src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/sigwatch/sigwatch.cpp.o
+bin/navDataReader: src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/qlog/qlog.cpp.o
 bin/navDataReader: src/CMakeFiles/navDataReader.dir/main.cpp.o
 bin/navDataReader: src/CMakeFiles/navDataReader.dir/genericmonitor.cpp.o
 bin/navDataReader: src/CMakeFiles/navDataReader.dir/commonbehaviorI.cpp.o

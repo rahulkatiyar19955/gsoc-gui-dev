@@ -8,6 +8,21 @@
 	"HEADERS" : 
 	[
 		[
+			"/home/kati/robocomp/classes/qlog/qlog.h",
+			"MU",
+			"OJJCPQ6O3Y/moc_qlog.cpp"
+		],
+		[
+			"/home/kati/robocomp/classes/rapplication/rapplication.h",
+			"MU",
+			"2L4NVZPHLO/moc_rapplication.cpp"
+		],
+		[
+			"/home/kati/robocomp/classes/sigwatch/sigwatch.h",
+			"MU",
+			"KD7YDYY5P5/moc_sigwatch.cpp"
+		],
+		[
 			"/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/commonbehaviorI.h",
 			"MU",
 			"EWIEGA46WW/moc_commonbehaviorI.cpp"
@@ -31,17 +46,6 @@
 			"/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/specificworker.h",
 			"MU",
 			"EWIEGA46WW/moc_specificworker.cpp"
-		],
-		[ "/opt/robocomp/classes/qlog/qlog.h", "MU", "2FGXPJ7LXO/moc_qlog.cpp" ],
-		[
-			"/opt/robocomp/classes/rapplication/rapplication.h",
-			"MU",
-			"QJTTXZVCVU/moc_rapplication.cpp"
-		],
-		[
-			"/opt/robocomp/classes/sigwatch/sigwatch.h",
-			"MU",
-			"A42NFNQRPH/moc_sigwatch.cpp"
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -52,6 +56,7 @@
 		"QT_CORE_LIB",
 		"QT_GUI_LIB",
 		"QT_NETWORK_LIB",
+		"QT_NO_DEBUG",
 		"QT_OPENGL_LIB",
 		"QT_SQL_LIB",
 		"QT_WIDGETS_LIB",
@@ -72,9 +77,9 @@
 		"/opt/robocomp/include",
 		"/classes",
 		"/home/kati/robocomp/components/robocomp-viriato/components/navDataReader",
-		"/opt/robocomp/classes",
-		"/opt/robocomp/libs",
-		"/opt/robocomp/interfaces",
+		"/home/kati/robocomp/classes",
+		"/home/kati/robocomp/libs",
+		"/home/kati/robocomp/interfaces",
 		"/include",
 		"/usr/include/x86_64-linux-gnu/qt5",
 		"/usr/include/x86_64-linux-gnu/qt5/QtGui",
@@ -118,6 +123,9 @@
 	"SETTINGS_FILE" : "/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/CMakeFiles/navDataReader_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "/home/kati/robocomp/classes/qlog/qlog.cpp", "MU" ],
+		[ "/home/kati/robocomp/classes/rapplication/rapplication.cpp", "MU" ],
+		[ "/home/kati/robocomp/classes/sigwatch/sigwatch.cpp", "MU" ],
 		[
 			"/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/commonbehaviorI.cpp",
 			"MU"
@@ -141,10 +149,7 @@
 		[
 			"/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/specificworker.cpp",
 			"MU"
-		],
-		[ "/opt/robocomp/classes/qlog/qlog.cpp", "MU" ],
-		[ "/opt/robocomp/classes/rapplication/rapplication.cpp", "MU" ],
-		[ "/opt/robocomp/classes/sigwatch/sigwatch.cpp", "MU" ]
+		]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

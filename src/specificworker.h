@@ -49,7 +49,6 @@ public:
 	double dist_travelled;
 	char target_achived[20];
 	QPointF min_dist_obj;
-
 };
 
 class SpecificWorker : public GenericWorker
@@ -62,6 +61,7 @@ public:
 	bool readNavData();
 	void calculate_pathLength();
 	void calculate_pathSmoothness();
+	void drawChart();
 
 public slots:
 	void

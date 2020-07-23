@@ -104,8 +104,8 @@ list_install_components/fast: list_install_components
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/kati/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/home/kati/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -309,6 +309,87 @@ genericworker.cpp.s:
 	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/genericworker.cpp.s
 .PHONY : genericworker.cpp.s
 
+home/kati/robocomp/classes/qlog/qlog.o: home/kati/robocomp/classes/qlog/qlog.cpp.o
+
+.PHONY : home/kati/robocomp/classes/qlog/qlog.o
+
+# target to build an object file
+home/kati/robocomp/classes/qlog/qlog.cpp.o:
+	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/qlog/qlog.cpp.o
+.PHONY : home/kati/robocomp/classes/qlog/qlog.cpp.o
+
+home/kati/robocomp/classes/qlog/qlog.i: home/kati/robocomp/classes/qlog/qlog.cpp.i
+
+.PHONY : home/kati/robocomp/classes/qlog/qlog.i
+
+# target to preprocess a source file
+home/kati/robocomp/classes/qlog/qlog.cpp.i:
+	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/qlog/qlog.cpp.i
+.PHONY : home/kati/robocomp/classes/qlog/qlog.cpp.i
+
+home/kati/robocomp/classes/qlog/qlog.s: home/kati/robocomp/classes/qlog/qlog.cpp.s
+
+.PHONY : home/kati/robocomp/classes/qlog/qlog.s
+
+# target to generate assembly for a file
+home/kati/robocomp/classes/qlog/qlog.cpp.s:
+	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/qlog/qlog.cpp.s
+.PHONY : home/kati/robocomp/classes/qlog/qlog.cpp.s
+
+home/kati/robocomp/classes/rapplication/rapplication.o: home/kati/robocomp/classes/rapplication/rapplication.cpp.o
+
+.PHONY : home/kati/robocomp/classes/rapplication/rapplication.o
+
+# target to build an object file
+home/kati/robocomp/classes/rapplication/rapplication.cpp.o:
+	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/rapplication/rapplication.cpp.o
+.PHONY : home/kati/robocomp/classes/rapplication/rapplication.cpp.o
+
+home/kati/robocomp/classes/rapplication/rapplication.i: home/kati/robocomp/classes/rapplication/rapplication.cpp.i
+
+.PHONY : home/kati/robocomp/classes/rapplication/rapplication.i
+
+# target to preprocess a source file
+home/kati/robocomp/classes/rapplication/rapplication.cpp.i:
+	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/rapplication/rapplication.cpp.i
+.PHONY : home/kati/robocomp/classes/rapplication/rapplication.cpp.i
+
+home/kati/robocomp/classes/rapplication/rapplication.s: home/kati/robocomp/classes/rapplication/rapplication.cpp.s
+
+.PHONY : home/kati/robocomp/classes/rapplication/rapplication.s
+
+# target to generate assembly for a file
+home/kati/robocomp/classes/rapplication/rapplication.cpp.s:
+	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/rapplication/rapplication.cpp.s
+.PHONY : home/kati/robocomp/classes/rapplication/rapplication.cpp.s
+
+home/kati/robocomp/classes/sigwatch/sigwatch.o: home/kati/robocomp/classes/sigwatch/sigwatch.cpp.o
+
+.PHONY : home/kati/robocomp/classes/sigwatch/sigwatch.o
+
+# target to build an object file
+home/kati/robocomp/classes/sigwatch/sigwatch.cpp.o:
+	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/sigwatch/sigwatch.cpp.o
+.PHONY : home/kati/robocomp/classes/sigwatch/sigwatch.cpp.o
+
+home/kati/robocomp/classes/sigwatch/sigwatch.i: home/kati/robocomp/classes/sigwatch/sigwatch.cpp.i
+
+.PHONY : home/kati/robocomp/classes/sigwatch/sigwatch.i
+
+# target to preprocess a source file
+home/kati/robocomp/classes/sigwatch/sigwatch.cpp.i:
+	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/sigwatch/sigwatch.cpp.i
+.PHONY : home/kati/robocomp/classes/sigwatch/sigwatch.cpp.i
+
+home/kati/robocomp/classes/sigwatch/sigwatch.s: home/kati/robocomp/classes/sigwatch/sigwatch.cpp.s
+
+.PHONY : home/kati/robocomp/classes/sigwatch/sigwatch.s
+
+# target to generate assembly for a file
+home/kati/robocomp/classes/sigwatch/sigwatch.cpp.s:
+	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/home/kati/robocomp/classes/sigwatch/sigwatch.cpp.s
+.PHONY : home/kati/robocomp/classes/sigwatch/sigwatch.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -362,87 +443,6 @@ navDataReader_autogen/mocs_compilation.s: navDataReader_autogen/mocs_compilation
 navDataReader_autogen/mocs_compilation.cpp.s:
 	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/navDataReader_autogen/mocs_compilation.cpp.s
 .PHONY : navDataReader_autogen/mocs_compilation.cpp.s
-
-opt/robocomp/classes/qlog/qlog.o: opt/robocomp/classes/qlog/qlog.cpp.o
-
-.PHONY : opt/robocomp/classes/qlog/qlog.o
-
-# target to build an object file
-opt/robocomp/classes/qlog/qlog.cpp.o:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/qlog/qlog.cpp.o
-.PHONY : opt/robocomp/classes/qlog/qlog.cpp.o
-
-opt/robocomp/classes/qlog/qlog.i: opt/robocomp/classes/qlog/qlog.cpp.i
-
-.PHONY : opt/robocomp/classes/qlog/qlog.i
-
-# target to preprocess a source file
-opt/robocomp/classes/qlog/qlog.cpp.i:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/qlog/qlog.cpp.i
-.PHONY : opt/robocomp/classes/qlog/qlog.cpp.i
-
-opt/robocomp/classes/qlog/qlog.s: opt/robocomp/classes/qlog/qlog.cpp.s
-
-.PHONY : opt/robocomp/classes/qlog/qlog.s
-
-# target to generate assembly for a file
-opt/robocomp/classes/qlog/qlog.cpp.s:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/qlog/qlog.cpp.s
-.PHONY : opt/robocomp/classes/qlog/qlog.cpp.s
-
-opt/robocomp/classes/rapplication/rapplication.o: opt/robocomp/classes/rapplication/rapplication.cpp.o
-
-.PHONY : opt/robocomp/classes/rapplication/rapplication.o
-
-# target to build an object file
-opt/robocomp/classes/rapplication/rapplication.cpp.o:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/rapplication/rapplication.cpp.o
-.PHONY : opt/robocomp/classes/rapplication/rapplication.cpp.o
-
-opt/robocomp/classes/rapplication/rapplication.i: opt/robocomp/classes/rapplication/rapplication.cpp.i
-
-.PHONY : opt/robocomp/classes/rapplication/rapplication.i
-
-# target to preprocess a source file
-opt/robocomp/classes/rapplication/rapplication.cpp.i:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/rapplication/rapplication.cpp.i
-.PHONY : opt/robocomp/classes/rapplication/rapplication.cpp.i
-
-opt/robocomp/classes/rapplication/rapplication.s: opt/robocomp/classes/rapplication/rapplication.cpp.s
-
-.PHONY : opt/robocomp/classes/rapplication/rapplication.s
-
-# target to generate assembly for a file
-opt/robocomp/classes/rapplication/rapplication.cpp.s:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/rapplication/rapplication.cpp.s
-.PHONY : opt/robocomp/classes/rapplication/rapplication.cpp.s
-
-opt/robocomp/classes/sigwatch/sigwatch.o: opt/robocomp/classes/sigwatch/sigwatch.cpp.o
-
-.PHONY : opt/robocomp/classes/sigwatch/sigwatch.o
-
-# target to build an object file
-opt/robocomp/classes/sigwatch/sigwatch.cpp.o:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/sigwatch/sigwatch.cpp.o
-.PHONY : opt/robocomp/classes/sigwatch/sigwatch.cpp.o
-
-opt/robocomp/classes/sigwatch/sigwatch.i: opt/robocomp/classes/sigwatch/sigwatch.cpp.i
-
-.PHONY : opt/robocomp/classes/sigwatch/sigwatch.i
-
-# target to preprocess a source file
-opt/robocomp/classes/sigwatch/sigwatch.cpp.i:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/sigwatch/sigwatch.cpp.i
-.PHONY : opt/robocomp/classes/sigwatch/sigwatch.cpp.i
-
-opt/robocomp/classes/sigwatch/sigwatch.s: opt/robocomp/classes/sigwatch/sigwatch.cpp.s
-
-.PHONY : opt/robocomp/classes/sigwatch/sigwatch.s
-
-# target to generate assembly for a file
-opt/robocomp/classes/sigwatch/sigwatch.cpp.s:
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader && $(MAKE) -f src/CMakeFiles/navDataReader.dir/build.make src/CMakeFiles/navDataReader.dir/opt/robocomp/classes/sigwatch/sigwatch.cpp.s
-.PHONY : opt/robocomp/classes/sigwatch/sigwatch.cpp.s
 
 specificmonitor.o: specificmonitor.cpp.o
 
@@ -525,21 +525,21 @@ help:
 	@echo "... genericworker.o"
 	@echo "... genericworker.i"
 	@echo "... genericworker.s"
+	@echo "... home/kati/robocomp/classes/qlog/qlog.o"
+	@echo "... home/kati/robocomp/classes/qlog/qlog.i"
+	@echo "... home/kati/robocomp/classes/qlog/qlog.s"
+	@echo "... home/kati/robocomp/classes/rapplication/rapplication.o"
+	@echo "... home/kati/robocomp/classes/rapplication/rapplication.i"
+	@echo "... home/kati/robocomp/classes/rapplication/rapplication.s"
+	@echo "... home/kati/robocomp/classes/sigwatch/sigwatch.o"
+	@echo "... home/kati/robocomp/classes/sigwatch/sigwatch.i"
+	@echo "... home/kati/robocomp/classes/sigwatch/sigwatch.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
 	@echo "... navDataReader_autogen/mocs_compilation.o"
 	@echo "... navDataReader_autogen/mocs_compilation.i"
 	@echo "... navDataReader_autogen/mocs_compilation.s"
-	@echo "... opt/robocomp/classes/qlog/qlog.o"
-	@echo "... opt/robocomp/classes/qlog/qlog.i"
-	@echo "... opt/robocomp/classes/qlog/qlog.s"
-	@echo "... opt/robocomp/classes/rapplication/rapplication.o"
-	@echo "... opt/robocomp/classes/rapplication/rapplication.i"
-	@echo "... opt/robocomp/classes/rapplication/rapplication.s"
-	@echo "... opt/robocomp/classes/sigwatch/sigwatch.o"
-	@echo "... opt/robocomp/classes/sigwatch/sigwatch.i"
-	@echo "... opt/robocomp/classes/sigwatch/sigwatch.s"
 	@echo "... specificmonitor.o"
 	@echo "... specificmonitor.i"
 	@echo "... specificmonitor.s"

@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -53,6 +54,8 @@ public:
     QHBoxLayout *horizontalLayout;
     QTableWidget *tableWidget1;
     QWidget *graph_view;
+    QHBoxLayout *horizontalLayout_4;
+    QGraphicsView *graphicsView;
 
     void setupUi(QWidget *guiDlg)
     {
@@ -160,6 +163,13 @@ public:
         tabWidget->addTab(table_view, QString());
         graph_view = new QWidget();
         graph_view->setObjectName(QStringLiteral("graph_view"));
+        horizontalLayout_4 = new QHBoxLayout(graph_view);
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        graphicsView = new QGraphicsView(graph_view);
+        graphicsView->setObjectName(QStringLiteral("graphicsView"));
+
+        horizontalLayout_4->addWidget(graphicsView);
+
         tabWidget->addTab(graph_view, QString());
 
         verticalLayout_2->addWidget(tabWidget);
@@ -170,7 +180,7 @@ public:
 
         retranslateUi(guiDlg);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(guiDlg);

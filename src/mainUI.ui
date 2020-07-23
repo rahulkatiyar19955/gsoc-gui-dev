@@ -195,7 +195,7 @@
         <enum>QTabWidget::North</enum>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="table_view">
         <attribute name="title">
@@ -218,6 +218,11 @@
         <attribute name="title">
          <string>Graph View</string>
         </attribute>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QGraphicsView" name="graphicsView"/>
+         </item>
+        </layout>
        </widget>
       </widget>
      </item>

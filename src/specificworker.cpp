@@ -158,6 +158,7 @@ void SpecificWorker::browseButtonClick()
 
 	calculate_pathLength();
 	calculate_pathSmoothness();
+	drawChart();
 }
 
 bool SpecificWorker::readNavData()
@@ -266,6 +267,11 @@ void SpecificWorker::calculate_pathSmoothness()
 	cumm_angle /= row_count;
 	psLabel->setText(QString::fromStdString(std::to_string(cumm_angle)));
 }
+
+void SpecificWorker::drawChart()
+{
+}
+
 void SpecificWorker::compute()
 {
 	//computeCODE

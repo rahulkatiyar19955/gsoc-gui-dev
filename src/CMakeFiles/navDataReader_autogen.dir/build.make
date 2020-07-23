@@ -55,7 +55,7 @@ include src/CMakeFiles/navDataReader_autogen.dir/progress.make
 
 src/CMakeFiles/navDataReader_autogen:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kati/robocomp/components/robocomp-viriato/components/navDataReader/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target navDataReader"
-	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /home/kati/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake -E cmake_autogen /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/CMakeFiles/navDataReader_autogen.dir/AutogenInfo.json Debug
+	cd /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src && /home/kati/Desktop/IIT/clion-2020.1.2/bin/cmake/linux/bin/cmake -E cmake_autogen /home/kati/robocomp/components/robocomp-viriato/components/navDataReader/src/CMakeFiles/navDataReader_autogen.dir/AutogenInfo.json ""
 
 navDataReader_autogen: src/CMakeFiles/navDataReader_autogen
 navDataReader_autogen: src/CMakeFiles/navDataReader_autogen.dir/build.make
