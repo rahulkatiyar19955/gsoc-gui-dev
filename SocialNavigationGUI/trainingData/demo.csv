@@ -1,0 +1,5 @@
+initialPosX,initialPosZ,finalPosX,finalPosZ,RobotPoseX,RobotPoseZ,RobotPoseRot,MinObstacleAngle,MinObstacleDistance,
+-4500,-2000,-400,-2000,-4500,-2000.6,0,2.1,794.408,
+-4500,-2000,-400,-2000,-4500,-2002.39,0,2.1,794.408,
+-4500,-2000,-400,-2000,-4500,-2004.61,0,2.058,788.187,
+-4500,-2000,-400,-2000,-4500,-2007.83,0,2.058,788.187,

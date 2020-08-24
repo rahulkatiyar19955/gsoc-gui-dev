@@ -1,0 +1,22 @@
+
+# Sources set
+SET ( SOURCES
+  specificworker.cpp
+  specificmonitor.cpp
+  innerviewer.cpp
+
+)
+
+# Headers set
+SET ( HEADERS
+  specificworker.h
+  specificmonitor.h
+  innerviewer.h
+  grid.h
+  collisions.h
+  navigation.h
+)
+
+set(CMAKE_CXX_STANDARD 17)
+SET (LIBS ${LIBS} pthread osg osgViewer osgDB fcl )
+SET(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-fmax-errors=5" )

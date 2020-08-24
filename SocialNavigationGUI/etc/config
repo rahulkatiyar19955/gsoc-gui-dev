@@ -1,0 +1,82 @@
+NavigationAgent.MaxZSpeed = 450
+NavigationAgent.MaxXSpeed = 350
+NavigationAgent.MaxRotationSpeed = 0.75
+
+NavigationAgent.RobotXWidth = 540
+NavigationAgent.RobotZLong = 460
+NavigationAgent.RobotRadius = 400
+
+NavigationAgent.MinControllerPeriod = 100
+
+NavigationAgent.PlannerGraphPoints = 400
+NavigationAgent.PlannerGraphNeighbours = 20
+NavigationAgent.PlannerGraphMaxDistanceToSearch = 2500 #mm
+
+NavigationAgent.ExcludedObjectsInCollisionCheck = floor_plane,ladder_mesh
+
+
+CommonBehavior.Endpoints=tcp -p 11320
+
+# Endpoints for implemented interfaces
+AGMCommonBehavior.Endpoints=tcp -p 10330
+TrajectoryRobot2D.Endpoints=tcp -p 13204
+
+AGMExecutiveTopicTopic.Endpoints=tcp -p 10334
+RCISMousePickerTopic.Endpoints=tcp -p 13000
+SocialRulesTopic.Endpoints=tcp -p 14000
+
+
+#
+# R E M O T E    P R O X I E S
+#
+TopicManager.Proxy=IceStorm/TopicManager:default -h localhost -p 9999
+
+
+#local
+#TrajectoryRobot2DProxy = trajectoryrobot2d:tcp -h localhost -p 19204
+InnerModelManagerProxy = innermodelmanager:tcp -h localhost -p 11175
+OmniRobotProxy = omnirobot:tcp -h localhost -p 12238
+LaserProxy = laser:tcp -h localhost -p 10003
+AGMExecutiveProxy = agmexecutive:tcp -h localhost -p 10198
+
+#NavigationAgent.InnerModel=/home/robocomp/robocomp/components/robocomp-ursus-rockin/files/makeMeCoffee/simulation.xml
+
+
+
+##############LABORATORIO############
+#NavigationAgent.OuterRegionLeft = -2000
+#NavigationAgent.OuterRegionRight = 7500
+#NavigationAgent.OuterRegionBottom = -4250
+#NavigationAgent.OuterRegionTop = 4250
+
+##############ejemplo############
+#NavigationAgent.OuterRegionLeft = 7000
+#NavigationAgent.OuterRegionRight = 17000
+#NavigationAgent.OuterRegionBottom = -2000
+#NavigationAgent.OuterRegionTop = 8000
+
+##############aztide############
+NavigationAgent.OuterRegionLeft = -5000
+NavigationAgent.OuterRegionRight = 7000
+NavigationAgent.OuterRegionBottom = -7000
+NavigationAgent.OuterRegionTop = 5000
+
+############pruebasLab##################
+#NavigationAgent.OuterRegionLeft = -500
+#NavigationAgent.OuterRegionRight = 9500
+#NavigationAgent.OuterRegionBottom = -500
+#NavigationAgent.OuterRegionTop = 9500
+
+#############PruebasLab_pasillo###########
+#NavigationAgent.OuterRegionLeft = -2000
+#NavigationAgent.OuterRegionRight = 2000
+#NavigationAgent.OuterRegionBottom = -500
+#NavigationAgent.OuterRegionTop = 9500
+
+
+NavigationAgent.MinimunDetectableRotation = 0.03			# to accept a new target
+NavigationAgent.MinimunDetectableTranslation = 7 			# to accept a new target
+
+Ice.Warn.Connections=0
+Ice.Trace.Network=0
+Ice.Trace.Protocol=0

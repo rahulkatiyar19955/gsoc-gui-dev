@@ -1,0 +1,9 @@
+/.vscode/
+/CMakeFiles/
+/CMakeCache.txt
+/cmake_install.cmake
+/socialNavigationAgent.cbp
+/src/CMakeFiles/
+/src/.cph/
+/.cph/
+/.idea/
