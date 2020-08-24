@@ -634,6 +634,7 @@ class Ui_guiDlg(object):
         self.interaction_cb.addItem("")
         self.interaction_cb.addItem("")
         self.interaction_cb.addItem("")
+        self.interaction_cb.addItem("")
         self.interaction_cb.setObjectName(u"interaction_cb")
 
         self.gridLayout_2.addWidget(self.interaction_cb, 0, 1, 1, 1)
@@ -883,7 +884,8 @@ class Ui_guiDlg(object):
         self.interaction_cb.setItemText(0, QCoreApplication.translate("guiDlg", u"isBusy", None))
         self.interaction_cb.setItemText(1, QCoreApplication.translate("guiDlg", u"interacting", None))
         self.interaction_cb.setItemText(2, QCoreApplication.translate("guiDlg", u"block", None))
-        self.interaction_cb.setItemText(3, QCoreApplication.translate("guiDlg", u"softBlock", None))
+        self.interaction_cb.setItemText(3, QCoreApplication.translate("guiDlg", u"affordanceBlock", None))
+        self.interaction_cb.setItemText(4, QCoreApplication.translate("guiDlg", u"softBlock", None))
 
         self.ainteraction_pb.setText(QCoreApplication.translate("guiDlg", u"Add", None))
         self.interaction_cb_2.setItemText(0, QCoreApplication.translate("guiDlg", u"Talking", None))

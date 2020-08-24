@@ -1060,6 +1060,9 @@ class SpecificWorker(GenericWorker):
         elif index=="softBlock":
             self.ui.int2_cb.setEnabled(False)
             self.ui.interaction_cb_2.hide()
+        elif index=="affordanceBlock":
+            self.ui.int2_cb.setEnabled(False)
+            self.ui.interaction_cb_2.hide()
         elif index=="interacting":
             self.ui.int2_cb.setEnabled(True)
             self.ui.interaction_cb_2.show()
@@ -1081,6 +1084,10 @@ class SpecificWorker(GenericWorker):
             id2 = robotID
             listEntry = id1 + " => " + curr_text + " " + id2
         elif curr_text == "softBlock":
+            self.ui.int2_cb.setEnabled(False)
+            id2 = robotID
+            listEntry = id1 + " => " + curr_text + " " + id2
+        elif curr_text == "affordanceBlock":
             self.ui.int2_cb.setEnabled(False)
             id2 = robotID
             listEntry = id1 + " => " + curr_text + " " + id2

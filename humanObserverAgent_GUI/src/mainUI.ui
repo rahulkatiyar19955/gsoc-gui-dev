@@ -942,6 +942,11 @@
              </item>
              <item>
               <property name="text">
+               <string>affordanceBlock</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
                <string>softBlock</string>
               </property>
              </item>
