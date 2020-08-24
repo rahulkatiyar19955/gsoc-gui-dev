@@ -1,0 +1,11 @@
+Component navDataReader
+{
+    Communications
+    {
+        
+    };
+    language Cpp;
+    gui Qt(QWidget);
+    statemachine "statemachine.smdsl";
+};
+
