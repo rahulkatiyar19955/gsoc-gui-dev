@@ -1,3 +1,5 @@
+# Google Summer Of Code 2020 Report
+
 |                        |                                 |
 |------------------------|---------------------------------|
 |__Orgainization__       | [Robocomp](https://robocomp.github.io/web/) |
@@ -25,7 +27,7 @@ In this project, I have worked on the GUI part, interfacing it with other compon
 
   - This GUI should support ASR and TTS functionality and allow adding, modifying and repositioning persons in inner model and DSR.
 
-  - I have assigned one task which should allow a user to simulate the person position based on a dataset.
+  - I have assigned one task which should allow a user to simulate the position of person or a group of persons based on a dataset.
 
   - Another task that is assigned to me is to create a new tool which will automate the process of optimising navigation variables.
 
