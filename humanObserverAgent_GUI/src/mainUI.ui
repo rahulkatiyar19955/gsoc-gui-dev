@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>998</width>
+    <width>1024</width>
     <height>665</height>
    </rect>
   </property>
@@ -652,14 +652,14 @@
              </item>
             </widget>
            </item>
-           <item row="2" column="0">
+           <item row="3" column="0">
             <widget class="QLabel" name="label_7">
              <property name="text">
               <string>UserType</string>
              </property>
             </widget>
            </item>
-           <item row="2" column="1">
+           <item row="3" column="1">
             <widget class="QComboBox" name="H_userType">
              <item>
               <property name="text">
@@ -683,42 +683,42 @@
              </item>
             </widget>
            </item>
-           <item row="3" column="0">
+           <item row="4" column="0">
             <widget class="QLabel" name="label_18">
              <property name="text">
               <string>PhysicalDependence</string>
              </property>
             </widget>
            </item>
-           <item row="3" column="1">
+           <item row="4" column="1">
             <widget class="QSpinBox" name="H_phyDep">
              <property name="maximum">
               <number>100</number>
              </property>
             </widget>
            </item>
-           <item row="4" column="0">
+           <item row="5" column="0">
             <widget class="QLabel" name="label_19">
              <property name="text">
               <string>CognitiveDependence</string>
              </property>
             </widget>
            </item>
-           <item row="4" column="1">
+           <item row="5" column="1">
             <widget class="QSpinBox" name="H_cogDep">
              <property name="maximum">
               <number>100</number>
              </property>
             </widget>
            </item>
-           <item row="5" column="0">
+           <item row="6" column="0">
             <widget class="QLabel" name="label_8">
              <property name="text">
               <string>Emotional State</string>
              </property>
             </widget>
            </item>
-           <item row="5" column="1">
+           <item row="6" column="1">
             <widget class="QComboBox" name="H_emoSate">
              <item>
               <property name="text">
@@ -747,14 +747,14 @@
              </item>
             </widget>
            </item>
-           <item row="6" column="0">
+           <item row="7" column="0">
             <widget class="QLabel" name="label_10">
              <property name="text">
               <string>Activity</string>
              </property>
             </widget>
            </item>
-           <item row="6" column="1">
+           <item row="7" column="1">
             <widget class="QComboBox" name="H_activity">
              <item>
               <property name="text">
@@ -774,6 +774,27 @@
              <item>
               <property name="text">
                <string>Cognitive Activity</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_21">
+             <property name="text">
+              <string>Gender</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QComboBox" name="H_gender">
+             <item>
+              <property name="text">
+               <string>Male</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Female</string>
               </property>
              </item>
             </widget>

@@ -21,7 +21,7 @@ class Ui_guiDlg(object):
     def setupUi(self, guiDlg):
         if not guiDlg.objectName():
             guiDlg.setObjectName(u"guiDlg")
-        guiDlg.resize(998, 665)
+        guiDlg.resize(1024, 665)
         self.listen_status = QLabel(guiDlg)
         self.listen_status.setObjectName(u"listen_status")
         self.listen_status.setGeometry(QRect(762, 515, 16, 16))
@@ -484,7 +484,7 @@ class Ui_guiDlg(object):
         self.label_7 = QLabel(self.groupBox)
         self.label_7.setObjectName(u"label_7")
 
-        self.formLayout_2.setWidget(2, QFormLayout.LabelRole, self.label_7)
+        self.formLayout_2.setWidget(3, QFormLayout.LabelRole, self.label_7)
 
         self.H_userType = QComboBox(self.groupBox)
         self.H_userType.addItem("")
@@ -493,34 +493,34 @@ class Ui_guiDlg(object):
         self.H_userType.addItem("")
         self.H_userType.setObjectName(u"H_userType")
 
-        self.formLayout_2.setWidget(2, QFormLayout.FieldRole, self.H_userType)
+        self.formLayout_2.setWidget(3, QFormLayout.FieldRole, self.H_userType)
 
         self.label_18 = QLabel(self.groupBox)
         self.label_18.setObjectName(u"label_18")
 
-        self.formLayout_2.setWidget(3, QFormLayout.LabelRole, self.label_18)
+        self.formLayout_2.setWidget(4, QFormLayout.LabelRole, self.label_18)
 
         self.H_phyDep = QSpinBox(self.groupBox)
         self.H_phyDep.setObjectName(u"H_phyDep")
         self.H_phyDep.setMaximum(100)
 
-        self.formLayout_2.setWidget(3, QFormLayout.FieldRole, self.H_phyDep)
+        self.formLayout_2.setWidget(4, QFormLayout.FieldRole, self.H_phyDep)
 
         self.label_19 = QLabel(self.groupBox)
         self.label_19.setObjectName(u"label_19")
 
-        self.formLayout_2.setWidget(4, QFormLayout.LabelRole, self.label_19)
+        self.formLayout_2.setWidget(5, QFormLayout.LabelRole, self.label_19)
 
         self.H_cogDep = QSpinBox(self.groupBox)
         self.H_cogDep.setObjectName(u"H_cogDep")
         self.H_cogDep.setMaximum(100)
 
-        self.formLayout_2.setWidget(4, QFormLayout.FieldRole, self.H_cogDep)
+        self.formLayout_2.setWidget(5, QFormLayout.FieldRole, self.H_cogDep)
 
         self.label_8 = QLabel(self.groupBox)
         self.label_8.setObjectName(u"label_8")
 
-        self.formLayout_2.setWidget(5, QFormLayout.LabelRole, self.label_8)
+        self.formLayout_2.setWidget(6, QFormLayout.LabelRole, self.label_8)
 
         self.H_emoSate = QComboBox(self.groupBox)
         self.H_emoSate.addItem("")
@@ -530,12 +530,12 @@ class Ui_guiDlg(object):
         self.H_emoSate.addItem("")
         self.H_emoSate.setObjectName(u"H_emoSate")
 
-        self.formLayout_2.setWidget(5, QFormLayout.FieldRole, self.H_emoSate)
+        self.formLayout_2.setWidget(6, QFormLayout.FieldRole, self.H_emoSate)
 
         self.label_10 = QLabel(self.groupBox)
         self.label_10.setObjectName(u"label_10")
 
-        self.formLayout_2.setWidget(6, QFormLayout.LabelRole, self.label_10)
+        self.formLayout_2.setWidget(7, QFormLayout.LabelRole, self.label_10)
 
         self.H_activity = QComboBox(self.groupBox)
         self.H_activity.addItem("")
@@ -544,7 +544,19 @@ class Ui_guiDlg(object):
         self.H_activity.addItem("")
         self.H_activity.setObjectName(u"H_activity")
 
-        self.formLayout_2.setWidget(6, QFormLayout.FieldRole, self.H_activity)
+        self.formLayout_2.setWidget(7, QFormLayout.FieldRole, self.H_activity)
+
+        self.label_21 = QLabel(self.groupBox)
+        self.label_21.setObjectName(u"label_21")
+
+        self.formLayout_2.setWidget(2, QFormLayout.LabelRole, self.label_21)
+
+        self.H_gender = QComboBox(self.groupBox)
+        self.H_gender.addItem("")
+        self.H_gender.addItem("")
+        self.H_gender.setObjectName(u"H_gender")
+
+        self.formLayout_2.setWidget(2, QFormLayout.FieldRole, self.H_gender)
 
 
         self.gridLayout_7.addLayout(self.formLayout_2, 0, 0, 1, 1)
@@ -868,6 +880,10 @@ class Ui_guiDlg(object):
         self.H_activity.setItemText(1, QCoreApplication.translate("guiDlg", u"Robot Attention", None))
         self.H_activity.setItemText(2, QCoreApplication.translate("guiDlg", u"Physical Activity", None))
         self.H_activity.setItemText(3, QCoreApplication.translate("guiDlg", u"Cognitive Activity", None))
+
+        self.label_21.setText(QCoreApplication.translate("guiDlg", u"Gender", None))
+        self.H_gender.setItemText(0, QCoreApplication.translate("guiDlg", u"Male", None))
+        self.H_gender.setItemText(1, QCoreApplication.translate("guiDlg", u"Female", None))
 
         self.groupBox_4.setTitle(QCoreApplication.translate("guiDlg", u"Pose", None))
         self.label_2.setText(QCoreApplication.translate("guiDlg", u"Position X", None))
