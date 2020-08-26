@@ -632,22 +632,22 @@
             <widget class="QComboBox" name="H_age">
              <item>
               <property name="text">
-               <string>Age&lt;30</string>
+               <string>Age_less_than_30</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>30&lt;Age&lt;60</string>
+               <string>Age_between_30_and_60</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>60&lt;Age&lt;80</string>
+               <string>Age_between_60_and_80</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>Age&gt;80</string>
+               <string>Age_greater_than_80</string>
               </property>
              </item>
             </widget>
