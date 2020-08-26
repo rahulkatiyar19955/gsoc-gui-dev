@@ -257,7 +257,7 @@ class Human():
         self.id = id
         self.name = ""
         self.gender = "Male"
-        self.age = "Age<30"
+        self.age = "Age_less_than_30"
         self.userType = "Clinician"
         self.PhysicalDep = 0
         self.CognitiveDep = 0
@@ -1014,8 +1014,8 @@ class SpecificWorker(GenericWorker):
 
         # adding person information into attributes
         tempNode.attributes["name"] = str(self.ui.H_name.text())
-        tempNode.attributes["gender"] = str(self.ui.H_gender.currentText())
-        tempNode.attributes["age"] = str(self.ui.H_age.currentText())
+        tempNode.attributes["imGender"] = str(self.ui.H_gender.currentText())
+        tempNode.attributes["imAge"] = str(self.ui.H_age.currentText())
         tempNode.attributes["userType"] = str(self.ui.H_userType.currentText())
         tempNode.attributes["PhysicalDep"] = str(self.ui.H_phyDep.value())
         tempNode.attributes["CognitiveDep"] = str(self.ui.H_cogDep.value())
