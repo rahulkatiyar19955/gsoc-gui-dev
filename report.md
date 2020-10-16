@@ -90,7 +90,7 @@ I will list a few such problems that I faced:
 
 ## Diary
 Throughout my GSoC duration, I tried to document the progress and the problems that I faced.
-You can find all the daily logs [here..](https://github.com/rahulkatiyar19955/gsoc-gui-dev/tree/master/Diary)
+You can find all the daily logs [here..](https://rahulkatiyar19955.github.io/gsoc-gui-dev/Diary/)
 
 
 ## Conclusion
